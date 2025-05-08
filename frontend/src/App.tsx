@@ -1,9 +1,12 @@
 import "./App.css";
+import Navbar from "./components/Layout/Navbar";
 
 function App() {
   return (
     <>
-      <div className="h-screen bg-[#333] text-white flex justify-center items-center">
+      <Navbar />
+
+      <div className="h-screen bg-[#f1f1f1] dark:bg-[#282828] text-white flex justify-center items-center">
         Its working!
       </div>
     </>
