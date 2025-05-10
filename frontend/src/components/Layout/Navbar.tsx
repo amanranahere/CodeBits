@@ -1,21 +1,38 @@
 import ThemeToggle from "../ThemeToggle.tsx";
-import { FiSidebar } from "react-icons/fi";
+import { TbLayoutSidebar, TbLayoutSidebarFilled } from "react-icons/tb";
 
-function Navbar() {
+type NavbarProps = {
+  toggleSidebar: () => void;
+  sidebarOpen: boolean;
+};
+
+const Navbar = ({ toggleSidebar, sidebarOpen }: NavbarProps) => {
   return (
-    <div className="w-full text-white bg-[#282828] border-b border-[#5e5e5e] flex justify-between">
-      <div>CODE-BITS</div>
+    <>
+      <nav className="flex items-center justify-between bg-[#eef2f9] dark:bg-[#3c3c3c] text-white dark:text-black border-b border-[#d6e2fb] dark:border-[#5e5e5e]">
+        <div className="flex items-center space-x-4">
+          <span className="font-bold">CODE-BITS</span>
+          {/* TABS placeholder */}
+        </div>
 
-      {/* icons */}
-      <div className="flex gap-x-1">
-        <ThemeToggle />
+        <div className="flex items-center space-x-2 px-2">
+          <button className=" bg-[#6a6a6a] text-[#f1f1f1] rounded-xs">
+            + CODE
+          </button>
 
-        <button className="cursor-pointer">
-          <FiSidebar className="text-[#bababa]" />
-        </button>
-      </div>
-    </div>
+          <ThemeToggle />
+
+          <button onClick={toggleSidebar} className="cursor-pointer">
+            {sidebarOpen ? (
+              <TbLayoutSidebarFilled className="text-[#bababa] text-xl" />
+            ) : (
+              <TbLayoutSidebar className="text-[#bababa] text-xl" />
+            )}
+          </button>
+        </div>
+      </nav>
+    </>
   );
-}
+};
 
 export default Navbar;

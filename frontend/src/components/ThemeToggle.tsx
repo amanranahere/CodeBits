@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 
 function DarkModeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     if (isDark) {
@@ -14,10 +14,10 @@ function DarkModeToggle() {
 
   return (
     <button
-      className="text-[#bababa] cursor-pointer"
+      className="text-[#bababa] cursor-pointer text-lg"
       onClick={() => setIsDark(!isDark)}
     >
-      {isDark ? <MdDarkMode /> : <MdLightMode />}
+      {isDark ? <MdLightMode /> : <MdDarkMode />}
     </button>
   );
 }
