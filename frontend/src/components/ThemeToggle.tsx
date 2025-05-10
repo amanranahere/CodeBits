@@ -14,7 +14,8 @@ function DarkModeToggle() {
 
   return (
     <button
-      className="text-[#bababa] cursor-pointer text-lg"
+      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className="text-[#5c5c5c] dark:text-[#bababa] cursor-pointer text-lg  hover:brightness-150 dark:hover:brightness-125 duration-300"
       onClick={() => setIsDark(!isDark)}
     >
       {isDark ? <MdLightMode /> : <MdDarkMode />}
