@@ -5,11 +5,9 @@ const FilePage = () => {
 
   return (
     <div>
-      <h1 className="text-lg font-bold mb-2">{filename}</h1>
-
       <pre>
         {/* code of the file */}
-        {filename}
+        {filename}'s content is written here!
       </pre>
     </div>
   );

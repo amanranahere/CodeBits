@@ -17,6 +17,13 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
   const settingsOpen = tabs.includes("Settings");
   const currentPath = location.pathname;
 
+  const activeTab =
+    location.pathname === "/settings"
+      ? "Settings"
+      : location.pathname.startsWith("/file/")
+      ? location.pathname.replace("/file/", "")
+      : null;
+
   const openSettingsTab = () => {
     if (!tabs.includes("Settings")) {
       setTabs((prev) => [...prev, "Settings"]);
@@ -46,31 +53,37 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
     <>
       <nav className="flex items-center justify-between bg-[#eef2f9] dark:bg-[#3c3c3c] text-white dark:text-black border-b border-[#d6e2fb] dark:border-[#5e5e5e]">
         <div className="flex items-center space-x-4">
-          <span className="px-2 font-bold text-[#5c5c5c] dark:text-[#bababa]">
+          <span className="px-2 py-1 font-bold text-[#5c5c5c] dark:text-[#bababa]">
             CODE-BITS
           </span>
 
           {/* tabs  */}
           <div className="flex space-x-2 dark:text-white cursor-pointer">
-            {tabs.map((tab) => (
-              <div
-                key={tab}
-                className="flex items-center gap-1 group"
-                onClick={() =>
-                  navigate(tab === "Settings" ? "/settings" : `/file/${tab}`)
-                }
-              >
-                <span>{tab}</span>
+            {tabs.map((tab) => {
+              const isActive = tab === activeTab;
 
-                <IoClose
-                  className=" hidden group-hover:block"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    closeTab(tab);
-                  }}
-                />
-              </div>
-            ))}
+              return (
+                <div
+                  key={tab}
+                  onClick={() =>
+                    navigate(tab === "Settings" ? "/settings" : `/file/${tab}`)
+                  }
+                  className={`w-28 pl-2 pr-1 py-1 flex items-center justify-between gap-2 group border-b hover:bg-[#4a4a4a] duration-300 ${
+                    isActive ? "border-[#d6e2fb]" : "border-transparent"
+                  }`}
+                >
+                  <span className="text-sm">{tab}</span>
+
+                  <IoClose
+                    className="w-4 h-4 invisible group-hover:visible rounded-full hover:backdrop-brightness-150"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeTab(tab);
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
 

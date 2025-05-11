@@ -37,7 +37,7 @@ function App() {
       />
 
       <div className="flex flex-1 overflow-hidden">
-        {sidebarOpen && <Sidebar />}
+        {sidebarOpen && <Sidebar tabs={tabs} setTabs={setTabs} />}
         <LineNumbers />
 
         <main className="flex-1 overflow-auto bg-[#f1f1f1] dark:bg-[#282828] text-[#f1f1f1] p-4 duration-300">
