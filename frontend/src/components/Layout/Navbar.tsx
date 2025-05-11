@@ -1,7 +1,13 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeToggle from "../ThemeToggle.tsx";
-import { TbLayoutSidebar, TbLayoutSidebarFilled, TbPlus } from "react-icons/tb";
-import { IoSettings, IoSettingsOutline, IoClose } from "react-icons/io5";
+import { TbLayoutSidebar, TbLayoutSidebarFilled } from "react-icons/tb";
+import {
+  IoSettings,
+  IoSettingsOutline,
+  IoClose,
+  IoSearch,
+} from "react-icons/io5";
+import { VscNewFile } from "react-icons/vsc";
 
 type NavbarProps = {
   toggleSidebar: () => void;
@@ -52,13 +58,22 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
   return (
     <>
       <nav className="flex items-center justify-between bg-[#eef2f9] dark:bg-[#3c3c3c] text-white dark:text-black border-b border-[#d6e2fb] dark:border-[#5e5e5e]">
-        <div className="flex items-center space-x-4">
-          <span className="px-2 py-1 font-bold text-[#5c5c5c] dark:text-[#bababa]">
+        <div className="flex items-center space-x-4 overflow-hidden">
+          <Link
+            to="/"
+            className="px-2 py-1 font-bold text-[#5c5c5c] dark:text-[#bababa] whitespace-nowrap"
+          >
             CODE-BITS
-          </span>
+          </Link>
 
           {/* tabs  */}
-          <div className="flex space-x-2 dark:text-white cursor-pointer">
+          <div
+            className="flex dark:text-white cursor-pointer overflow-x-auto whitespace-nowrap"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
             {tabs.map((tab) => {
               const isActive = tab === activeTab;
 
@@ -68,19 +83,25 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
                   onClick={() =>
                     navigate(tab === "Settings" ? "/settings" : `/file/${tab}`)
                   }
-                  className={`w-28 pl-2 pr-1 py-1 flex items-center justify-between gap-2 group border-b hover:bg-[#4a4a4a] duration-300 ${
-                    isActive ? "border-[#d6e2fb]" : "border-transparent"
+                  className={`w-24 lg:w-36 pl-2 pr-1 py-1 flex items-center justify-between gap-1 group border-b hover:bg-[#4a4a4a] duration-300 overflow-hidden ${
+                    isActive
+                      ? "border-[#d6e2fb] backdrop-brightness-110"
+                      : "border-transparent"
                   }`}
                 >
-                  <span className="text-sm">{tab}</span>
+                  <div className="w-full overflow-hidden mask-containerEnd">
+                    <span className="text-sm">{tab}</span>
+                  </div>
 
-                  <IoClose
-                    className="w-4 h-4 invisible group-hover:visible rounded-full hover:backdrop-brightness-150"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      closeTab(tab);
-                    }}
-                  />
+                  <div>
+                    <IoClose
+                      className="w-4 h-4 invisible group-hover:visible rounded-full hover:backdrop-brightness-150"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        closeTab(tab);
+                      }}
+                    />
+                  </div>
                 </div>
               );
             })}
@@ -88,12 +109,12 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
         </div>
 
         {/* buttons */}
-        <div className="flex items-center space-x-2 px-2">
+        <div className="flex items-center space-x-2 pl-6 pr-2">
           <button
             title="Add new snippet"
-            className="cursor-pointer text-xl text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-300"
+            className="cursor-pointer text-lg text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-300"
           >
-            <TbPlus />
+            <VscNewFile />
           </button>
 
           <ThemeToggle />
@@ -105,6 +126,14 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
             hover:brightness-150 dark:hover:brightness-125 duration-300"
           >
             {settingsOpen ? <IoSettings /> : <IoSettingsOutline />}
+          </button>
+
+          <button
+            title="Add new snippet"
+            className="cursor-pointer text-lg text-[#5c5c5c] dark:text-[#bababa]
+            hover:brightness-150 dark:hover:brightness-125 duration-300"
+          >
+            <IoSearch />
           </button>
 
           <button

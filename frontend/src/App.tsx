@@ -8,7 +8,7 @@ import LineNumbers from "./components/Layout/LineNumbers.tsx";
 function App() {
   const [tabs, setTabs] = useState<string[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
