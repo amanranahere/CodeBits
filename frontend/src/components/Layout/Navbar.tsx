@@ -8,6 +8,7 @@ import {
   IoSearch,
 } from "react-icons/io5";
 import { VscNewFile } from "react-icons/vsc";
+import { getFileIcon } from "../../utils/getFileIcon.tsx";
 
 type NavbarProps = {
   toggleSidebar: () => void;
@@ -58,7 +59,7 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
   return (
     <>
       <nav className="flex items-center justify-between bg-[#eef2f9] dark:bg-[#3c3c3c] text-white dark:text-black border-b border-[#d6e2fb] dark:border-[#5e5e5e]">
-        <div className="flex items-center space-x-4 overflow-hidden">
+        <div className="h-full flex items-center space-x-4 overflow-hidden">
           <Link
             to="/"
             className="px-2 py-1 font-bold text-[#5c5c5c] dark:text-[#bababa] whitespace-nowrap"
@@ -68,7 +69,7 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
 
           {/* tabs  */}
           <div
-            className="flex dark:text-white cursor-pointer overflow-x-auto whitespace-nowrap"
+            className="h-full flex dark:text-white cursor-pointer overflow-x-auto whitespace-nowrap"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -83,13 +84,14 @@ const Navbar = ({ toggleSidebar, sidebarOpen, tabs, setTabs }: NavbarProps) => {
                   onClick={() =>
                     navigate(tab === "Settings" ? "/settings" : `/file/${tab}`)
                   }
-                  className={`w-24 lg:w-36 pl-2 pr-1 py-1 flex items-center justify-between gap-1 group border-b hover:bg-[#4a4a4a] duration-300 overflow-hidden ${
+                  className={`min-w-40 h-full lg:w-36 pl-2 pr-1 py-1 flex items-center justify-between gap-1 group border-b hover:bg-[#4a4a4a] duration-300 overflow- ${
                     isActive
                       ? "border-[#d6e2fb] backdrop-brightness-110"
                       : "border-transparent"
                   }`}
                 >
-                  <div className="w-full overflow-hidden mask-containerEnd">
+                  <div className="w-full flex items-center gap-x-2 overflow-hidden mask-containerEnd">
+                    <span>{getFileIcon(tab)}</span>
                     <span className="text-sm">{tab}</span>
                   </div>
 

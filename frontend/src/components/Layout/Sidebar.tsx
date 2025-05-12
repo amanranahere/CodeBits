@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { VscNewFile } from "react-icons/vsc";
 import { IoSearch } from "react-icons/io5";
 import FileOptionsMenu from "../Dialogs/FileOptionsMenu.tsx";
+import { getFileIcon } from "../../utils/getFileIcon.tsx";
 
 type SidebarProps = {
   setTabs: React.Dispatch<React.SetStateAction<string[]>>;
@@ -11,37 +12,40 @@ type SidebarProps = {
 const Sidebar = ({ tabs, setTabs }: SidebarProps) => {
   const navigate = useNavigate();
   const files = [
-    "Layout.jsx",
-    "SideBar.jsx",
-    "Button.jsx",
-    "ThemeToggle.js",
-    "Table.js",
-    "Input.jsx",
-    "Navbar.tsx",
-    "App.js",
-    "Form.jsx",
-    "LoginComponent.jsx",
-    "SignupComponent.jsx",
-    "main.jsx",
-    "tailwind-config.js",
-    "Vite-config.js",
-    "Settings.jsx",
-    "ThisIsATitleOfAFileToAdjustTheCSSForLongNames.jsx",
-    "Routes.js",
-    "Server.js",
-    "LineNumbers.jsx",
-    "Tabs.jsx",
-    "DialogBox.jsx",
-    "ChangeNameDialogBox.jsx",
-    "Layout.jsx",
-    "InitializeRoutes.jsx",
-    "InitializeVercelFile.jsx",
-    "ConfirmDialogBox.jsx",
-    "Pages.jsx",
-    "indexFile.jsx",
-    "Time.jsx",
-    "SomeComponent.jsx",
-    "Form.jsx",
+    ".gitignore",
+    "Dockerfile",
+    "alsdkfjwelkjfl;jaksdjflkjpoiweralksdjflkesjlsds.jsx",
+    ".env",
+    ".env.production",
+    "eslint.config.js",
+    "prettier.config.js",
+    "babel.config.js",
+    "vite.config.js",
+    "tailwind.config.js",
+    "next.config.js",
+    "script.js",
+    "component.jsx",
+    "types.ts",
+    "component.tsx",
+    "App.vue",
+    "index.html",
+    "styles.css",
+    "styles.scss",
+    "theme.sass",
+    "config.json",
+    "data.json5",
+    "settings.yaml",
+    "pipeline.yml",
+    "README.md",
+    "notes.txt",
+    "main.py",
+    "Program.java",
+    "server.go",
+    "script.rb",
+    "lib.rs",
+    "index.php",
+    "setup.sh",
+    "unknown.xyz",
   ];
 
   const openFile = (file: string) => {
@@ -89,9 +93,10 @@ const Sidebar = ({ tabs, setTabs }: SidebarProps) => {
           >
             <button
               onClick={() => openFile(file)}
-              className="w-full text-left block p-1 rounded-xs mask-containerEnd overflow-hidden"
+              className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs mask-containerEnd overflow-hidden"
             >
-              {file}
+              <span>{getFileIcon(file)}</span>
+              <span>{file}</span>
             </button>
 
             <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity  ">
