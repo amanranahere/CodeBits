@@ -25,7 +25,7 @@ const FileOptionsMenu = ({ file }: { file: string }) => {
       </button>
 
       {open && (
-        <div className="absolute -left-5 w-32 p-1 bg-white dark:bg-[#191919] shadow-md rounded-md flex flex-col text-sm z-10">
+        <div className="absolute -right-3 w-32 p-1 bg-white dark:bg-[#191919] shadow-md rounded-md flex flex-col text-sm z-50">
           <button className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left">
             Rename
           </button>

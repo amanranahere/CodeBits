@@ -79,32 +79,34 @@ const Sidebar = ({ tabs, setTabs }: SidebarProps) => {
       </div>
 
       {/* snippets list */}
-      <ul
+      <div
         className="max-h-[calc(100vh-4rem)] overflow-y-auto p-1"
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
         }}
       >
-        {files.map((file) => (
-          <li
-            key={file}
-            className="w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center text-[#bababa] hover:bg-[#4a4a4a] duration-300"
-          >
-            <button
-              onClick={() => openFile(file)}
-              className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs mask-containerEnd overflow-hidden"
+        <ul className="p-1 pb-20">
+          {files.map((file) => (
+            <li
+              key={file}
+              className="w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center text-[#bababa] hover:bg-[#4a4a4a] duration-300"
             >
-              <span>{getFileIcon(file)}</span>
-              <span>{file}</span>
-            </button>
+              <button
+                onClick={() => openFile(file)}
+                className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs mask-containerEnd overflow-hidden"
+              >
+                <span>{getFileIcon(file)}</span>
+                <span>{file}</span>
+              </button>
 
-            <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity  ">
-              <FileOptionsMenu file={file} />
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                <FileOptionsMenu file={file} />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </aside>
   );
 };
