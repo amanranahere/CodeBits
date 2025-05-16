@@ -18,4 +18,10 @@ app.get("/", (req, res) => {
   res.send("Hello from codebits backend");
 });
 
+// routes import
+import userRouter from "./routes/user.routes";
+
+// routes declaration
+app.use("/api/v1/user", userRouter);
+
 export default app;
