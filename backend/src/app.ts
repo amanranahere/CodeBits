@@ -21,9 +21,11 @@ app.get("/", (req, res) => {
 //   routes import
 import userRouter from "./routes/user.routes";
 import fileRouter from "./routes/file.routes";
+import folderRouter from "./routes/folder.routes";
 
 //   routes declaration
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/file", fileRouter);
+app.use("/api/v1/folder", folderRouter);
 
 export default app;
