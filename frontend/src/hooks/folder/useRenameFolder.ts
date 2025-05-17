@@ -1,10 +1,12 @@
-import axios from "../../utils/axios.helper";
+import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
 
 const useRenameFolder = () => {
   const renameFolder = async (folderId: string, newName: string) => {
     try {
-      const res = await axios.patch(`/folder/${folderId}`, { name: newName });
+      const res = await axiosInstance.patch(`/folder/${folderId}`, {
+        name: newName,
+      });
       return res.data.data;
     } catch (error) {
       toast.error("Failed to rename folder!");

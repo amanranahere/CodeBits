@@ -1,10 +1,10 @@
-import axios from "../../utils/axios.helper";
+import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
 
 const useAddFilesToFolder = () => {
   const addFiles = async (folderId: string, fileIds: string[]) => {
     try {
-      const res = await axios.post(`/folder/${folderId}/add-files`, {
+      const res = await axiosInstance.post(`/folder/${folderId}/add-files`, {
         fileIds,
       });
       return res.data.data;

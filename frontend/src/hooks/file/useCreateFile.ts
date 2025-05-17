@@ -1,4 +1,4 @@
-import axios from "../../utils/axios.helper";
+import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
 
 interface FileInput {
@@ -11,7 +11,7 @@ interface FileInput {
 const useCreateFile = () => {
   const createFile = async (fileData: FileInput) => {
     try {
-      const res = await axios.post("/file", fileData);
+      const res = await axiosInstance.post("/file", fileData);
       return res.data.data;
     } catch (error) {
       toast.error("Failed to create file!");

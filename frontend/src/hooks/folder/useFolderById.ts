@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../../utils/axios.helper";
+import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
 
 interface Folder {
@@ -15,7 +15,7 @@ const useFolderById = (folderId: string) => {
 
   const fetchFolder = async () => {
     try {
-      const res = await axios.get(`/folder/${folderId}`);
+      const res = await axiosInstance.get(`/folder/${folderId}`);
       setFolder(res.data.data);
     } catch (error) {
       toast.error("Failed to load folder!");

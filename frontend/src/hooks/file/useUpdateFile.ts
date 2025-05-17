@@ -1,4 +1,4 @@
-import axios from "../../utils/axios.helper";
+import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
 
 interface FileUpdateData {
@@ -11,7 +11,7 @@ interface FileUpdateData {
 const useUpdateFile = () => {
   const updateFile = async (fileId: string, updates: FileUpdateData) => {
     try {
-      const res = await axios.patch(`/file/${fileId}`, updates);
+      const res = await axiosInstance.patch(`/file/${fileId}`, updates);
       return res.data.data;
     } catch (error) {
       toast.error("Failed to update file!");

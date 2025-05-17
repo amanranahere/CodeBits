@@ -6,58 +6,33 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-//   add access token to headers
-axiosInstance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("accessToken");
-
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-//   handle token expiration
 axiosInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-
+  (response) => response,
   async (error) => {
     const errorMsg = error.response?.data?.error;
     const originalRequest = error.config;
 
     if (
-      error.response.status === 401 &&
+      error.response?.status === 401 &&
       errorMsg === "TokenExpiredError" &&
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
       try {
-        const { data } = await axios.post(
+        await axios.post(
           "/api/v1/user/refresh-token",
           {},
           { withCredentials: true }
         );
 
-        localStorage.setItem("accessToken", data.data.accessToken);
-        axiosInstance.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${data.data.accessToken}`;
-
         return axiosInstance(originalRequest);
       } catch (err) {
-        console.error("Failed to refresh token", err);
-        localStorage.removeItem("accessToken");
-        window.location.reload();
+        console.error("Session expired, logging out.");
         toast.error("Session expired. Please login again!");
+        window.location.href = "/login";
       }
     }
+
     return Promise.reject(error);
   }
 );

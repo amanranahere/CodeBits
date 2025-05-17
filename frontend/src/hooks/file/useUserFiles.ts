@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../../utils/axios.helper";
+import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
 
 interface File {
@@ -17,7 +17,7 @@ const useUserFiles = () => {
 
   const fetchFiles = async () => {
     try {
-      const res = await axios.get("/file");
+      const res = await axiosInstance.get("/file");
       setFiles(res.data.data.files || res.data.data);
     } catch (error) {
       toast.error("Failed to load files!");
