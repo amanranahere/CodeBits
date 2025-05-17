@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { VscNewFile } from "react-icons/vsc";
 import { IoSearch } from "react-icons/io5";
 import FileOptionsMenu from "../Dialogs/FileOptionsMenu.tsx";
-import { getFileIcon } from "../../utils/getFileIcon.tsx";
+import { getFileIcon } from "../getFileIcon.tsx";
 
 type SidebarProps = {
   setTabs: React.Dispatch<React.SetStateAction<string[]>>;

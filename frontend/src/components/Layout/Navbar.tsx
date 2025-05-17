@@ -8,7 +8,7 @@ import {
   IoSearch,
 } from "react-icons/io5";
 import { VscNewFile } from "react-icons/vsc";
-import { getFileIcon } from "../../utils/getFileIcon.tsx";
+import { getFileIcon } from "../getFileIcon.tsx";
 
 type NavbarProps = {
   toggleSidebar: () => void;
