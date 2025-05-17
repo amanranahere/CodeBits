@@ -41,7 +41,7 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-// middlerware for hasing password
+//   middlerware for hasing password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -49,12 +49,12 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// instance method to compare password
+//   instance method to compare password
 userSchema.methods.isPasswordCorrect = async function (inputPassword: string) {
   return await bcrypt.compare(inputPassword, this.password);
 };
 
-// instance method to generate access token
+//   instance method to generate access token
 userSchema.methods.generateAccessToken = function () {
   return jwt.sign(
     {
@@ -69,7 +69,7 @@ userSchema.methods.generateAccessToken = function () {
   );
 };
 
-// instance method to generate refresh token
+//   instance method to generate refresh token
 userSchema.methods.generateRefreshToken = function () {
   return jwt.sign(
     {
