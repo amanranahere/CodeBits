@@ -11,9 +11,11 @@ interface Folder {
 
 const useFolderById = (folderId: string) => {
   const [folder, setFolder] = useState<Folder | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fetchFolder = async () => {
+    setLoading(true);
+
     try {
       const res = await axiosInstance.get(`/folder/${folderId}`);
       setFolder(res.data.data);

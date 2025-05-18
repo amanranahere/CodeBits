@@ -52,7 +52,18 @@ const createFile = asyncHandler(async (req, res) => {
 });
 
 const getUserFiles = asyncHandler(async (req, res) => {
-  const files = await File.find({ owner: (req as any).user._id }).sort({
+  const { search = "" } = req.query;
+
+  const searchRegex = new RegExp(search.toString(), "i");
+
+  const files = await File.find({
+    owner: (req as any).user._id,
+    $or: [
+      { name: { $regex: searchRegex } },
+      { description: { $regex: searchRegex } },
+      { extension: { $regex: searchRegex } },
+    ],
+  }).sort({
     updatedAt: -1,
   });
 

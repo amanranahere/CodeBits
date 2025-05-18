@@ -10,9 +10,11 @@ interface User {
 
 const useCurrentUser = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fetchUser = async () => {
+    setLoading(true);
+
     try {
       const res = await axiosInstance.get("/user/current-user");
       setUser(res.data.data);

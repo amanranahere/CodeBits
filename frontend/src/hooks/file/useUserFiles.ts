@@ -13,9 +13,11 @@ interface File {
 
 const useUserFiles = () => {
   const [files, setFiles] = useState<File[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const fetchFiles = async () => {
+    setLoading(true);
+
     try {
       const res = await axiosInstance.get("/file");
       setFiles(res.data.data.files || res.data.data);

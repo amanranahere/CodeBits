@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { LayoutProvider } from "./components/Layout/LayoutContext.tsx";
 import Home from "./pages/Home.tsx";
 import FilePage from "./pages/FilePage.tsx";
 import Settings from "./pages/Settings.tsx";
@@ -30,6 +31,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <LayoutProvider>
+      <RouterProvider router={router} />
+    </LayoutProvider>
   </StrictMode>
 );
