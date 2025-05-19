@@ -13,6 +13,7 @@ import SignupBox from "./components/Auth/SignupBox";
 function App() {
   const user = useUserStore((state) => state.user);
   const refresh = useUserStore((state) => state.refresh);
+
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [infoPanelOpen, setInfoPanelOpen] = useState(true);
   const [loginBoxOpen, setLoginBoxOpen] = useState(true);
