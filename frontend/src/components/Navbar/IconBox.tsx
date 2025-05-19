@@ -1,52 +1,94 @@
-import { useLayout } from "../Layout/LayoutContext";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useUserStore } from "../../stores/userStore.ts";
 import ThemeToggle from "../ThemeToggle.tsx";
-import { TbLayoutSidebarFilled } from "react-icons/tb";
-import { IoSettings } from "react-icons/io5";
-import { VscNewFile } from "react-icons/vsc";
+import { TbLayoutSidebar, TbLayoutSidebarFilled } from "react-icons/tb";
+import { IoSettings, IoSettingsOutline } from "react-icons/io5";
+import { VscNewFile, VscNewFolder } from "react-icons/vsc";
 
-function NavbarIcons() {
-  const { toggleSidebar, toggleInfoPanel } = useLayout();
+interface IconBoxProps {
+  sidebarOpen: boolean;
+  infoPanelOpen: boolean;
+  toggleSidebar: () => void;
+  toggleInfoPanel: () => void;
+}
+
+function IconBox({
+  sidebarOpen,
+  infoPanelOpen,
+  toggleSidebar,
+  toggleInfoPanel,
+}: IconBoxProps) {
+  const user = useUserStore((state) => state.user);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isSettingsPage = location.pathname === "/settings";
+
+  const toggleSettingsPage = () => {
+    if (isSettingsPage) {
+      navigate(-1);
+    } else {
+      navigate("/settings");
+    }
+  };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="h-14 px-5 flex items-center space-x-2 dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-2xl">
       <button
-        title="Add new snippet"
-        className="cursor-pointer text-lg text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-300"
+        title="Create new file"
+        className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
       >
-        <VscNewFile />
+        <VscNewFile className="w-6 h-6" />
+      </button>
+
+      <button
+        title="Create new folder"
+        className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
+      >
+        <VscNewFolder className="w-6 h-6" />
       </button>
 
       <ThemeToggle />
 
       <button
         title="Settings"
-        // onClick={openSettingsTab}
-        className="cursor-pointer text-lg text-[#5c5c5c] dark:text-[#bababa]
-            hover:brightness-150 dark:hover:brightness-125 duration-300"
+        onClick={toggleSettingsPage}
+        className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
       >
-        {/* {settingsOpen ? <IoSettings /> : <IoSettingsOutline />} */}
-        <IoSettings />
+        {isSettingsPage ? (
+          <IoSettings className="w-6 h-6" />
+        ) : (
+          <IoSettingsOutline className="w-6 h-6" />
+        )}
       </button>
 
+      {/* sidebar */}
       <button
-        title="Toggle Sidebar"
+        title={sidebarOpen ? "Close sidebar" : "Open sidebar"}
         onClick={toggleSidebar}
-        className="cursor-pointer text-xl text-[#5c5c5c] dark:text-[#bababa]
-            hover:brightness-150 dark:hover:brightness-125 duration-300"
+        className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
       >
-        <TbLayoutSidebarFilled />
+        {sidebarOpen ? (
+          <TbLayoutSidebarFilled className="w-6 h-6" />
+        ) : (
+          <TbLayoutSidebar className="w-6 h-6" />
+        )}
       </button>
 
-      <button
-        title="Toggle InfoPanel"
-        onClick={toggleInfoPanel}
-        className="cursor-pointer text-xl text-[#5c5c5c] dark:text-[#bababa]
-            hover:brightness-150 dark:hover:brightness-125 duration-300"
-      >
-        <TbLayoutSidebarFilled />
-      </button>
+      {user && (
+        <button
+          title={infoPanelOpen ? "Close Info Panel" : "Open Info Panel"}
+          onClick={toggleInfoPanel}
+          className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
+        >
+          {infoPanelOpen ? (
+            <TbLayoutSidebarFilled className="w-6 h-6" />
+          ) : (
+            <TbLayoutSidebar className="w-6 h-6" />
+          )}
+        </button>
+      )}
     </div>
   );
 }
 
-export default NavbarIcons;
+export default IconBox;

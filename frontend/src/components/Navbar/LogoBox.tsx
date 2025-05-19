@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
+
 export default function LogoBox() {
   return (
-    <div className="flex items-center gap-x-2">
-      <div>OO</div> // add logo here
-      <div className="font-bold text-lg">CODE-BITS</div>
-    </div>
+    <Link
+      to={"/"}
+      className="h-14 px-6 flex items-center dark:bg-[#1f1f1f] dark:hover:brightness-150 duration-300 dark:text-[#f1f1f1] gap-x-2 rounded-2xl"
+    >
+      <div>OO</div>
+      <div className="font-bold">CODE-BITS</div>
+    </Link>
   );
 }
