@@ -10,6 +10,7 @@ import Sidebar from "./components/Layout/Sidebar";
 import FileInfoPanel from "./components/Layout/FileInfoPanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
+import AuthButtons from "./components/Auth/AuthButtons";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -57,21 +58,10 @@ function App() {
         {user ? (
           <SearchBar />
         ) : (
-          <div className="flex-1 flex items-center gap-x-2">
-            <button
-              onClick={handleLoginToggle}
-              className="h-14 flex-grow dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-2xl"
-            >
-              LOGIN
-            </button>
-
-            <button
-              onClick={handleSignupToggle}
-              className="h-14 flex-grow dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-2xl"
-            >
-              SIGNUP
-            </button>
-          </div>
+          <AuthButtons
+            handleLoginToggle={handleLoginToggle}
+            handleSignupToggle={handleSignupToggle}
+          />
         )}
 
         <UserBox />
@@ -85,7 +75,7 @@ function App() {
       </div>
 
       <div className="flex flex-1 gap-2 overflow-hidden">
-        {sidebarOpen && <Sidebar />}
+        {user && sidebarOpen && <Sidebar />}
 
         <main className="flex-1 bg-[#333] rounded-3xl overflow-auto">
           <Outlet />

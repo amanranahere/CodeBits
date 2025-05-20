@@ -42,7 +42,7 @@ function SignupBox() {
         onSubmit={handleSubmit(onSubmit)}
         className="p-7 bg-[#121212] rounded-3xl"
       >
-        <div className="h-20 text-lg font-mono dark:text-[#ffffffb3]">
+        <div className="h-24 text-lg font-mono dark:text-[#ffffffb3]">
           <TypingTextAnimation
             text="  Sign up now to enjoy complete access to all features."
             speed={40}
@@ -155,7 +155,7 @@ function SignupBox() {
         </div>
       </form>
 
-      <div className="absolute -bottom-2 -translate-x-4 tracking-tighter leading-none text-[clamp(7rem,9.5vw,9.5rem)] font-extrabold text-[#282828] oswald-text select-none">
+      <div className="absolute -bottom-2 -translate-x-4 tracking-tighter leading-none text-[clamp(7rem,9.5vw,9.5rem)] font-extrabold text-[#ffffff14] oswald-text select-none">
         SIGNUP
       </div>
     </div>

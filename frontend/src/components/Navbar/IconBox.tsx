@@ -32,7 +32,7 @@ function IconBox({
   };
 
   return (
-    <div className="h-14 px-5 flex items-center space-x-2 dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-2xl">
+    <div className="h-14 px-5 flex items-center space-x-2 dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-[1.2rem]">
       <button
         title="Create new file"
         className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
@@ -61,31 +61,33 @@ function IconBox({
         )}
       </button>
 
-      {/* sidebar */}
-      <button
-        title={sidebarOpen ? "Close sidebar" : "Open sidebar"}
-        onClick={toggleSidebar}
-        className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
-      >
-        {sidebarOpen ? (
-          <TbLayoutSidebarFilled className="w-6 h-6" />
-        ) : (
-          <TbLayoutSidebar className="w-6 h-6" />
-        )}
-      </button>
-
+      {/*   sidebar and info-panel buttons   */}
       {user && (
-        <button
-          title={infoPanelOpen ? "Close Info Panel" : "Open Info Panel"}
-          onClick={toggleInfoPanel}
-          className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
-        >
-          {infoPanelOpen ? (
-            <TbLayoutSidebarFilled className="w-6 h-6" />
-          ) : (
-            <TbLayoutSidebar className="w-6 h-6" />
-          )}
-        </button>
+        <>
+          <button
+            title={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+            onClick={toggleSidebar}
+            className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
+          >
+            {sidebarOpen ? (
+              <TbLayoutSidebarFilled className="w-6 h-6" />
+            ) : (
+              <TbLayoutSidebar className="w-6 h-6" />
+            )}
+          </button>
+
+          <button
+            title={infoPanelOpen ? "Close Info Panel" : "Open Info Panel"}
+            onClick={toggleInfoPanel}
+            className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
+          >
+            {infoPanelOpen ? (
+              <TbLayoutSidebarFilled className="w-6 h-6" />
+            ) : (
+              <TbLayoutSidebar className="w-6 h-6" />
+            )}
+          </button>
+        </>
       )}
     </div>
   );
