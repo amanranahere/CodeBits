@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "../../stores/userStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import TypingTextAnimation from "../Animation/TypingTextAnimation";
 
 interface LoginInput {
   email: string;
@@ -31,24 +32,24 @@ function LoginBox() {
   } = useForm<LoginInput>();
 
   return (
-    <div className="w-[25%] dark:bg-[#121212] dark:text-white rounded-3xl">
+    <div className="w-[25%] dark:bg-[#121212] dark:text-white rounded-3xl relative overflow-hidden">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-8 bg-[#1a1a1a] rounded-[20px] border border-[#333]"
+        className="p-7 bg-[#121212] rounded-3xl"
       >
-        <p className="signup-title">Login</p>
-        <p className="signup-message">
-          Great to see you again! Ready to dive in?{" "}
-        </p>
-
-        {error && <p className="text-red-600 mt-3 text-center">{error}</p>}
+        <div className="h-20 text-lg font-mono dark:text-[#ffffffb3]">
+          <TypingTextAnimation
+            text="Great to see you again! Ready to dive in?"
+            speed={40}
+          />
+        </div>
 
         <div className="h-full w-full mt-6">
-          <div className="signup-form">
+          <div className="floating-input-wrapper">
             {/* email input */}
             <label>
               <input
-                className="signup-input"
+                className="floating-label-input"
                 type="email"
                 placeholder=""
                 required
@@ -66,13 +67,15 @@ function LoginBox() {
             </label>
 
             {typeof errors.email?.message === "string" && (
-              <p className="text-red-600 px-2 mt-1">{errors.email.message}</p>
+              <p className="text-sm leading-none text-red-600 px-2 pb-2">
+                {errors.email.message}
+              </p>
             )}
 
             {/* password input */}
             <label className="relative">
               <input
-                className="signup-input pr-10"
+                className="floating-label-input"
                 type={passwordVisible ? "text" : "password"}
                 placeholder=""
                 required
@@ -98,14 +101,20 @@ function LoginBox() {
             </label>
 
             {typeof errors.password?.message === "string" && (
-              <p className="text-red-600 px-2 mt-1">
+              <p className="text-sm leading-none text-red-600 px-2 pb-2">
                 {errors.password.message}
+              </p>
+            )}
+
+            {error && (
+              <p className="leading-tight text-red-600 px-1 text-center">
+                {error}
               </p>
             )}
 
             {/* submit button */}
             <button
-              className="signup-submit select-none"
+              className="p-[10px] bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63] rounded-lg duration-200 select-none outline-none border-none"
               type="submit"
               disabled={loading}
             >
@@ -120,6 +129,10 @@ function LoginBox() {
           </div>
         </div>
       </form>
+
+      <div className="absolute -bottom-2 -translate-x-5 tracking-tighter leading-none text-[clamp(7rem,12vw,12rem)] font-extrabold text-[#282828] oswald-text select-none">
+        LOGIN
+      </div>
     </div>
   );
 }

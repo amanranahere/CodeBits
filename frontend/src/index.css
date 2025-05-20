@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* masking - start */
+/*   fonts - start   */
+
+@font-face {
+  font-family: "Oswald";
+  src: url("/fonts/Oswald.ttf") format("truetype");
+}
+
+.oswald-text {
+  font-family: "Oswald", sans-serif;
+}
+
+/*   fonts - end   */
+
+/*   masking - start   */
 
 .mask-containerEnd {
   mask-image: linear-gradient(
@@ -18,11 +31,11 @@
   transition: mask-image 0.3s ease;
 }
 
-/* masking - end */
+/*   masking - end   */
 
-/* login/signup component - start */
+/*   floating label input - start   */
 
-.signup-form {
+.floating-input-wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -31,74 +44,21 @@
   color: #fff;
 }
 
-.signup-title {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-  color: #00bfff;
-}
-
-.signup-title::before {
-  width: 18px;
-  height: 18px;
-}
-
-.signup-title::after {
-  width: 18px;
-  height: 18px;
-  animation: pulse 1s linear infinite;
-}
-
-.signup-title::before,
-.signup-title::after {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  left: 0px;
-  background-color: #00bfff;
-}
-
-.signup-message,
-.signup-signin {
-  font-size: 14.5px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.signup-signin {
-  text-align: center;
-}
-
-.signup-signin a:hover {
-  text-decoration: underline #4169e1;
-}
-
-.signup-signin a {
-  color: #00bfff;
-}
-
-.signup-form label {
+.floating-input-wrapper label {
   position: relative;
 }
 
-.signup-form label .signup-input {
+.floating-input-wrapper label .floating-label-input {
   background-color: #333;
   color: #fff;
   width: 100%;
-  min-width: 300px;
-  padding: 20px 5px 5px 10px;
+  padding: 20px 30px 5px 10px;
   outline: 0;
-  border: 1px solid rgba(105, 105, 105, 0.397);
   border-radius: 10px;
 }
 
-.signup-form label .signup-input + span {
-  color: rgba(255, 255, 255, 0.5);
+.floating-input-wrapper label .floating-label-input + span {
+  color: #ffffff80;
   position: absolute;
   left: 10px;
   top: 0px;
@@ -107,41 +67,48 @@
   transition: 0.3s ease;
 }
 
-.signup-form label .signup-input:placeholder-shown + span {
+.floating-input-wrapper label .floating-label-input:placeholder-shown + span {
   top: 12.5px;
   font-size: 0.9em;
 }
 
-.signup-form label .signup-input:focus + span,
-.signup-form label .signup-input:valid + span {
+.floating-input-wrapper label .floating-label-input:focus + span,
+.floating-input-wrapper
+  label
+  .floating-label-input:not(:placeholder-shown)
+  + span {
   color: #00bfff;
   top: 0px;
   font-size: 0.7em;
   font-weight: 600;
 }
 
-.signup-input {
+.floating-label-input {
   font-size: medium;
 }
 
-.signup-submit {
-  height: 100%;
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  transform: 0.3s ease;
+/*   floating label input - end   */
+
+/*   pulsating dot - start   */
+
+.pulsating-dot {
+  position: relative;
+  color: #00bfff;
+}
+
+.pulsating-dot::after {
+  animation: pulse 1s linear infinite;
+}
+
+.pulsating-dot::before,
+.pulsating-dot::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
   background-color: #00bfff;
-}
-
-.signup-submit:hover {
-  background-color: #00bfff96;
-}
-
-.signup-submit:active {
-  background-color: #00bfff63;
 }
 
 @keyframes pulse {
@@ -156,4 +123,4 @@
   }
 }
 
-/* login/signup component - end */
+/*   plusating dot - end   */

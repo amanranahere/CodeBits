@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
 import LogoBox from "./components/Navbar/LogoBox";
 import SearchBar from "./components/Navbar/SearchBar";
@@ -15,7 +16,7 @@ function App() {
   const refresh = useUserStore((state) => state.refresh);
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [infoPanelOpen, setInfoPanelOpen] = useState(true);
+  const [infoPanelOpen, setInfoPanelOpen] = useState(false);
   const [loginBoxOpen, setLoginBoxOpen] = useState(true);
   const [signupBoxOpen, setSignupBoxOpen] = useState(false);
 
@@ -94,6 +95,20 @@ function App() {
         {!user && loginBoxOpen && <LoginBox />}
         {!user && signupBoxOpen && <SignupBox />}
       </div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Slide}
+      />
     </div>
   );
 }

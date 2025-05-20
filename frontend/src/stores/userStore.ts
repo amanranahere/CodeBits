@@ -33,9 +33,9 @@ export const useUserStore = create<UserStore>()(
             password,
           });
           set({ user: res.data.data.user });
+          toast.success("Logged in");
         } catch (err) {
           console.log("Login error: ", err);
-          toast.error("Login failed");
         } finally {
           set({ loading: false });
         }
@@ -46,6 +46,7 @@ export const useUserStore = create<UserStore>()(
         try {
           await axiosInstance.post("/user/logout");
           set({ user: null });
+          toast("Logged out");
         } catch (err) {
           console.error("Logout error: ", err);
           toast.error("Logout failed");
@@ -60,8 +61,8 @@ export const useUserStore = create<UserStore>()(
           const res = await axiosInstance.post("/user/logout");
           set({ user: res.data.data.user });
         } catch (err) {
-          console.error("Refresh error: ", err);
-          toast.error("Failed to load user");
+          // console.error("Refresh error: ", err);
+          // toast.error("Failed to load user");
         } finally {
           set({ loading: false });
         }
