@@ -2,7 +2,7 @@ import { IoSearch } from "react-icons/io5";
 
 function SearchBar() {
   return (
-    <div className="relative flex-1 dark:bg-[#1f1f1f] rounded-[1.2rem] flex group">
+    <div className="relative flex-1 dark:bg-[#1f1f1f] rounded-[1.2rem] flex group overflow-hidden">
       <div className="py-4 pl-4 flex items-center justify-center  dark:text-[#ffffff6a] dark:group-hover:text-[#ffffff79] dark:group-focus-within:text-[#ffffff79] text-2xl">
         <IoSearch />
       </div>

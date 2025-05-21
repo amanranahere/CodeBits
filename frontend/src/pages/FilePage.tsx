@@ -4,8 +4,8 @@ const FilePage = () => {
   const { filename } = useParams<{ filename: string }>();
 
   return (
-    <div>
-      <pre>
+    <div className="h-full flex justify-center items-center">
+      <pre className="text-white">
         {/* code of the file */}
         {filename}'s content is written here!
       </pre>

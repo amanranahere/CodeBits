@@ -39,7 +39,7 @@ const createFile = asyncHandler(async (req, res) => {
   }
 
   const newFile = await File.create({
-    name,
+    name: name.trim().replace(/\s+/g, ""),
     extension,
     description,
     code,

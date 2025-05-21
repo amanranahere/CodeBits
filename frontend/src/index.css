@@ -17,7 +17,7 @@
 
 /*   masking - start   */
 
-.mask-containerEnd {
+.mask-containerRight {
   mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 1) 80%,
@@ -26,6 +26,20 @@
   -webkit-mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transition: mask-image 0.3s ease;
+}
+
+.mask-containerBottom {
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 90%,
     rgba(0, 0, 0, 0) 100%
   );
   transition: mask-image 0.3s ease;

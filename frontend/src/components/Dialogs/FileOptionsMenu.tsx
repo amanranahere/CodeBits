@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 
-const FileOptionsMenu = ({ file }: { file: string }) => {
+const FileOptionsMenu = ({
+  onRename,
+  onDelete,
+}: {
+  onRename: () => void;
+  onDelete: () => void;
+}) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -26,10 +32,23 @@ const FileOptionsMenu = ({ file }: { file: string }) => {
 
       {open && (
         <div className="absolute -right-3 w-32 p-1 bg-white dark:bg-[#191919] shadow-md rounded-md flex flex-col text-sm z-50">
-          <button className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left">
+          <button
+            onClick={() => {
+              onRename();
+              setOpen(false);
+            }}
+            className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left"
+          >
             Rename
           </button>
-          <button className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left">
+
+          <button
+            onClick={() => {
+              onDelete();
+              setOpen(false);
+            }}
+            className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left"
+          >
             Delete
           </button>
         </div>
