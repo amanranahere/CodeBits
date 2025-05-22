@@ -10,36 +10,10 @@ const createFile = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Name and extension are required!");
   }
 
-  const allowedExtensions = [
-    "js",
-    "ts",
-    "jsx",
-    "tsx",
-    "html",
-    "css",
-    "scss",
-    "sass",
-    "json",
-    "json5",
-    "yml",
-    "yaml",
-    "md",
-    "txt",
-    "py",
-    "java",
-    "go",
-    "rb",
-    "rs",
-    "php",
-    "sh",
-  ];
-
-  if (!allowedExtensions.includes(extension)) {
-    throw new ApiError(400, "Invalid file extension selected!");
-  }
+  const sanitizedName = name?.trim().replace(/\s+/g, "");
 
   const newFile = await File.create({
-    name: name.trim().replace(/\s+/g, ""),
+    name: sanitizedName,
     extension,
     description,
     code,
@@ -97,9 +71,11 @@ const updateFile = asyncHandler(async (req, res) => {
   const { fileId } = req.params;
   const { name, extension, description, code } = req.body;
 
+  const sanitizedName = name?.trim().replace(/\s+/g, "");
+
   const updatedFile = await File.findOneAndUpdate(
     { _id: fileId, owner: (req as any).user._id },
-    { name, extension, description, code },
+    { name: sanitizedName, extension, description, code },
     { new: true, runValidators: true }
   );
 

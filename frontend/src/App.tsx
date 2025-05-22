@@ -7,7 +7,7 @@ import SearchBar from "./components/Navbar/SearchBar";
 import IconBox from "./components/Navbar/IconBox";
 import UserBox from "./components/Navbar/UserBox";
 import Sidebar from "./components/Layout/Sidebar";
-import FileInfoPanel from "./components/Layout/FileInfoPanel";
+import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
 import AuthButtons from "./components/Auth/AuthButtons";
@@ -81,7 +81,7 @@ function App() {
           <Outlet />
         </main>
 
-        {user && infoPanelOpen && <FileInfoPanel />}
+        {user && infoPanelOpen && <FilePanel />}
         {!user && loginBoxOpen && <LoginBox />}
         {!user && signupBoxOpen && <SignupBox />}
       </div>

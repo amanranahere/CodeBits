@@ -42,8 +42,23 @@ export const useFileStore = create<FileStore>((set, get) => ({
   createFile: async (fileData) => {
     set({ loading: true });
 
+    const { files } = get();
+    const sanitizedName = fileData.name?.trim().replace(/\s+/g, "");
+    const sanitizedExtension = fileData.extension?.trim().toLowerCase();
+
+    if (sanitizedName && files.some((file) => file.name === sanitizedName)) {
+      toast.error("A file with this name already exists.");
+      return;
+    }
+
     try {
-      const res = await axiosInstance.post("/file", fileData);
+      const newFileData = {
+        ...fileData,
+        name: sanitizedName,
+        extension: sanitizedExtension,
+      };
+
+      const res = await axiosInstance.post("/file", newFileData);
       const newFile = res.data.data;
       set({ files: [...get().files, newFile] });
     } catch (err) {
@@ -64,8 +79,24 @@ export const useFileStore = create<FileStore>((set, get) => ({
   },
 
   updateFile: async (fileId, updates) => {
+    const { files } = get();
+    const sanitizedName = updates.name?.trim().replace(/\s+/g, "");
+    const sanitizedExtension = updates.extension?.trim().toLowerCase();
+
+    if (
+      sanitizedName &&
+      files.some((file) => file._id !== fileId && file.name === sanitizedName)
+    ) {
+      toast.error("A file with this name already exists.");
+      return;
+    }
+
     try {
-      const res = await axiosInstance.patch(`/file/${fileId}`, updates);
+      const res = await axiosInstance.patch(`/file/${fileId}`, {
+        ...updates,
+        name: sanitizedName ?? updates.name,
+        extension: sanitizedExtension ?? updates.extension,
+      });
       const updated = res.data.data;
       set({
         files: get().files.map((file) =>

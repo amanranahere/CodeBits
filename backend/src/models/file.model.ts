@@ -11,29 +11,8 @@ const fileSchema = new Schema(
     extension: {
       type: String,
       required: true,
-      enum: [
-        "js",
-        "ts",
-        "jsx",
-        "tsx",
-        "html",
-        "css",
-        "scss",
-        "sass",
-        "json",
-        "json5",
-        "yml",
-        "yaml",
-        "md",
-        "txt",
-        "py",
-        "java",
-        "go",
-        "rb",
-        "rs",
-        "php",
-        "sh",
-      ],
+      trim: true,
+      lowercase: true,
     },
     description: {
       type: String,
@@ -51,5 +30,7 @@ const fileSchema = new Schema(
     timestamps: true,
   }
 );
+
+fileSchema.index({ name: 1, owner: 1 }, { unique: true });
 
 export const File = mongoose.model("File", fileSchema);

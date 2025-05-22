@@ -12,6 +12,7 @@ const Sidebar = () => {
 
   const [editingFileId, setEditingFileId] = useState<string | null>(null);
   const [fileToDelete, setFileToDelete] = useState<UserFile | null>(null);
+  const [renameInput, setRenameInput] = useState("");
 
   const files = useFileStore((state) => state.files);
   const fetchFiles = useFileStore((state) => state.fetchFiles);
@@ -25,6 +26,15 @@ const Sidebar = () => {
   useEffect(() => {
     fetchFiles();
   }, [fetchFiles]);
+
+  useEffect(() => {
+    if (editingFileId) {
+      const file = files.find((f) => f._id === editingFileId);
+      if (file) {
+        setRenameInput(file.name);
+      }
+    }
+  }, [editingFileId, files]);
 
   return (
     <>
@@ -45,6 +55,14 @@ const Sidebar = () => {
             <ul className="p-1 pb-40">
               {files.map((file) => {
                 const isActive = file.name === filename;
+                const isEditing = editingFileId === file._id;
+                const sanitizedInput = renameInput.trim().replace(/\s+/g, "");
+
+                const isDuplicateName =
+                  isEditing &&
+                  files.some(
+                    (f) => f._id !== file._id && f.name === sanitizedInput
+                  );
 
                 return (
                   <li
@@ -61,33 +79,53 @@ const Sidebar = () => {
                     >
                       <span>{getFileIcon(file.extension)}</span>
 
-                      {editingFileId === file._id ? (
-                        <input
-                          type="text"
-                          defaultValue={file.name}
-                          autoFocus
-                          onBlur={async (e) => {
-                            const newName = e.target.value.trim();
-                            if (newName && newName !== file.name) {
-                              await updateFile(file._id, { name: newName });
-                            }
-                            setEditingFileId(null);
-                          }}
-                          onKeyDown={async (e) => {
-                            if (e.key === "Enter") {
-                              const newName = (
-                                e.target as HTMLInputElement
-                              ).value.trim();
-                              if (newName && newName !== file.name) {
-                                await updateFile(file._id, { name: newName });
+                      {isEditing ? (
+                        <div className="flex flex-col">
+                          <input
+                            type="text"
+                            value={renameInput}
+                            autoFocus
+                            onChange={(e) => setRenameInput(e.target.value)}
+                            onBlur={async () => {
+                              if (
+                                sanitizedInput &&
+                                sanitizedInput !== file.name &&
+                                !isDuplicateName
+                              ) {
+                                await updateFile(file._id, {
+                                  name: sanitizedInput,
+                                });
                               }
+                              setRenameInput("");
                               setEditingFileId(null);
-                            } else if (e.key === "Escape") {
-                              setEditingFileId(null);
-                            }
-                          }}
-                          className="w-full bg-transparent text-white outline-none border border-gray-300 rounded px-1"
-                        />
+                            }}
+                            onKeyDown={async (e) => {
+                              if (e.key === "Enter") {
+                                if (
+                                  sanitizedInput &&
+                                  sanitizedInput !== file.name &&
+                                  !isDuplicateName
+                                ) {
+                                  await updateFile(file._id, {
+                                    name: sanitizedInput,
+                                  });
+                                }
+                                setRenameInput("");
+                                setEditingFileId(null);
+                              } else if (e.key === "Escape") {
+                                setRenameInput("");
+                                setEditingFileId(null);
+                              }
+                            }}
+                            className="w-full bg-transparent text-white outline-none border border-gray-300 rounded px-1"
+                          />
+
+                          {isDuplicateName && (
+                            <div className="text-xs leading-tight text-red-300 px-1 mt-1 text-center">
+                              A file with this name already exists.
+                            </div>
+                          )}
+                        </div>
                       ) : (
                         <span className="w-full mask-containerRight overflow-hidden">
                           {file.name}.{file.extension}
