@@ -6,9 +6,15 @@ import { useFileStore } from "../../stores/fileStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
 import ConfirmDeleteDialog from "../Dialogs/ConfirmDeleteDialog.tsx";
 
-const Sidebar = () => {
+type SidebarProps = {
+  openFilePanel: () => void;
+};
+
+const Sidebar = ({ openFilePanel }: SidebarProps) => {
   const navigate = useNavigate();
-  const { filename } = useParams();
+  const { slug } = useParams();
+
+  const activeFileId = slug?.split("--").pop();
 
   const [editingFileId, setEditingFileId] = useState<string | null>(null);
   const [fileToDelete, setFileToDelete] = useState<UserFile | null>(null);
@@ -19,8 +25,10 @@ const Sidebar = () => {
   const updateFile = useFileStore((state) => state.updateFile);
   const deleteFile = useFileStore((state) => state.deleteFile);
 
-  const openFile = (file: string) => {
-    navigate(`/file/${file}`);
+  const openFile = (file: UserFile) => {
+    const slug = `${file.name}--${file._id}`;
+    navigate(`/file/${slug}`);
+    openFilePanel();
   };
 
   useEffect(() => {
@@ -54,7 +62,7 @@ const Sidebar = () => {
           >
             <ul className="p-1 pb-40">
               {files.map((file) => {
-                const isActive = file.name === filename;
+                const isActive = file._id === activeFileId;
                 const isEditing = editingFileId === file._id;
                 const sanitizedInput = renameInput.trim().replace(/\s+/g, "");
 
@@ -74,7 +82,7 @@ const Sidebar = () => {
                     }`}
                   >
                     <button
-                      onClick={() => openFile(file.name)}
+                      onClick={() => openFile(file)}
                       className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs overflow-hidden"
                     >
                       <span>{getFileIcon(file.extension)}</span>
@@ -95,7 +103,15 @@ const Sidebar = () => {
                                 await updateFile(file._id, {
                                   name: sanitizedInput,
                                 });
+
+                                if (activeFileId === file._id) {
+                                  const newSlug = `${sanitizedInput}--${file._id}`;
+                                  navigate(`/file/${newSlug}`, {
+                                    replace: true,
+                                  });
+                                }
                               }
+
                               setRenameInput("");
                               setEditingFileId(null);
                             }}
@@ -109,6 +125,13 @@ const Sidebar = () => {
                                   await updateFile(file._id, {
                                     name: sanitizedInput,
                                   });
+
+                                  if (activeFileId === file._id) {
+                                    const newSlug = `${sanitizedInput}--${file._id}`;
+                                    navigate(`/file/${newSlug}`, {
+                                      replace: true,
+                                    });
+                                  }
                                 }
                                 setRenameInput("");
                                 setEditingFileId(null);

@@ -7,16 +7,18 @@ import { VscNewFile, VscNewFolder } from "react-icons/vsc";
 
 interface IconBoxProps {
   sidebarOpen: boolean;
-  infoPanelOpen: boolean;
+  filePanelOpen: boolean;
   toggleSidebar: () => void;
-  toggleInfoPanel: () => void;
+  toggleFilePanel: () => void;
+  isFilePage: boolean;
 }
 
 function IconBox({
   sidebarOpen,
-  infoPanelOpen,
+  filePanelOpen,
   toggleSidebar,
-  toggleInfoPanel,
+  toggleFilePanel,
+  isFilePage,
 }: IconBoxProps) {
   const user = useUserStore((state) => state.user);
   const navigate = useNavigate();
@@ -76,17 +78,19 @@ function IconBox({
             )}
           </button>
 
-          <button
-            title={infoPanelOpen ? "Close Info Panel" : "Open Info Panel"}
-            onClick={toggleInfoPanel}
-            className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
-          >
-            {infoPanelOpen ? (
-              <TbLayoutSidebarFilled className="w-6 h-6" />
-            ) : (
-              <TbLayoutSidebar className="w-6 h-6" />
-            )}
-          </button>
+          {isFilePage && (
+            <button
+              title={filePanelOpen ? "Close Info Panel" : "Open Info Panel"}
+              onClick={toggleFilePanel}
+              className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
+            >
+              {filePanelOpen ? (
+                <TbLayoutSidebarFilled className="w-6 h-6" />
+              ) : (
+                <TbLayoutSidebar className="w-6 h-6" />
+              )}
+            </button>
+          )}
         </>
       )}
     </div>

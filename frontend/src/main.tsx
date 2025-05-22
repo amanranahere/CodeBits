@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/file/:filename",
+        path: "/file/:slug",
         element: <FilePage />,
       },
       {

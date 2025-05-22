@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
 import LogoBox from "./components/Navbar/LogoBox";
@@ -15,14 +15,16 @@ import AuthButtons from "./components/Auth/AuthButtons";
 function App() {
   const user = useUserStore((state) => state.user);
   const refresh = useUserStore((state) => state.refresh);
+  const location = useLocation();
+  const isFilePage = location.pathname.startsWith("/file");
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [infoPanelOpen, setInfoPanelOpen] = useState(false);
+  const [filePanelOpen, setFilePanelOpen] = useState(false);
   const [loginBoxOpen, setLoginBoxOpen] = useState(true);
   const [signupBoxOpen, setSignupBoxOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
-  const toggleInfoPanel = () => setInfoPanelOpen((prev) => !prev);
+  const toggleFilePanel = () => setFilePanelOpen((prev) => !prev);
 
   const handleLoginToggle = () => {
     setLoginBoxOpen((prev) => {
@@ -68,20 +70,23 @@ function App() {
 
         <IconBox
           sidebarOpen={sidebarOpen}
-          infoPanelOpen={infoPanelOpen}
+          filePanelOpen={filePanelOpen}
           toggleSidebar={toggleSidebar}
-          toggleInfoPanel={toggleInfoPanel}
+          toggleFilePanel={toggleFilePanel}
+          isFilePage={isFilePage}
         />
       </div>
 
       <div className="flex flex-1 gap-2 overflow-hidden">
-        {user && sidebarOpen && <Sidebar />}
+        {user && sidebarOpen && (
+          <Sidebar openFilePanel={() => setFilePanelOpen(true)} />
+        )}
 
         <main className="flex-1 bg-[#333] rounded-3xl overflow-auto">
           <Outlet />
         </main>
 
-        {user && infoPanelOpen && <FilePanel />}
+        {user && isFilePage && filePanelOpen && <FilePanel />}
         {!user && loginBoxOpen && <LoginBox />}
         {!user && signupBoxOpen && <SignupBox />}
       </div>

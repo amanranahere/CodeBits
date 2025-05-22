@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useFileStore } from "../../stores/fileStore.ts";
 import { MdModeEdit } from "react-icons/md";
 import { formatDateTime } from "../../utils/formatDateTime.tsx";
 
 const FilePanel = () => {
-  const { filename } = useParams();
+  const { slug } = useParams();
+  const fileId = slug?.split("--").pop();
   const files = useFileStore((state) => state.files);
   const updateFile = useFileStore((state) => state.updateFile);
+  const navigate = useNavigate();
 
-  const file = files.find((f) => f.name === filename);
+  const file = files.find((f) => f._id === fileId);
 
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleInput, setTitleInput] = useState(file?.name || "");
@@ -22,7 +24,7 @@ const FilePanel = () => {
     file?.description || ""
   );
 
-  if (!filename || !file) {
+  if (!slug || !file) {
     return (
       <div className="lg:w-[20%] text-gray-500 dark:text-gray-400 bg-[#f1f1f1] dark:bg-[#212121] rounded-3xl flex justify-center items-center italic">
         Open a file to view its details...
@@ -34,6 +36,16 @@ const FilePanel = () => {
     (f) =>
       f._id !== file._id && f.name === titleInput.trim().replace(/\s+/g, "")
   );
+
+  const handleTitleUpdate = async () => {
+    const newName = titleInput.trim();
+    if (newName && newName !== file.name && !isDuplicateName) {
+      await updateFile(file._id, { name: newName });
+      const newSlug = `${newName}--${file._id}`;
+      navigate(`/file/${newSlug}`, { replace: true });
+    }
+    setEditingTitle(false);
+  };
 
   const { full, relative } = formatDateTime(file.updatedAt);
 
@@ -64,20 +76,10 @@ const FilePanel = () => {
                 value={titleInput}
                 autoFocus
                 onChange={(e) => setTitleInput(e.target.value)}
-                onBlur={async () => {
-                  const newName = titleInput.trim();
-                  if (newName && newName !== file.name && !isDuplicateName) {
-                    await updateFile(file._id, { name: newName });
-                  }
-                  setEditingTitle(false);
-                }}
+                onBlur={handleTitleUpdate}
                 onKeyDown={async (e) => {
-                  if (e.key === "Enter" && !isDuplicateName) {
-                    const newName = titleInput.trim();
-                    if (newName && newName !== file.name) {
-                      await updateFile(file._id, { name: newName });
-                    }
-                    setEditingTitle(false);
+                  if (e.key === "Enter") {
+                    await handleTitleUpdate();
                   } else if (e.key === "Escape") {
                     setEditingTitle(false);
                   }
