@@ -1,7 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useUserStore } from "../../stores/userStore.ts";
 import ThemeToggle from "../ThemeToggle.tsx";
-import { TbLayoutSidebar, TbLayoutSidebarFilled } from "react-icons/tb";
+import {
+  TbLayoutSidebar,
+  TbLayoutSidebarFilled,
+  TbFileInfo,
+} from "react-icons/tb";
 import { IoSettings, IoSettingsOutline } from "react-icons/io5";
 import { VscNewFile, VscNewFolder } from "react-icons/vsc";
 
@@ -10,6 +14,7 @@ interface IconBoxProps {
   filePanelOpen: boolean;
   toggleSidebar: () => void;
   toggleFilePanel: () => void;
+  toggleNewFileDialog: () => void;
   isFilePage: boolean;
 }
 
@@ -18,6 +23,7 @@ function IconBox({
   filePanelOpen,
   toggleSidebar,
   toggleFilePanel,
+  toggleNewFileDialog,
   isFilePage,
 }: IconBoxProps) {
   const user = useUserStore((state) => state.user);
@@ -36,6 +42,7 @@ function IconBox({
   return (
     <div className="h-14 px-5 flex items-center space-x-2 dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-[1.2rem]">
       <button
+        onClick={toggleNewFileDialog}
         title="Create new file"
         className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
       >
@@ -80,15 +87,11 @@ function IconBox({
 
           {isFilePage && (
             <button
-              title={filePanelOpen ? "Close Info Panel" : "Open Info Panel"}
+              title={filePanelOpen ? "Close File Panel" : "Open File Panel"}
               onClick={toggleFilePanel}
               className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
             >
-              {filePanelOpen ? (
-                <TbLayoutSidebarFilled className="w-6 h-6" />
-              ) : (
-                <TbLayoutSidebar className="w-6 h-6" />
-              )}
+              <TbFileInfo className="w-6 h-6" />
             </button>
           )}
         </>

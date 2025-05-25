@@ -16,7 +16,7 @@ interface FileStore {
   files: UserFile[];
   loading: boolean;
   fetchFiles: () => Promise<void>;
-  createFile: (fileData: Partial<UserFile>) => Promise<void>;
+  createFile: (fileData: Partial<UserFile>) => Promise<UserFile | void>;
   deleteFile: (fileId: string) => Promise<void>;
   updateFile: (fileId: string, updates: Partial<UserFile>) => Promise<void>;
   getFileById: (fileId: string) => UserFile | undefined;
@@ -48,6 +48,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
 
     if (sanitizedName && files.some((file) => file.name === sanitizedName)) {
       toast.error("A file with this name already exists.");
+      set({ loading: false });
       return;
     }
 
@@ -61,6 +62,7 @@ export const useFileStore = create<FileStore>((set, get) => ({
       const res = await axiosInstance.post("/file", newFileData);
       const newFile = res.data.data;
       set({ files: [...get().files, newFile] });
+      return newFile;
     } catch (err) {
       console.error(err);
     } finally {

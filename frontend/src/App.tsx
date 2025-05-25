@@ -11,6 +11,7 @@ import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
 import AuthButtons from "./components/Auth/AuthButtons";
+import NewFileDialog from "./components/Dialogs/NewFileDialog";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -22,9 +23,11 @@ function App() {
   const [filePanelOpen, setFilePanelOpen] = useState(false);
   const [loginBoxOpen, setLoginBoxOpen] = useState(true);
   const [signupBoxOpen, setSignupBoxOpen] = useState(false);
+  const [newFileDialogOpen, setNewFileDialogOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
   const toggleFilePanel = () => setFilePanelOpen((prev) => !prev);
+  const toggleNewFileDialog = () => setNewFileDialogOpen((prev) => !prev);
 
   const handleLoginToggle = () => {
     setLoginBoxOpen((prev) => {
@@ -73,6 +76,7 @@ function App() {
           filePanelOpen={filePanelOpen}
           toggleSidebar={toggleSidebar}
           toggleFilePanel={toggleFilePanel}
+          toggleNewFileDialog={toggleNewFileDialog}
           isFilePage={isFilePage}
         />
       </div>
@@ -89,6 +93,12 @@ function App() {
         {user && isFilePage && filePanelOpen && <FilePanel />}
         {!user && loginBoxOpen && <LoginBox />}
         {!user && signupBoxOpen && <SignupBox />}
+
+        {newFileDialogOpen && (
+          <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
+            <NewFileDialog onClose={() => setNewFileDialogOpen(false)} />
+          </div>
+        )}
       </div>
 
       <ToastContainer

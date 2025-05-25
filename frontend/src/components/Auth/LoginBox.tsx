@@ -114,7 +114,7 @@ function LoginBox() {
 
             {/* submit button */}
             <button
-              className="p-[10px] bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63] rounded-lg duration-200 select-none outline-none border-none"
+              className="p-[10px] bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63] rounded-[10px] hover:transition duration-1000 ease-out select-none outline-none border-none"
               type="submit"
               disabled={loading}
             >
