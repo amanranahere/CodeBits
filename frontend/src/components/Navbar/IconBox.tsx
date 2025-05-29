@@ -6,7 +6,7 @@ import {
   TbLayoutSidebarFilled,
   TbFileInfo,
 } from "react-icons/tb";
-import { IoSettings, IoSettingsOutline } from "react-icons/io5";
+import { IoSettings, IoSettingsOutline, IoSearch } from "react-icons/io5";
 import { VscNewFile, VscNewFolder } from "react-icons/vsc";
 
 interface IconBoxProps {
@@ -15,6 +15,7 @@ interface IconBoxProps {
   toggleSidebar: () => void;
   toggleFilePanel: () => void;
   toggleNewFileDialog: () => void;
+  toggleSearchDialog: () => void;
   isFilePage: boolean;
 }
 
@@ -24,6 +25,7 @@ function IconBox({
   toggleSidebar,
   toggleFilePanel,
   toggleNewFileDialog,
+  toggleSearchDialog,
   isFilePage,
 }: IconBoxProps) {
   const user = useUserStore((state) => state.user);
@@ -54,6 +56,14 @@ function IconBox({
         className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
       >
         <VscNewFolder className="w-6 h-6" />
+      </button>
+
+      <button
+        onClick={toggleSearchDialog}
+        title="Search File"
+        className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
+      >
+        <IoSearch className="w-6 h-6" />
       </button>
 
       <ThemeToggle />

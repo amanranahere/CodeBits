@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useFileStore } from "../../stores/fileStore";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import TypingTextAnimation from "../Animation/TypingTextAnimation";
 
 interface NewFileInput {
   name: string;
@@ -54,8 +55,8 @@ const NewFileDialog = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div className="fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 dark:bg-[#121212] dark:text-white px-10 py-8 rounded-[40px] shadow-lg w-[90%] max-w-2xl overflow-hidden">
-      <h2 className="text-2xl text-center font-bold mb-8 font-mono">
-        Create New File
+      <h2 className="h-14 text-2xl text-center font-bold mb-6 font-mono">
+        <TypingTextAnimation text="Create New File" speed={60} />
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">

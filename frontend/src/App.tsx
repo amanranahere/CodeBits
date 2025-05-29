@@ -12,6 +12,7 @@ import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
 import AuthButtons from "./components/Auth/AuthButtons";
 import NewFileDialog from "./components/Dialogs/NewFileDialog";
+import SearchDialog from "./components/Dialogs/SearchDialog";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -24,10 +25,12 @@ function App() {
   const [loginBoxOpen, setLoginBoxOpen] = useState(true);
   const [signupBoxOpen, setSignupBoxOpen] = useState(false);
   const [newFileDialogOpen, setNewFileDialogOpen] = useState(false);
+  const [searchDialogOpen, setSearchDialogOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
   const toggleFilePanel = () => setFilePanelOpen((prev) => !prev);
   const toggleNewFileDialog = () => setNewFileDialogOpen((prev) => !prev);
+  const toggleSearchDialog = () => setSearchDialogOpen((prev) => !prev);
 
   const handleLoginToggle = () => {
     setLoginBoxOpen((prev) => {
@@ -77,6 +80,7 @@ function App() {
           toggleSidebar={toggleSidebar}
           toggleFilePanel={toggleFilePanel}
           toggleNewFileDialog={toggleNewFileDialog}
+          toggleSearchDialog={toggleSearchDialog}
           isFilePage={isFilePage}
         />
       </div>
@@ -97,6 +101,12 @@ function App() {
         {newFileDialogOpen && (
           <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
             <NewFileDialog onClose={() => setNewFileDialogOpen(false)} />
+          </div>
+        )}
+
+        {searchDialogOpen && (
+          <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
+            <SearchDialog onClose={() => setSearchDialogOpen(false)} />
           </div>
         )}
       </div>
