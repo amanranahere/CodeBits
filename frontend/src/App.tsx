@@ -58,6 +58,12 @@ function App() {
     return () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    if (isFilePage) {
+      setFilePanelOpen(true);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="flex flex-col gap-2 lg:h-screen bg-white p-2">
       <div className="flex items-center gap-x-2">
@@ -86,9 +92,7 @@ function App() {
       </div>
 
       <div className="flex flex-1 gap-2 overflow-hidden">
-        {user && sidebarOpen && (
-          <Sidebar openFilePanel={() => setFilePanelOpen(true)} />
-        )}
+        {user && sidebarOpen && <Sidebar />}
 
         <main className="flex-1 bg-[#333] rounded-3xl overflow-auto">
           <Outlet />
@@ -106,7 +110,10 @@ function App() {
 
         {searchDialogOpen && (
           <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
-            <SearchDialog onClose={() => setSearchDialogOpen(false)} />
+            <SearchDialog
+              onClose={() => setSearchDialogOpen(false)}
+              toggleNewFileDialog={toggleNewFileDialog}
+            />
           </div>
         )}
       </div>

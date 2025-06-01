@@ -6,11 +6,7 @@ import { useFileStore } from "../../stores/fileStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
 import ConfirmDeleteDialog from "../Dialogs/ConfirmDeleteDialog.tsx";
 
-type SidebarProps = {
-  openFilePanel: () => void;
-};
-
-const Sidebar = ({ openFilePanel }: SidebarProps) => {
+const Sidebar = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
 
@@ -28,7 +24,6 @@ const Sidebar = ({ openFilePanel }: SidebarProps) => {
   const openFile = (file: UserFile) => {
     const slug = `${file.name}--${file._id}`;
     navigate(`/file/${slug}`);
-    openFilePanel();
   };
 
   useEffect(() => {

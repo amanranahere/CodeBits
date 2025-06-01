@@ -1,17 +1,10 @@
 import { useState } from "react";
 import axiosInstance from "../../utils/axios.helper";
 import { toast } from "react-toastify";
-
-interface File {
-  _id: string;
-  name: string;
-  extension: string;
-  description?: string;
-  updatedAt: string;
-}
+import type { UserFile } from "../../stores/fileStore";
 
 const useSearchFiles = () => {
-  const [results, setResults] = useState<File[]>([]);
+  const [results, setResults] = useState<UserFile[]>([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
 

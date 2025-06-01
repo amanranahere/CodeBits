@@ -15,6 +15,26 @@
 
 /*   fonts - end   */
 
+/* scrollbar styles - start */
+
+.custom_scrollbar {
+  scrollbar-color: #6b6b6c #2a2a2a;
+}
+
+.custom_scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom_scrollbar::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+.custom_scrollbar::-webkit-scrollbar-thumb {
+  background-color: #6b6b6c;
+}
+
+/* scrollbar styles - end */
+
 /*   masking - start   */
 
 .mask-containerRight {

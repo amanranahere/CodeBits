@@ -175,7 +175,7 @@ const FilePanel = () => {
             <textarea
               value={descriptionInput}
               autoFocus
-              rows={8}
+              rows={7}
               onChange={(e) => setDescriptionInput(e.target.value)}
               onBlur={async () => {
                 const newDesc = descriptionInput.trim();
