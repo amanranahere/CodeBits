@@ -65,20 +65,33 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col gap-2 lg:h-screen bg-white p-2">
-      <div className="flex items-center gap-x-2">
-        <LogoBox />
-
+    <div className="h-screen flex">
+      <div className="">
         {user ? (
-          <SearchBar />
+          <div className="h-full w-[80%] md:w-[300px]">
+            {sidebarOpen && <Sidebar />}
+          </div>
         ) : (
-          <AuthButtons
-            handleLoginToggle={handleLoginToggle}
-            handleSignupToggle={handleSignupToggle}
-          />
+          <div className="h-full w-[80%] md:w-[400px]">
+            {loginBoxOpen && <LoginBox />}
+            {signupBoxOpen && <SignupBox />}
+          </div>
         )}
+      </div>
 
-        <UserBox />
+      <UserBox />
+
+      {!user && (
+        <AuthButtons
+          handleLoginToggle={handleLoginToggle}
+          handleSignupToggle={handleSignupToggle}
+        />
+      )}
+
+      <div className="w-full h-full">
+        <main className="w-full h-full bg-[#333] overflow-auto">
+          <Outlet />
+        </main>
 
         <IconBox
           sidebarOpen={sidebarOpen}
@@ -89,18 +102,6 @@ function App() {
           toggleSearchDialog={toggleSearchDialog}
           isFilePage={isFilePage}
         />
-      </div>
-
-      <div className="flex flex-1 gap-2 overflow-hidden">
-        {user && sidebarOpen && <Sidebar />}
-
-        <main className="flex-1 bg-[#333] rounded-3xl overflow-auto">
-          <Outlet />
-        </main>
-
-        {user && isFilePage && filePanelOpen && <FilePanel />}
-        {!user && loginBoxOpen && <LoginBox />}
-        {!user && signupBoxOpen && <SignupBox />}
 
         {newFileDialogOpen && (
           <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">

@@ -41,9 +41,9 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside className="w-full lg:w-[20%] bg-[#f1f1f1] dark:bg-[#212121] text-[#f1f1f1] rounded-3xl">
+      <aside className="h-full w-full bg-[#f1f1f1] dark:bg-[#212121] text-[#f1f1f1]">
         <div className="h-full mask-containerBottom">
-          <div className="w-full text-lg dark:bg-[#191919] p-2 rounded-t-3xl">
+          <div className="w-full text-lg dark:bg-[#191919] p-2">
             <p className="text-sm text-center font-bold">FILES</p>
           </div>
 

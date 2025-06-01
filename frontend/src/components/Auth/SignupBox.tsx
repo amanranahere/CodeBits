@@ -37,11 +37,8 @@ function SignupBox() {
   } = useForm<SignupInput>();
 
   return (
-    <div className="w-[25%] dark:bg-[#121212] dark:text-white rounded-3xl relative overflow-hidden">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="p-7 bg-[#121212] rounded-3xl"
-      >
+    <div className="h-full w-full dark:bg-[#121212] dark:text-white relative overflow-hidden">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-7 bg-[#121212]">
         <div className="h-24 text-lg font-mono dark:text-[#ffffffb3]">
           <TypingTextAnimation
             text="  Sign up now to enjoy complete access to all features."
@@ -155,7 +152,7 @@ function SignupBox() {
         </div>
       </form>
 
-      <div className="absolute -bottom-2 -translate-x-4 tracking-tighter leading-none text-[clamp(7rem,9.5vw,9.5rem)] font-extrabold text-[#ffffff14] oswald-text select-none">
+      <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pl-20 tracking-tighter leading-none text-[12.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
         SIGNUP
       </div>
     </div>

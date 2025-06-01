@@ -32,11 +32,8 @@ function LoginBox() {
   } = useForm<LoginInput>();
 
   return (
-    <div className="w-[25%] dark:bg-[#121212] dark:text-white rounded-3xl relative overflow-hidden">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="p-7 bg-[#121212] rounded-3xl"
-      >
+    <div className="h-full w-full dark:bg-[#121212] dark:text-white relative overflow-hidden">
+      <form onSubmit={handleSubmit(onSubmit)} className="p-7 bg-[#121212]">
         <div className="h-24 text-lg font-mono dark:text-[#ffffffb3]">
           <TypingTextAnimation
             text="Great to see you again! Ready to dive in?"
@@ -130,7 +127,7 @@ function LoginBox() {
         </div>
       </form>
 
-      <div className="absolute -bottom-2 -translate-x-5 tracking-tighter leading-none text-[clamp(7rem,12vw,12rem)] font-extrabold text-[#ffffff14] oswald-text select-none">
+      <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pr-3 tracking-tighter leading-none text-[12.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
         LOGIN
       </div>
     </div>
