@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
+import { MdModeEdit, MdDeleteOutline } from "react-icons/md";
 
 const FileOptionsMenu = ({
   onRename,
@@ -31,15 +32,16 @@ const FileOptionsMenu = ({
       </button>
 
       {open && (
-        <div className="absolute -right-3 w-32 p-1 bg-white dark:bg-[#191919] shadow-md rounded-md flex flex-col text-sm z-50">
+        <div className="absolute -right-1 w-32 p-1 bg-white dark:bg-[#2a2a2a] shadow-md rounded-xl flex flex-col text-sm z-50">
           <button
             onClick={() => {
               onRename();
               setOpen(false);
             }}
-            className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left"
+            className="px-3 py-2 rounded-xl hover:bg-[#3a3a3a] active:brightness-110  text-left flex items-center gap-x-2"
           >
-            Rename
+            <MdModeEdit className="w-4 h-4" />
+            <span>Rename</span>
           </button>
 
           <button
@@ -47,9 +49,10 @@ const FileOptionsMenu = ({
               onDelete();
               setOpen(false);
             }}
-            className="px-3 py-1 rounded-md hover:bg-gray-100 active:brightness-110 dark:hover:bg-[#2a2a2a] text-left"
+            className="px-3 py-2 rounded-xl text-red-300 hover:bg-red-200/25 active:brightness-110 text-left flex items-center gap-x-2"
           >
-            Delete
+            <MdDeleteOutline className="w-5 h-5" />
+            <span>Delete</span>
           </button>
         </div>
       )}

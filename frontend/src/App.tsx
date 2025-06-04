@@ -13,6 +13,7 @@ import SignupBox from "./components/Auth/SignupBox";
 import AuthButtons from "./components/Auth/AuthButtons";
 import NewFileDialog from "./components/Dialogs/NewFileDialog";
 import SearchDialog from "./components/Dialogs/SearchDialog";
+import { FiSidebar } from "react-icons/fi";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -66,30 +67,37 @@ function App() {
 
   return (
     <div className="h-screen flex">
-      <div className="">
-        {user ? (
+      {user ? (
+        sidebarOpen ? (
           <div className="h-full w-[80%] md:w-[300px]">
-            {sidebarOpen && <Sidebar />}
+            <Sidebar
+              sidebarOpen={sidebarOpen}
+              toggleSidebar={toggleSidebar}
+              toggleSearchDialog={toggleSearchDialog}
+              toggleNewFileDialog={toggleNewFileDialog}
+            />
           </div>
         ) : (
-          <div className="h-full w-[80%] md:w-[400px]">
-            {loginBoxOpen && <LoginBox />}
-            {signupBoxOpen && <SignupBox />}
-          </div>
-        )}
-      </div>
-
-      <UserBox />
-
-      {!user && (
-        <AuthButtons
-          handleLoginToggle={handleLoginToggle}
-          handleSignupToggle={handleSignupToggle}
-        />
+          <button
+            title="Open sidebar"
+            onClick={toggleSidebar}
+            className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl"
+          >
+            <FiSidebar className="w-6 h-6" />
+          </button>
+        )
+      ) : (
+        <div className="h-full w-[80%] md:w-[400px]">
+          {loginBoxOpen && <LoginBox handleSignupToggle={handleSignupToggle} />}
+          {signupBoxOpen && <SignupBox handleLoginToggle={handleLoginToggle} />}
+        </div>
       )}
 
-      <div className="w-full h-full">
-        <main className="w-full h-full bg-[#333] overflow-auto">
+      <div className="flex-1 h-full">
+        {/* navbar */}
+        {user && <UserBox />}
+
+        <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
         </main>
 

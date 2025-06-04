@@ -6,7 +6,7 @@ import { formatDateTime } from "../../utils/formatDateTime";
 import type { UserFile } from "../../stores/fileStore";
 import { useFileStore } from "../../stores/fileStore";
 import { IoClose } from "react-icons/io5";
-import { VscNewFile } from "react-icons/vsc";
+import { HiMiniPencilSquare } from "react-icons/hi2";
 
 function SearchDialog({
   onClose,
@@ -119,8 +119,8 @@ function SearchDialog({
               }}
               className="w-full px-5 py-3 flex items-center gap-x-4 hover:bg-[#3a3a3a] rounded-2xl"
             >
-              <VscNewFile className="w-5 h-5" />
-              <p>New File</p>
+              <HiMiniPencilSquare className="w-5 h-5" />
+              <p>New file</p>
             </button>
 
             <div className="p-3 text-[#aaa]">Last Edited</div>

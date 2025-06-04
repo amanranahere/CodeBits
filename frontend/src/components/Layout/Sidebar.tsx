@@ -5,8 +5,23 @@ import { getFileIcon } from "../getFileIcon.tsx";
 import { useFileStore } from "../../stores/fileStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
 import ConfirmDeleteDialog from "../Dialogs/ConfirmDeleteDialog.tsx";
+import { FiSidebar } from "react-icons/fi";
+import { HiMiniPencilSquare } from "react-icons/hi2";
+import { IoSearch } from "react-icons/io5";
 
-const Sidebar = () => {
+interface SidebarProps {
+  sidebarOpen: boolean;
+  toggleSidebar: () => void;
+  toggleSearchDialog: () => void;
+  toggleNewFileDialog: () => void;
+}
+
+const Sidebar = ({
+  sidebarOpen,
+  toggleSidebar,
+  toggleSearchDialog,
+  toggleNewFileDialog,
+}: SidebarProps) => {
   const navigate = useNavigate();
   const { slug } = useParams();
 
@@ -41,21 +56,49 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside className="h-full w-full bg-[#f1f1f1] dark:bg-[#212121] text-[#f1f1f1]">
-        <div className="h-full mask-containerBottom">
-          <div className="w-full text-lg dark:bg-[#191919] p-2">
-            <p className="text-sm text-center font-bold">FILES</p>
-          </div>
+      <aside className="h-full w-full p-2 bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1]">
+        <div className="w-full flex justify-between">
+          <div className="p-1">logo</div>
 
+          <button
+            title="Close sidebar"
+            onClick={toggleSidebar}
+            className="p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl"
+          >
+            <FiSidebar className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="h-full">
           {/* snippets list */}
           <div
-            className="max-h-[calc(100vh-4rem)] overflow-y-auto p-1"
+            className="max-h-[calc(100vh-4rem)] overflow-y-auto mask-containerBottom"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
             }}
           >
-            <ul className="p-1 pb-40">
+            <div className="py-3 flex flex-col">
+              <button
+                onClick={toggleNewFileDialog}
+                className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
+              >
+                <HiMiniPencilSquare className="w-5 h-5 mx-2" />
+                <span>New file</span>
+              </button>
+
+              <button
+                onClick={toggleSearchDialog}
+                className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
+              >
+                <IoSearch className="w-5 h-5 mx-2" />
+                <span>Search files</span>
+              </button>
+            </div>
+
+            <div className="p-3 text-[#8a8a8a]">Files</div>
+
+            <ul className="pb-40">
               {files.map((file) => {
                 const isActive = file._id === activeFileId;
                 const isEditing = editingFileId === file._id;
@@ -72,8 +115,8 @@ const Sidebar = () => {
                     key={file._id}
                     className={`w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center duration-300 ${
                       isActive
-                        ? "bg-[#6a6a6a] text-white"
-                        : "text-[#bababa] hover:bg-[#4a4a4a]"
+                        ? "bg-[#222] text-[#fff]"
+                        : "text-[#bababa] hover:bg-[#2A2A2A]"
                     }`}
                   >
                     <button

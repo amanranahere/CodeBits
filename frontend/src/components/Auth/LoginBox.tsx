@@ -9,7 +9,7 @@ interface LoginInput {
   password: string;
 }
 
-function LoginBox() {
+function LoginBox({ handleSignupToggle }: { handleSignupToggle: () => void }) {
   const login = useUserStore((state) => state.login);
   const loading = useUserStore((state) => state.loading);
   const [error, setError] = useState("");
@@ -32,7 +32,7 @@ function LoginBox() {
   } = useForm<LoginInput>();
 
   return (
-    <div className="h-full w-full dark:bg-[#121212] dark:text-white relative overflow-hidden">
+    <div className="h-full w-full dark:bg-[#151515] dark:text-white relative overflow-hidden">
       <form onSubmit={handleSubmit(onSubmit)} className="p-7 bg-[#121212]">
         <div className="h-24 text-lg font-mono dark:text-[#ffffffb3]">
           <TypingTextAnimation
@@ -126,6 +126,16 @@ function LoginBox() {
           </div>
         </div>
       </form>
+
+      <div className="mt-4 text-center text-sm text-gray-400">
+        Don’t have an account?{" "}
+        <button
+          onClick={handleSignupToggle}
+          className="text-[#00bfff] hover:underline hover:text-[#00bfff]/90"
+        >
+          Sign up
+        </button>
+      </div>
 
       <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pr-3 tracking-tighter leading-none text-[12.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
         LOGIN

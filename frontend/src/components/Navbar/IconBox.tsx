@@ -42,8 +42,8 @@ function IconBox({
   };
 
   return (
-    <div className="h-14 px-5 flex items-center space-x-2 dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-[1.2rem]">
-      <button
+    <div className="fixed top-20 right-2 h-14 px-5 flex items-center space-x-2 dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-[1.2rem]">
+      {/* <button
         onClick={toggleNewFileDialog}
         title="Create new file"
         className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
@@ -64,7 +64,7 @@ function IconBox({
         className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
       >
         <IoSearch className="w-6 h-6" />
-      </button>
+      </button> */}
 
       <ThemeToggle />
 
@@ -83,7 +83,7 @@ function IconBox({
       {/*   sidebar and info-panel buttons   */}
       {user && (
         <>
-          <button
+          {/* <button
             title={sidebarOpen ? "Close sidebar" : "Open sidebar"}
             onClick={toggleSidebar}
             className="cursor-pointer hover:scale-110 text-[#5c5c5c] dark:text-[#bababa] hover:brightness-150 dark:hover:brightness-125 duration-200"
@@ -93,7 +93,7 @@ function IconBox({
             ) : (
               <TbLayoutSidebar className="w-6 h-6" />
             )}
-          </button>
+          </button> */}
 
           {isFilePage && (
             <button
