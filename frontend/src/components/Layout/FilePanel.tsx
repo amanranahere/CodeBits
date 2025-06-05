@@ -26,7 +26,7 @@ const FilePanel = () => {
 
   if (!slug || !file) {
     return (
-      <div className="lg:w-[20%] text-gray-500 dark:text-gray-400 bg-[#f1f1f1] dark:bg-[#212121] rounded-3xl flex justify-center items-center italic">
+      <div className="w-full md:w-[250px] text-gray-500 dark:text-gray-400 bg-[#f1f1f1] dark:bg-[#212121] rounded-3xl flex justify-center items-center italic">
         Open a file to view its details...
       </div>
     );
@@ -50,7 +50,7 @@ const FilePanel = () => {
   const { full, relative } = formatDateTime(file.updatedAt);
 
   return (
-    <div className="relative lg:w-[20%] bg-[#f1f1f1] dark:bg-[#212121] text-[#f1f1f1] rounded-3xl">
+    <div className="relative w-full md:w-[250px] h-[calc(100vh-95px)] bg-[#f1f1f1] dark:bg-[#2f2f2f] text-[#f1f1f1] rounded-3xl overflow-hidden">
       <div className="p-4 flex flex-col gap-y-8 font-mono">
         {/*   title   */}
         <div className="relative group">
@@ -204,7 +204,7 @@ const FilePanel = () => {
             />
           ) : (
             <div
-              className="max-h-[10rem] overflow-y-auto"
+              className="max-h-[7.5rem] overflow-y-auto"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
@@ -231,7 +231,7 @@ const FilePanel = () => {
         </div>
       </div>
 
-      <div className="absolute -bottom-8 -translate-x-3  tracking-tighter leading-none text-[clamp(7rem,12.5vw,12.5rem)] font-extrabold text-[#ffffff14] oswald-text select-none">
+      <div className="absolute -bottom-8 -translate-x-3  tracking-tighter leading-none text-[clamp(7rem,11vw,11rem)] font-extrabold text-[#ffffff14] oswald-text select-none">
         INFO
       </div>
     </div>

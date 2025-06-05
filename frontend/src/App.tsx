@@ -2,21 +2,18 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
-import LogoBox from "./components/Navbar/LogoBox";
-import SearchBar from "./components/Navbar/SearchBar";
-import IconBox from "./components/Navbar/IconBox";
-import UserBox from "./components/Navbar/UserBox";
+import Navbar from "./components/Layout/Navbar";
 import Sidebar from "./components/Layout/Sidebar";
 import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
-import AuthButtons from "./components/Auth/AuthButtons";
 import NewFileDialog from "./components/Dialogs/NewFileDialog";
 import SearchDialog from "./components/Dialogs/SearchDialog";
 import { FiSidebar } from "react-icons/fi";
 
 function App() {
   const user = useUserStore((state) => state.user);
+  const theme = useUserStore((state) => state.theme);
   const refresh = useUserStore((state) => state.refresh);
   const location = useLocation();
   const isFilePage = location.pathname.startsWith("/file");
@@ -50,6 +47,20 @@ function App() {
   };
 
   useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    if (isFilePage) {
+      setFilePanelOpen(true);
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       if (!user) {
         refresh();
@@ -58,12 +69,6 @@ function App() {
 
     return () => clearTimeout(timeout);
   }, []);
-
-  useEffect(() => {
-    if (isFilePage) {
-      setFilePanelOpen(true);
-    }
-  }, [location.pathname]);
 
   return (
     <div className="h-screen flex">
@@ -81,7 +86,7 @@ function App() {
           <button
             title="Open sidebar"
             onClick={toggleSidebar}
-            className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl"
+            className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[999]"
           >
             <FiSidebar className="w-6 h-6" />
           </button>
@@ -93,23 +98,25 @@ function App() {
         </div>
       )}
 
-      <div className="flex-1 h-full">
+      <div className="relative flex-1 h-full">
         {/* navbar */}
-        {user && <UserBox />}
+        {user && (
+          <Navbar
+            isFilePage={isFilePage}
+            filePanelOpen={filePanelOpen}
+            toggleFilePanel={toggleFilePanel}
+          />
+        )}
 
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
         </main>
 
-        <IconBox
-          sidebarOpen={sidebarOpen}
-          filePanelOpen={filePanelOpen}
-          toggleSidebar={toggleSidebar}
-          toggleFilePanel={toggleFilePanel}
-          toggleNewFileDialog={toggleNewFileDialog}
-          toggleSearchDialog={toggleSearchDialog}
-          isFilePage={isFilePage}
-        />
+        {user && isFilePage && filePanelOpen && (
+          <div className="fixed top-[70px] right-5">
+            <FilePanel />
+          </div>
+        )}
 
         {newFileDialogOpen && (
           <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">

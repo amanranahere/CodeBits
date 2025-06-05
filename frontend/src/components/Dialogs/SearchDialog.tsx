@@ -51,7 +51,7 @@ function SearchDialog({
   return (
     <div
       ref={ref}
-      className="w-[90%] lg:w-[48%] h-[65%] fixed inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[99] rounded-[20px] shadow-lg dark:bg-[#2a2a2a] dark:text-white flex flex-col"
+      className="w-[90%] lg:w-[48%] h-[65%] fixed inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[99] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col"
     >
       <div
         onClick={() => onClose()}
@@ -66,7 +66,7 @@ function SearchDialog({
         autoFocus
         value={query}
         onChange={handleChange}
-        className="w-full pl-7 pr-20 py-6 lg:text-lg bg-[#2a2a2a] rounded-t-[20px] outline-none"
+        className="w-full pl-7 pr-20 py-6 lg:text-lg bg-[#303030] rounded-t-[20px] outline-none"
       />
 
       <div className="border-b border-[#6a6a6a]"></div>
@@ -75,7 +75,9 @@ function SearchDialog({
         {query ? (
           <div>
             {loading ? (
-              <p>Searching...</p>
+              <p className="h-full w-full flex justify-center items-center">
+                Searching...
+              </p>
             ) : (
               <ul>
                 {results.map((file) => {

@@ -15,13 +15,16 @@ interface UserStore {
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   refresh: () => Promise<void>;
+  theme: "light" | "dark";
+  toggleTheme: () => void;
 }
 
 export const useUserStore = create<UserStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       loading: false,
+      theme: "dark",
 
       //   login method
       login: async (email, password) => {
@@ -67,13 +70,24 @@ export const useUserStore = create<UserStore>()(
           set({ loading: false });
         }
       },
+
+      //   theme toggle
+      toggleTheme: () => {
+        const newTheme = get().theme === "dark" ? "light" : "dark";
+        if (newTheme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        set({ theme: newTheme });
+      },
     }),
     {
       name: "user-store",
-      partialize: (state) => ({ user: state.user }),
+      partialize: (state) => ({ user: state.user, theme: state.theme }),
       merge: (persistedState, currentState) => {
-        const { user = null } = (persistedState as any) ?? {};
-        return { ...currentState, user };
+        const { user = null, theme = "dark" } = (persistedState as any) ?? {};
+        return { ...currentState, user, theme };
       },
     }
   )

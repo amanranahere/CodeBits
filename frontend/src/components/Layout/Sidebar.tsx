@@ -17,7 +17,6 @@ interface SidebarProps {
 }
 
 const Sidebar = ({
-  sidebarOpen,
   toggleSidebar,
   toggleSearchDialog,
   toggleNewFileDialog,
@@ -58,7 +57,9 @@ const Sidebar = ({
     <>
       <aside className="h-full w-full p-2 bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1]">
         <div className="w-full flex justify-between">
-          <div className="p-1">logo</div>
+          <div onClick={() => navigate("/")} className="p-1 cursor-pointer">
+            logo
+          </div>
 
           <button
             title="Close sidebar"

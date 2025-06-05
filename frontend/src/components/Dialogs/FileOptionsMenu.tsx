@@ -32,13 +32,13 @@ const FileOptionsMenu = ({
       </button>
 
       {open && (
-        <div className="absolute -right-1 w-32 p-1 bg-white dark:bg-[#2a2a2a] shadow-md rounded-xl flex flex-col text-sm z-50">
+        <div className="absolute -right-1 w-32 p-1 bg-white dark:bg-[#303030] shadow-md rounded-xl flex flex-col text-sm z-50">
           <button
             onClick={() => {
               onRename();
               setOpen(false);
             }}
-            className="px-3 py-2 rounded-xl hover:bg-[#3a3a3a] active:brightness-110  text-left flex items-center gap-x-2"
+            className="px-3 py-2 rounded-xl hover:bg-[#4a4a4a] active:brightness-110  text-left flex items-center gap-x-2"
           >
             <MdModeEdit className="w-4 h-4" />
             <span>Rename</span>
