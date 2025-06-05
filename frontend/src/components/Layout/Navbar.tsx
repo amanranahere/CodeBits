@@ -1,31 +1,25 @@
 import { useRef, useState } from "react";
 import { useUserStore } from "../../stores/userStore";
+import { useUIStore } from "../../stores/uiStore";
 import UserDropdown from "../Dialogs/UserDropdown";
 import { useClickOutside } from "../../utils/useClickOutside";
 import { HiOutlineDocumentText, HiDocumentText } from "react-icons/hi";
 
 interface NavbarProps {
   isFilePage: boolean;
-  filePanelOpen: boolean;
-  toggleFilePanel: () => void;
 }
 
-export default function Navbar({
-  isFilePage,
-  filePanelOpen,
-  toggleFilePanel,
-}: NavbarProps) {
+export default function Navbar({ isFilePage }: NavbarProps) {
   const user = useUserStore((state) => state.user);
+  const { filePanelOpen, toggleFilePanel } = useUIStore();
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const boxRef = useRef<HTMLDivElement>(null);
 
   useClickOutside(boxRef, () => setDropdownOpen(false));
 
   return (
-    <div
-      ref={boxRef}
-      className="fixed top-0 right-0 z-[99] p-3 flex items-center gap-x-2"
-    >
+    <div ref={boxRef} className="p-3 flex items-center gap-x-2">
       {isFilePage && (
         <button
           title={filePanelOpen ? "Close File Panel" : "Open File Panel"}
@@ -42,13 +36,15 @@ export default function Navbar({
 
       <div
         onClick={() => setDropdownOpen((prev) => !prev)}
-        className="w-10 h-10 p-1 rounded-full hover:bg-[#3a3a3a] cursor-pointer"
+        className="w-12 h-12 p-[6px] rounded-full hover:bg-[#3a3a3a] cursor-pointer"
       >
-        <div className="w-full h-full rounded-full bg-[#00bfff]"></div>
+        <div className="w-full h-full rounded-full flex justify-center items-center font-mono text-lg text-black dark:text-white bg-[#D4D4D4] dark:bg-[#4a4a4a] select-none">
+          {user?.name[0]?.toUpperCase()}
+        </div>
       </div>
 
       {dropdownOpen && user && (
-        <div className="absolute right-0 top-full mt-3 z-[999]">
+        <div className="absolute right-2 top-14 mt-3 z-[999]">
           <UserDropdown onClose={() => setDropdownOpen(false)} />
         </div>
       )}

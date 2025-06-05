@@ -2,7 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useUserStore } from "../../stores/userStore";
 import { IoSettingsOutline } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
-import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { MdLightMode, MdDarkMode, MdOutlineFeedback } from "react-icons/md";
+import { RiInformation2Line } from "react-icons/ri";
 
 export default function UserDropdown({ onClose }: { onClose: () => void }) {
   const user = useUserStore((state) => state.user);
@@ -23,13 +24,18 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="w-64 bg-white dark:bg-[#303030] text-black dark:text-white shadow-xl rounded-xl p-2 space-y-2 z-[999]">
-      <div className="text-sm font-semibold truncate">
-        {user?.email || "guest@example.com"}
-      </div>
+    <div className="w-72 bg-white dark:bg-[#303030] text-black dark:text-white shadow-xl rounded-xl p-2 z-[999]">
+      {user && (
+        <>
+          <div className="px-3 py-2 text-sm font-semibold truncate">
+            {user?.email}
+          </div>
 
-      <hr className="border-gray-200 dark:border-[#6a6a6a]" />
+          <hr className="my-1 mx-3 border-gray-200 dark:border-[#6a6a6a]" />
+        </>
+      )}
 
+      {/* settings */}
       <button
         onClick={toggleSettingsPage}
         className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
@@ -38,6 +44,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
         <p>Settings</p>
       </button>
 
+      {/* theme toggle */}
       <button
         onClick={toggleTheme}
         className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a] transition-colors"
@@ -55,18 +62,51 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
         )}
       </button>
 
-      <hr className="border-gray-200 dark:border-[#6a6a6a]" />
-
+      {/* keyboard shortcuts */}
       <button
-        onClick={() => {
-          logout();
-          onClose();
-        }}
+        // onClick={toggleSettingsPage}
         className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
       >
-        <LuLogOut className="w-5 h-5" />
-        <span>Logout</span>
+        <IoSettingsOutline className="w-5 h-5" />
+        <p>Keyboard Shortcuts</p>
       </button>
+
+      {/* about */}
+      <button
+        // onClick={toggleSettingsPage}
+        className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
+      >
+        <RiInformation2Line className="w-5 h-5" />
+        <p>About</p>
+      </button>
+
+      {/* send feedback */}
+      <button
+        // onClick={toggleSettingsPage}
+        className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
+      >
+        <MdOutlineFeedback className="w-5 h-5" />
+        <p>Send Feedback</p>
+      </button>
+
+      {/* logout */}
+      {user && (
+        <>
+          <hr className="my-1 mx-3 border-gray-200 dark:border-[#6a6a6a]" />
+
+          <button
+            onClick={() => {
+              logout();
+              onClose();
+              navigate("/");
+            }}
+            className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
+          >
+            <LuLogOut className="w-5 h-5" />
+            <span>Logout</span>
+          </button>
+        </>
+      )}
     </div>
   );
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
+import { useUIStore } from "./stores/uiStore";
+
 import Navbar from "./components/Layout/Navbar";
 import Sidebar from "./components/Layout/Sidebar";
 import FilePanel from "./components/Layout/FilePanel";
@@ -15,37 +17,21 @@ function App() {
   const user = useUserStore((state) => state.user);
   const theme = useUserStore((state) => state.theme);
   const refresh = useUserStore((state) => state.refresh);
+  const {
+    sidebarOpen,
+    filePanelOpen,
+    newFileDialogOpen,
+    searchDialogOpen,
+    openLogin,
+    openSignup,
+    toggleSidebar,
+    setFilePanelOpen,
+  } = useUIStore();
+
   const location = useLocation();
   const isFilePage = location.pathname.startsWith("/file");
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [filePanelOpen, setFilePanelOpen] = useState(false);
-  const [loginBoxOpen, setLoginBoxOpen] = useState(true);
-  const [signupBoxOpen, setSignupBoxOpen] = useState(false);
-  const [newFileDialogOpen, setNewFileDialogOpen] = useState(false);
-  const [searchDialogOpen, setSearchDialogOpen] = useState(false);
-
-  const toggleSidebar = () => setSidebarOpen((prev) => !prev);
-  const toggleFilePanel = () => setFilePanelOpen((prev) => !prev);
-  const toggleNewFileDialog = () => setNewFileDialogOpen((prev) => !prev);
-  const toggleSearchDialog = () => setSearchDialogOpen((prev) => !prev);
-
-  const handleLoginToggle = () => {
-    setLoginBoxOpen((prev) => {
-      const newState = !prev;
-      if (newState) setSignupBoxOpen(false);
-      return newState;
-    });
-  };
-
-  const handleSignupToggle = () => {
-    setSignupBoxOpen((prev) => {
-      const newState = !prev;
-      if (newState) setLoginBoxOpen(false);
-      return newState;
-    });
-  };
-
+  //   theme ? dark/light
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -54,12 +40,14 @@ function App() {
     }
   }, [theme]);
 
+  //   auto-open file panel if on file page
   useEffect(() => {
     if (isFilePage) {
       setFilePanelOpen(true);
     }
   }, [location.pathname]);
 
+  //   refresh session if no user
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!user) {
@@ -75,12 +63,7 @@ function App() {
       {user ? (
         sidebarOpen ? (
           <div className="h-full w-[80%] md:w-[300px]">
-            <Sidebar
-              sidebarOpen={sidebarOpen}
-              toggleSidebar={toggleSidebar}
-              toggleSearchDialog={toggleSearchDialog}
-              toggleNewFileDialog={toggleNewFileDialog}
-            />
+            <Sidebar />
           </div>
         ) : (
           <button
@@ -93,19 +76,17 @@ function App() {
         )
       ) : (
         <div className="h-full w-[80%] md:w-[400px]">
-          {loginBoxOpen && <LoginBox handleSignupToggle={handleSignupToggle} />}
-          {signupBoxOpen && <SignupBox handleLoginToggle={handleLoginToggle} />}
+          {openLogin && <LoginBox />}
+          {openSignup && <SignupBox />}
         </div>
       )}
 
       <div className="relative flex-1 h-full">
         {/* navbar */}
         {user && (
-          <Navbar
-            isFilePage={isFilePage}
-            filePanelOpen={filePanelOpen}
-            toggleFilePanel={toggleFilePanel}
-          />
+          <div className="fixed top-0 right-0 z-[99] ">
+            <Navbar isFilePage={isFilePage} />
+          </div>
         )}
 
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
@@ -120,16 +101,13 @@ function App() {
 
         {newFileDialogOpen && (
           <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
-            <NewFileDialog onClose={() => setNewFileDialogOpen(false)} />
+            <NewFileDialog />
           </div>
         )}
 
         {searchDialogOpen && (
-          <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
-            <SearchDialog
-              onClose={() => setSearchDialogOpen(false)}
-              toggleNewFileDialog={toggleNewFileDialog}
-            />
+          <div className="fixed inset-0 z-40 bg-black/40 flex items-center justify-center">
+            <SearchDialog />
           </div>
         )}
       </div>

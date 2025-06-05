@@ -3,24 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import FileOptionsMenu from "../Dialogs/FileOptionsMenu.tsx";
 import { getFileIcon } from "../getFileIcon.tsx";
 import { useFileStore } from "../../stores/fileStore.ts";
+import { useUIStore } from "../../stores/uiStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
 import ConfirmDeleteDialog from "../Dialogs/ConfirmDeleteDialog.tsx";
 import { FiSidebar } from "react-icons/fi";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import { IoSearch } from "react-icons/io5";
 
-interface SidebarProps {
-  sidebarOpen: boolean;
-  toggleSidebar: () => void;
-  toggleSearchDialog: () => void;
-  toggleNewFileDialog: () => void;
-}
-
-const Sidebar = ({
-  toggleSidebar,
-  toggleSearchDialog,
-  toggleNewFileDialog,
-}: SidebarProps) => {
+const Sidebar = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
 
@@ -34,6 +24,9 @@ const Sidebar = ({
   const fetchFiles = useFileStore((state) => state.fetchFiles);
   const updateFile = useFileStore((state) => state.updateFile);
   const deleteFile = useFileStore((state) => state.deleteFile);
+
+  const { toggleSidebar, toggleSearchDialog, toggleNewFileDialog } =
+    useUIStore();
 
   const openFile = (file: UserFile) => {
     const slug = `${file.name}--${file._id}`;
@@ -99,63 +92,46 @@ const Sidebar = ({
 
             <div className="p-3 text-[#8a8a8a]">Files</div>
 
-            <ul className="pb-40">
-              {files.map((file) => {
-                const isActive = file._id === activeFileId;
-                const isEditing = editingFileId === file._id;
-                const sanitizedInput = renameInput.trim().replace(/\s+/g, "");
+            {files.length === 0 ? (
+              <div className="h-32 px-3 w-full italic text-gray-500">
+                No files found
+              </div>
+            ) : (
+              <ul className="pb-40">
+                {files.map((file) => {
+                  const isActive = file._id === activeFileId;
+                  const isEditing = editingFileId === file._id;
+                  const sanitizedInput = renameInput.trim().replace(/\s+/g, "");
 
-                const isDuplicateName =
-                  isEditing &&
-                  files.some(
-                    (f) => f._id !== file._id && f.name === sanitizedInput
-                  );
+                  const isDuplicateName =
+                    isEditing &&
+                    files.some(
+                      (f) => f._id !== file._id && f.name === sanitizedInput
+                    );
 
-                return (
-                  <li
-                    key={file._id}
-                    className={`w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center duration-300 ${
-                      isActive
-                        ? "bg-[#222] text-[#fff]"
-                        : "text-[#bababa] hover:bg-[#2A2A2A]"
-                    }`}
-                  >
-                    <button
-                      onClick={() => openFile(file)}
-                      className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs overflow-hidden"
+                  return (
+                    <li
+                      key={file._id}
+                      className={`w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center duration-300 ${
+                        isActive
+                          ? "bg-[#222] text-[#fff]"
+                          : "text-[#bababa] hover:bg-[#2A2A2A]"
+                      }`}
                     >
-                      <span>{getFileIcon(file.extension)}</span>
+                      <button
+                        onClick={() => openFile(file)}
+                        className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs overflow-hidden"
+                      >
+                        <span>{getFileIcon(file.extension)}</span>
 
-                      {isEditing ? (
-                        <div className="flex flex-col">
-                          <input
-                            type="text"
-                            value={renameInput}
-                            autoFocus
-                            onChange={(e) => setRenameInput(e.target.value)}
-                            onBlur={async () => {
-                              if (
-                                sanitizedInput &&
-                                sanitizedInput !== file.name &&
-                                !isDuplicateName
-                              ) {
-                                await updateFile(file._id, {
-                                  name: sanitizedInput,
-                                });
-
-                                if (activeFileId === file._id) {
-                                  const newSlug = `${sanitizedInput}--${file._id}`;
-                                  navigate(`/file/${newSlug}`, {
-                                    replace: true,
-                                  });
-                                }
-                              }
-
-                              setRenameInput("");
-                              setEditingFileId(null);
-                            }}
-                            onKeyDown={async (e) => {
-                              if (e.key === "Enter") {
+                        {isEditing ? (
+                          <div className="flex flex-col">
+                            <input
+                              type="text"
+                              value={renameInput}
+                              autoFocus
+                              onChange={(e) => setRenameInput(e.target.value)}
+                              onBlur={async () => {
                                 if (
                                   sanitizedInput &&
                                   sanitizedInput !== file.name &&
@@ -172,39 +148,62 @@ const Sidebar = ({
                                     });
                                   }
                                 }
+
                                 setRenameInput("");
                                 setEditingFileId(null);
-                              } else if (e.key === "Escape") {
-                                setRenameInput("");
-                                setEditingFileId(null);
-                              }
-                            }}
-                            className="w-full bg-transparent text-white outline-none border border-gray-300 rounded px-1"
-                          />
+                              }}
+                              onKeyDown={async (e) => {
+                                if (e.key === "Enter") {
+                                  if (
+                                    sanitizedInput &&
+                                    sanitizedInput !== file.name &&
+                                    !isDuplicateName
+                                  ) {
+                                    await updateFile(file._id, {
+                                      name: sanitizedInput,
+                                    });
 
-                          {isDuplicateName && (
-                            <div className="text-xs leading-tight text-red-300 px-1 mt-1 text-center">
-                              A file with this name already exists.
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        <span className="w-full mask-containerRight overflow-hidden">
-                          {file.name}.{file.extension}
-                        </span>
-                      )}
-                    </button>
+                                    if (activeFileId === file._id) {
+                                      const newSlug = `${sanitizedInput}--${file._id}`;
+                                      navigate(`/file/${newSlug}`, {
+                                        replace: true,
+                                      });
+                                    }
+                                  }
+                                  setRenameInput("");
+                                  setEditingFileId(null);
+                                } else if (e.key === "Escape") {
+                                  setRenameInput("");
+                                  setEditingFileId(null);
+                                }
+                              }}
+                              className="w-full bg-transparent text-white outline-none border border-gray-300 rounded px-1"
+                            />
 
-                    <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                      <FileOptionsMenu
-                        onRename={() => setEditingFileId(file._id)}
-                        onDelete={() => setFileToDelete(file)}
-                      />
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                            {isDuplicateName && (
+                              <div className="text-xs leading-tight text-red-300 px-1 mt-1 text-center">
+                                A file with this name already exists.
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="w-full mask-containerRight overflow-hidden">
+                            {file.name}.{file.extension}
+                          </span>
+                        )}
+                      </button>
+
+                      <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <FileOptionsMenu
+                          onRename={() => setEditingFileId(file._id)}
+                          onDelete={() => setFileToDelete(file)}
+                        />
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
         </div>
       </aside>

@@ -5,20 +5,17 @@ import { getFileIcon } from "../getFileIcon";
 import { formatDateTime } from "../../utils/formatDateTime";
 import type { UserFile } from "../../stores/fileStore";
 import { useFileStore } from "../../stores/fileStore";
+import { useUIStore } from "../../stores/uiStore";
 import { IoClose } from "react-icons/io5";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 
-function SearchDialog({
-  onClose,
-  toggleNewFileDialog,
-}: {
-  onClose: () => void;
-  toggleNewFileDialog: () => void;
-}) {
+function SearchDialog() {
   const ref = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
-  const { searchFiles, loading, results } = useSearchFiles();
   const navigate = useNavigate();
+
+  const { searchFiles, loading, results } = useSearchFiles();
+  const { toggleSearchDialog, toggleNewFileDialog } = useUIStore();
 
   const files = useFileStore((state) => state.files);
   const recentFiles = files.slice(0, 5);
@@ -26,7 +23,7 @@ function SearchDialog({
   const openFile = (file: UserFile) => {
     const slug = `${file.name}--${file._id}`;
     navigate(`/file/${slug}`);
-    onClose();
+    toggleSearchDialog();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +38,7 @@ function SearchDialog({
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
-        onClose();
+        toggleSearchDialog();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -54,7 +51,7 @@ function SearchDialog({
       className="w-[90%] lg:w-[48%] h-[65%] fixed inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[99] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col"
     >
       <div
-        onClick={() => onClose()}
+        onClick={() => toggleSearchDialog()}
         className="absolute top-5 right-5 p-1 hover:bg-[#4a4a4a] text-[#7a7a7a] hover:text-[#f1f1f1] rounded-full cursor-pointer z-10 duration-100"
       >
         <IoClose className="w-6 h-6" />
@@ -116,7 +113,7 @@ function SearchDialog({
           <div>
             <button
               onClick={() => {
-                onClose();
+                toggleSearchDialog();
                 toggleNewFileDialog();
               }}
               className="w-full px-5 py-3 flex items-center gap-x-4 hover:bg-[#3a3a3a] rounded-2xl"

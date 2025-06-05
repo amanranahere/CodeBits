@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "../../stores/userStore";
+import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import TypingTextAnimation from "../Animation/TypingTextAnimation";
 
@@ -9,9 +10,11 @@ interface LoginInput {
   password: string;
 }
 
-function LoginBox({ handleSignupToggle }: { handleSignupToggle: () => void }) {
+function LoginBox() {
   const login = useUserStore((state) => state.login);
   const loading = useUserStore((state) => state.loading);
+  const { openAuthBox } = useUIStore();
+
   const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -130,7 +133,7 @@ function LoginBox({ handleSignupToggle }: { handleSignupToggle: () => void }) {
       <div className="mt-4 text-center text-sm text-gray-400">
         Don’t have an account?{" "}
         <button
-          onClick={handleSignupToggle}
+          onClick={() => openAuthBox("signup")}
           className="text-[#00bfff] hover:underline hover:text-[#00bfff]/90"
         >
           Sign up

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useFileStore } from "../../stores/fileStore";
+import { useUIStore } from "../../stores/uiStore";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import TypingTextAnimation from "../Animation/TypingTextAnimation";
@@ -10,7 +11,7 @@ interface NewFileInput {
   description?: string;
 }
 
-const NewFileDialog = ({ onClose }: { onClose: () => void }) => {
+const NewFileDialog = () => {
   const {
     register,
     handleSubmit,
@@ -20,9 +21,11 @@ const NewFileDialog = ({ onClose }: { onClose: () => void }) => {
   } = useForm<NewFileInput>();
 
   const [creating, setCreating] = useState(false);
+  const navigate = useNavigate();
+
   const createFile = useFileStore((state) => state.createFile);
   const files = useFileStore((state) => state.files);
-  const navigate = useNavigate();
+  const { toggleNewFileDialog } = useUIStore();
 
   const nameInput = watch("name")?.trim().replace(/\s+/g, "");
   const isDuplicate = files.some((f) => f.name === nameInput);
@@ -45,7 +48,7 @@ const NewFileDialog = ({ onClose }: { onClose: () => void }) => {
 
       navigate(`/file/${file.name}--${file._id}`);
       reset();
-      onClose();
+      toggleNewFileDialog();
     } catch (err) {
       console.error("Failed to create file:", err);
     } finally {
@@ -111,7 +114,7 @@ const NewFileDialog = ({ onClose }: { onClose: () => void }) => {
         <div className="flex justify-between gap-3 mt-2">
           <button
             type="button"
-            onClick={onClose}
+            onClick={toggleNewFileDialog}
             className="w-[50%] border-none outline-none py-2 bg-red-400 hover:bg-red-400/60 active:bg-red-400/60 border rounded-[16px] select-none duration-200"
           >
             Cancel

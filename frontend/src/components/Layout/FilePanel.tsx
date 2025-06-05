@@ -50,7 +50,7 @@ const FilePanel = () => {
   const { full, relative } = formatDateTime(file.updatedAt);
 
   return (
-    <div className="relative w-full md:w-[250px] h-[calc(100vh-95px)] bg-[#f1f1f1] dark:bg-[#2f2f2f] text-[#f1f1f1] rounded-3xl overflow-hidden">
+    <div className="relative w-[250px] h-[calc(100vh-95px)] bg-[#f1f1f1] dark:bg-[#2f2f2f] text-[#f1f1f1] rounded-3xl overflow-hidden">
       <div className="p-4 flex flex-col gap-y-8 font-mono">
         {/*   title   */}
         <div className="relative group">

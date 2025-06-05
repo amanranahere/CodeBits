@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useRegister from "../../hooks/user/useRegister";
+import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import TypingTextAnimation from "../Animation/TypingTextAnimation";
@@ -11,10 +12,12 @@ interface SignupInput {
   password: string;
 }
 
-function SignupBox({ handleLoginToggle }: { handleLoginToggle: () => void }) {
+function SignupBox() {
   const { registerUser, loading } = useRegister();
   const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const { openAuthBox } = useUIStore();
 
   const onSubmit = async (data: SignupInput) => {
     try {
@@ -23,6 +26,9 @@ function SignupBox({ handleLoginToggle }: { handleLoginToggle: () => void }) {
       if (registered) {
         setError("");
         toast.success("Account created!");
+
+        reset();
+        openAuthBox("login");
       }
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : "Login Failed!";
@@ -33,6 +39,7 @@ function SignupBox({ handleLoginToggle }: { handleLoginToggle: () => void }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<SignupInput>();
 
@@ -155,7 +162,7 @@ function SignupBox({ handleLoginToggle }: { handleLoginToggle: () => void }) {
       <div className="mt-4 text-center text-sm text-gray-400">
         Already have an account?{" "}
         <button
-          onClick={handleLoginToggle}
+          onClick={() => openAuthBox("login")}
           className="text-[#00bfff] hover:underline hover:text-[#00bfff]/90"
         >
           Login
