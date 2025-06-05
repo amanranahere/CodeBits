@@ -9,9 +9,14 @@ import Sidebar from "./components/Layout/Sidebar";
 import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
-import NewFileDialog from "./components/Dialogs/NewFileDialog";
-import SearchDialog from "./components/Dialogs/SearchDialog";
 import { FiSidebar } from "react-icons/fi";
+import ModalOverlay from "./components/Modals/ModalOverlay";
+import NewFileModal from "./components/Modals/NewFileModal";
+import SearchModal from "./components/Modals/SearchModal";
+import SettingsModal from "./components/Modals/SettingsModal";
+import KeyboardShortcutsModal from "./components/Modals/KeyboardShortcutsModal";
+import AboutModal from "./components/Modals/AboutModal";
+import FeedbakcModal from "./components/Modals/FeedbackModal";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -20,11 +25,20 @@ function App() {
   const {
     sidebarOpen,
     filePanelOpen,
-    newFileDialogOpen,
-    searchDialogOpen,
+    newFileModalOpen,
+    searchModalOpen,
+    settingsModalOpen,
+    keyboardShortcutsModalOpen,
+    aboutModalOpen,
+    feedbackModalOpen,
     openLogin,
     openSignup,
     toggleSidebar,
+    toggleNewFileModal,
+    toggleSettingsModal,
+    toggleKeyboardShortcutsModal,
+    toggleAboutModal,
+    toggleFeedbackModal,
     setFilePanelOpen,
   } = useUIStore();
 
@@ -83,11 +97,10 @@ function App() {
 
       <div className="relative flex-1 h-full">
         {/* navbar */}
-        {user && (
-          <div className="fixed top-0 right-0 z-[99] ">
-            <Navbar isFilePage={isFilePage} />
-          </div>
-        )}
+
+        <div className="fixed top-0 right-0 z-[99] ">
+          <Navbar isFilePage={isFilePage} />
+        </div>
 
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
@@ -99,16 +112,30 @@ function App() {
           </div>
         )}
 
-        {newFileDialogOpen && (
-          <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/40 flex items-center justify-center">
-            <NewFileDialog />
-          </div>
-        )}
+        {/* modals */}
+        {searchModalOpen && <SearchModal />}
 
-        {searchDialogOpen && (
-          <div className="fixed inset-0 z-40 bg-black/40 flex items-center justify-center">
-            <SearchDialog />
-          </div>
+        {(newFileModalOpen ||
+          settingsModalOpen ||
+          keyboardShortcutsModalOpen ||
+          aboutModalOpen ||
+          feedbackModalOpen) && (
+          <ModalOverlay
+            onClose={() => {
+              if (newFileModalOpen) toggleNewFileModal();
+              else if (settingsModalOpen) toggleSettingsModal();
+              else if (keyboardShortcutsModalOpen)
+                toggleKeyboardShortcutsModal();
+              else if (aboutModalOpen) toggleAboutModal();
+              else if (feedbackModalOpen) toggleFeedbackModal();
+            }}
+          >
+            {newFileModalOpen && <NewFileModal />}
+            {settingsModalOpen && <SettingsModal />}
+            {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
+            {aboutModalOpen && <AboutModal />}
+            {feedbackModalOpen && <FeedbakcModal />}
+          </ModalOverlay>
         )}
       </div>
 

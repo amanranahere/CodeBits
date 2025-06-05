@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useUserStore } from "../../stores/userStore";
 import { useUIStore } from "../../stores/uiStore";
-import UserDropdown from "../Dialogs/UserDropdown";
+import UserDropdown from "../Dropdowns/UserDropdown";
 import { useClickOutside } from "../../utils/useClickOutside";
 import { HiOutlineDocumentText, HiDocumentText } from "react-icons/hi";
 
@@ -39,11 +39,11 @@ export default function Navbar({ isFilePage }: NavbarProps) {
         className="w-12 h-12 p-[6px] rounded-full hover:bg-[#3a3a3a] cursor-pointer"
       >
         <div className="w-full h-full rounded-full flex justify-center items-center font-mono text-lg text-black dark:text-white bg-[#D4D4D4] dark:bg-[#4a4a4a] select-none">
-          {user?.name[0]?.toUpperCase()}
+          {user ? user.name[0]?.toUpperCase() : <span>?</span>}
         </div>
       </div>
 
-      {dropdownOpen && user && (
+      {dropdownOpen && (
         <div className="absolute right-2 top-14 mt-3 z-[999]">
           <UserDropdown onClose={() => setDropdownOpen(false)} />
         </div>

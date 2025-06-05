@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { PiDotsThreeOutlineFill } from "react-icons/pi";
 import { MdModeEdit, MdDeleteOutline } from "react-icons/md";
 
-const FileOptionsMenu = ({
+const FileOptionsMenuDropdown = ({
   onRename,
   onDelete,
 }: {
@@ -60,4 +60,4 @@ const FileOptionsMenu = ({
   );
 };
 
-export default FileOptionsMenu;
+export default FileOptionsMenuDropdown;

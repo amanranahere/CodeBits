@@ -1,4 +1,4 @@
-interface ConfirmDeleteDialogProps {
+interface ConfirmDeleteModalProps {
   title?: string;
   description?: string;
   onCancel: () => void;
@@ -6,13 +6,13 @@ interface ConfirmDeleteDialogProps {
   open: boolean;
 }
 
-const ConfirmDeleteDialog = ({
+const ConfirmDeleteModal = ({
   title = "Delete File",
   description = "Are you sure you want to delete this file? This action cannot be undone.",
   onCancel,
   onConfirm,
   open,
-}: ConfirmDeleteDialogProps) => {
+}: ConfirmDeleteModalProps) => {
   if (!open) return null;
 
   return (
@@ -46,4 +46,4 @@ const ConfirmDeleteDialog = ({
   );
 };
 
-export default ConfirmDeleteDialog;
+export default ConfirmDeleteModal;

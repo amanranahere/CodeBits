@@ -11,7 +11,7 @@ interface NewFileInput {
   description?: string;
 }
 
-const NewFileDialog = () => {
+const NewFileModal = () => {
   const {
     register,
     handleSubmit,
@@ -25,7 +25,7 @@ const NewFileDialog = () => {
 
   const createFile = useFileStore((state) => state.createFile);
   const files = useFileStore((state) => state.files);
-  const { toggleNewFileDialog } = useUIStore();
+  const { toggleNewFileModal } = useUIStore();
 
   const nameInput = watch("name")?.trim().replace(/\s+/g, "");
   const isDuplicate = files.some((f) => f.name === nameInput);
@@ -48,7 +48,7 @@ const NewFileDialog = () => {
 
       navigate(`/file/${file.name}--${file._id}`);
       reset();
-      toggleNewFileDialog();
+      toggleNewFileModal();
     } catch (err) {
       console.error("Failed to create file:", err);
     } finally {
@@ -114,7 +114,7 @@ const NewFileDialog = () => {
         <div className="flex justify-between gap-3 mt-2">
           <button
             type="button"
-            onClick={toggleNewFileDialog}
+            onClick={toggleNewFileModal}
             className="w-[50%] border-none outline-none py-2 bg-red-400 hover:bg-red-400/60 active:bg-red-400/60 border rounded-[16px] select-none duration-200"
           >
             Cancel
@@ -137,4 +137,4 @@ const NewFileDialog = () => {
   );
 };
 
-export default NewFileDialog;
+export default NewFileModal;

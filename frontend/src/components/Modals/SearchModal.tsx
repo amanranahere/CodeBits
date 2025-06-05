@@ -9,13 +9,13 @@ import { useUIStore } from "../../stores/uiStore";
 import { IoClose } from "react-icons/io5";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 
-function SearchDialog() {
+function SearchModal() {
   const ref = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
   const { searchFiles, loading, results } = useSearchFiles();
-  const { toggleSearchDialog, toggleNewFileDialog } = useUIStore();
+  const { toggleSearchModal, toggleNewFileModal } = useUIStore();
 
   const files = useFileStore((state) => state.files);
   const recentFiles = files.slice(0, 5);
@@ -23,7 +23,7 @@ function SearchDialog() {
   const openFile = (file: UserFile) => {
     const slug = `${file.name}--${file._id}`;
     navigate(`/file/${slug}`);
-    toggleSearchDialog();
+    toggleSearchModal();
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ function SearchDialog() {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
-        toggleSearchDialog();
+        toggleSearchModal();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -51,7 +51,7 @@ function SearchDialog() {
       className="w-[90%] lg:w-[48%] h-[65%] fixed inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[99] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col"
     >
       <div
-        onClick={() => toggleSearchDialog()}
+        onClick={() => toggleSearchModal()}
         className="absolute top-5 right-5 p-1 hover:bg-[#4a4a4a] text-[#7a7a7a] hover:text-[#f1f1f1] rounded-full cursor-pointer z-10 duration-100"
       >
         <IoClose className="w-6 h-6" />
@@ -113,8 +113,8 @@ function SearchDialog() {
           <div>
             <button
               onClick={() => {
-                toggleSearchDialog();
-                toggleNewFileDialog();
+                toggleSearchModal();
+                toggleNewFileModal();
               }}
               className="w-full px-5 py-3 flex items-center gap-x-4 hover:bg-[#3a3a3a] rounded-2xl"
             >
@@ -162,4 +162,4 @@ function SearchDialog() {
   );
 }
 
-export default SearchDialog;
+export default SearchModal;

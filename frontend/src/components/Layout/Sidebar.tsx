@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import FileOptionsMenu from "../Dialogs/FileOptionsMenu.tsx";
+import FileOptionsMenu from "../Dropdowns/FileOptionsMenuDropdown.tsx";
 import { getFileIcon } from "../getFileIcon.tsx";
 import { useFileStore } from "../../stores/fileStore.ts";
 import { useUIStore } from "../../stores/uiStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
-import ConfirmDeleteDialog from "../Dialogs/ConfirmDeleteDialog.tsx";
+import ConfirmDeleteModal from "../Modals/ConfirmDeleteModal.tsx";
 import { FiSidebar } from "react-icons/fi";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import { IoSearch } from "react-icons/io5";
@@ -25,8 +25,7 @@ const Sidebar = () => {
   const updateFile = useFileStore((state) => state.updateFile);
   const deleteFile = useFileStore((state) => state.deleteFile);
 
-  const { toggleSidebar, toggleSearchDialog, toggleNewFileDialog } =
-    useUIStore();
+  const { toggleSidebar, toggleSearchModal, toggleNewFileModal } = useUIStore();
 
   const openFile = (file: UserFile) => {
     const slug = `${file.name}--${file._id}`;
@@ -74,7 +73,7 @@ const Sidebar = () => {
           >
             <div className="py-3 flex flex-col">
               <button
-                onClick={toggleNewFileDialog}
+                onClick={toggleNewFileModal}
                 className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
               >
                 <HiMiniPencilSquare className="w-5 h-5 mx-2" />
@@ -82,7 +81,7 @@ const Sidebar = () => {
               </button>
 
               <button
-                onClick={toggleSearchDialog}
+                onClick={toggleSearchModal}
                 className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
               >
                 <IoSearch className="w-5 h-5 mx-2" />
@@ -208,7 +207,7 @@ const Sidebar = () => {
         </div>
       </aside>
 
-      <ConfirmDeleteDialog
+      <ConfirmDeleteModal
         open={!!fileToDelete}
         title={`Delete "${fileToDelete?.name}"?`}
         onCancel={() => setFileToDelete(null)}
