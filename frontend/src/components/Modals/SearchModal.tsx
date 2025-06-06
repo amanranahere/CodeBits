@@ -52,7 +52,7 @@ function SearchModal() {
     >
       <div
         onClick={() => toggleSearchModal()}
-        className="absolute top-5 right-5 p-1 hover:bg-[#4a4a4a] text-[#7a7a7a] hover:text-[#f1f1f1] rounded-full cursor-pointer z-10 duration-100"
+        className="absolute top-5 right-5 p-1 hover:bg-[#4a4a4a] text-[#9a9a9a] hover:text-[#f1f1f1] rounded-full cursor-pointer z-10 duration-100"
       >
         <IoClose className="w-6 h-6" />
       </div>
