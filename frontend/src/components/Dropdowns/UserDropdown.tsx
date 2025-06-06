@@ -13,7 +13,6 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
   const toggleTheme = useUserStore((state) => state.toggleTheme);
   const logout = useUserStore((state) => state.logout);
   const {
-    toggleSettingsModal,
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
     toggleFeedbackModal,

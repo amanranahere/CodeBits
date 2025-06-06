@@ -49,8 +49,11 @@ const Sidebar = () => {
     <>
       <aside className="h-full w-full p-2 bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1]">
         <div className="w-full flex justify-between">
-          <div onClick={() => navigate("/")} className="p-1 cursor-pointer">
-            logo
+          <div
+            onClick={() => navigate("/")}
+            className="p-2 text-lg font-mono cursor-pointer"
+          >
+            CodeBits
           </div>
 
           <button

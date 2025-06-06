@@ -5,7 +5,7 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import FilePage from "./pages/FilePage.tsx";
-import Settings from "./pages/Settings.tsx";
+import SettingsRouteWrapper from "./components/Settings/SettingsRouteWrapper.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/settings",
-        element: <Settings />,
+        element: <SettingsRouteWrapper />,
       },
     ],
   },

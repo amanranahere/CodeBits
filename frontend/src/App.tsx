@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
@@ -13,7 +13,6 @@ import { FiSidebar } from "react-icons/fi";
 import ModalOverlay from "./components/Modals/ModalOverlay";
 import NewFileModal from "./components/Modals/NewFileModal";
 import SearchModal from "./components/Modals/SearchModal";
-import SettingsModal from "./components/Modals/SettingsModal";
 import KeyboardShortcutsModal from "./components/Modals/KeyboardShortcutsModal";
 import AboutModal from "./components/Modals/AboutModal";
 import FeedbakcModal from "./components/Modals/FeedbackModal";
@@ -27,7 +26,6 @@ function App() {
     filePanelOpen,
     newFileModalOpen,
     searchModalOpen,
-    settingsModalOpen,
     keyboardShortcutsModalOpen,
     aboutModalOpen,
     feedbackModalOpen,
@@ -35,7 +33,6 @@ function App() {
     openSignup,
     toggleSidebar,
     toggleNewFileModal,
-    toggleSettingsModal,
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
     toggleFeedbackModal,
@@ -113,17 +110,16 @@ function App() {
         )}
 
         {/* modals */}
+
         {searchModalOpen && <SearchModal />}
 
         {(newFileModalOpen ||
-          settingsModalOpen ||
           keyboardShortcutsModalOpen ||
           aboutModalOpen ||
           feedbackModalOpen) && (
           <ModalOverlay
             onClose={() => {
               if (newFileModalOpen) toggleNewFileModal();
-              else if (settingsModalOpen) toggleSettingsModal();
               else if (keyboardShortcutsModalOpen)
                 toggleKeyboardShortcutsModal();
               else if (aboutModalOpen) toggleAboutModal();
@@ -131,7 +127,6 @@ function App() {
             }}
           >
             {newFileModalOpen && <NewFileModal />}
-            {settingsModalOpen && <SettingsModal />}
             {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
             {aboutModalOpen && <AboutModal />}
             {feedbackModalOpen && <FeedbakcModal />}

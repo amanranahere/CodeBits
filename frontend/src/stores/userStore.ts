@@ -17,6 +17,11 @@ interface UserStore {
   refresh: () => Promise<void>;
   theme: "light" | "dark";
   toggleTheme: () => void;
+  updateAccountInfo: (updatedData: Partial<User>) => Promise<void>;
+  changePassword: (data: {
+    currentPassword: string;
+    newPassword: string;
+  }) => Promise<void>;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -80,6 +85,42 @@ export const useUserStore = create<UserStore>()(
           document.documentElement.classList.remove("dark");
         }
         set({ theme: newTheme });
+      },
+
+      //   update account info
+      updateAccountInfo: async (updatedData) => {
+        set({ loading: true });
+
+        try {
+          const res = await axiosInstance.patch(
+            "/user/update-account",
+            updatedData
+          );
+          set({ user: res.data.user });
+          toast.success("Account info updated");
+        } catch (err) {
+          console.log("Update failed", err);
+          toast.error("Failed to update info");
+        } finally {
+          set({ loading: false });
+        }
+      },
+
+      //   change password
+      changePassword: async ({ currentPassword, newPassword }) => {
+        set({ loading: true });
+
+        try {
+          await axiosInstance.post("/user/change-password", {
+            currentPassword,
+            newPassword,
+          });
+        } catch (err) {
+          console.log("Update failed", err);
+          toast.error("Failed to change password");
+        } finally {
+          set({ loading: false });
+        }
       },
     }),
     {

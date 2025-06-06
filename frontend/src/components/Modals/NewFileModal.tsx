@@ -77,7 +77,7 @@ const NewFileModal = () => {
             <input
               type="text"
               placeholder="Title"
-              className="w-full p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none rounded-[16px] duration-300"
+              className="w-full p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none rounded-[16px] duration-150"
               {...register("name", { required: "Filename is required" })}
             />
 
@@ -98,7 +98,7 @@ const NewFileModal = () => {
             <input
               type="text"
               placeholder="File type (e.g., js)"
-              className="w-full p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none rounded-[16px] duration-300"
+              className="w-full p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none rounded-[16px] duration-150"
               {...register("extension", { required: "Extension is required" })}
             />
 
@@ -112,7 +112,7 @@ const NewFileModal = () => {
           <div>
             <textarea
               placeholder="Description"
-              className="w-full h-[10rem] p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none resize-none rounded-[16px] duration-300"
+              className="w-full h-[10rem] p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none resize-none rounded-[16px] duration-150"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
