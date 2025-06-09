@@ -19,9 +19,10 @@ interface UserStore {
   toggleTheme: () => void;
   updateAccountInfo: (updatedData: Partial<User>) => Promise<void>;
   changePassword: (data: {
-    currentPassword: string;
+    oldPassword: string;
     newPassword: string;
   }) => Promise<void>;
+  deleteAccount: () => Promise<void>;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -107,17 +108,34 @@ export const useUserStore = create<UserStore>()(
       },
 
       //   change password
-      changePassword: async ({ currentPassword, newPassword }) => {
+      changePassword: async ({ oldPassword, newPassword }) => {
         set({ loading: true });
 
         try {
           await axiosInstance.post("/user/change-password", {
-            currentPassword,
+            oldPassword,
             newPassword,
           });
+          toast.success("Password updated successfully");
         } catch (err) {
           console.log("Update failed", err);
           toast.error("Failed to change password");
+        } finally {
+          set({ loading: false });
+        }
+      },
+
+      //   delete account
+      deleteAccount: async () => {
+        set({ loading: true });
+
+        try {
+          await axiosInstance.delete("/user/delete-account");
+          set({ user: null });
+          toast.success("Account deleted successfully");
+        } catch (err) {
+          console.error("Delete failed", err);
+          toast.error("Failed to delete account");
         } finally {
           set({ loading: false });
         }

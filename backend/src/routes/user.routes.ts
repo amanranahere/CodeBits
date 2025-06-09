@@ -7,6 +7,7 @@ import {
   updateUserDetails,
   changePassword,
   getCurrentUser,
+  deleteAccount,
 } from "../controllers/user.controller";
 import { verifyJWT } from "../middlewares/auth.middleware";
 
@@ -22,5 +23,6 @@ router.route("/logout").post(verifyJWT, logoutUser);
 router.route("/update-account").patch(verifyJWT, updateUserDetails);
 router.route("/change-password").post(verifyJWT, changePassword);
 router.route("/current-user").get(verifyJWT, getCurrentUser);
+router.route("/delete-account").delete(verifyJWT, deleteAccount);
 
 export default router;

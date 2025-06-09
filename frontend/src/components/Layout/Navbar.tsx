@@ -20,6 +20,7 @@ export default function Navbar({ isFilePage }: NavbarProps) {
 
   return (
     <div ref={boxRef} className="p-3 flex items-center gap-x-2">
+      {/* file panel toggle button */}
       {isFilePage && (
         <button
           title={filePanelOpen ? "Close File Panel" : "Open File Panel"}
@@ -34,6 +35,7 @@ export default function Navbar({ isFilePage }: NavbarProps) {
         </button>
       )}
 
+      {/* profile icon */}
       <div
         onClick={() => setDropdownOpen((prev) => !prev)}
         className="w-12 h-12 p-[6px] rounded-full hover:bg-[#3a3a3a] cursor-pointer"
@@ -43,6 +45,7 @@ export default function Navbar({ isFilePage }: NavbarProps) {
         </div>
       </div>
 
+      {/* drop down */}
       {dropdownOpen && (
         <div className="absolute right-2 top-14 mt-3 z-[999]">
           <UserDropdown onClose={() => setDropdownOpen(false)} />

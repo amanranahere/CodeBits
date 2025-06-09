@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../stores/userStore";
 import { MdModeEdit } from "react-icons/md";
 
 export default function AccountInfo() {
+  const navigate = useNavigate();
+
   const user = useUserStore((state) => state.user);
   const loading = useUserStore((state) => state.loading);
   const updateAccountInfo = useUserStore((state) => state.updateAccountInfo);
@@ -26,17 +29,19 @@ export default function AccountInfo() {
       return;
     }
 
-    await updateAccountInfo({
+    updateAccountInfo({
       name: nameInput,
       email: emailInput,
     });
 
     setEditingName(false);
     setEditingEmail(false);
+
+    navigate("/");
   };
 
   return (
-    <div className="space-y-10">
+    <div className="flex flex-col gap-y-4 md:gap-y-8">
       {/* name */}
       <div className="relative group">
         <div
@@ -53,9 +58,8 @@ export default function AccountInfo() {
         </div>
 
         <div
-          className={`text-gray-700 dark:text-[#8c8c8c] select-none ${
-            editingName ? "px-3" : ""
-          }`}
+          className="text-gray-700 dark:text-[#8c8c8c] select-none px-2
+          "
         >
           Name
         </div>
@@ -68,7 +72,7 @@ export default function AccountInfo() {
             className="w-full p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none rounded-[16px] duration-300"
           />
         ) : (
-          <div>{user?.name}</div>
+          <div className="px-2">{user?.name}</div>
         )}
       </div>
 
@@ -87,11 +91,7 @@ export default function AccountInfo() {
           <MdModeEdit className="w-4 h-4" />
         </div>
 
-        <div
-          className={`text-gray-700 dark:text-[#8c8c8c] select-none ${
-            editingEmail ? "px-3" : ""
-          }`}
-        >
+        <div className="text-gray-700 dark:text-[#8c8c8c] select-none px-2">
           Email
         </div>
 
@@ -103,16 +103,20 @@ export default function AccountInfo() {
             className="w-full p-3 bg-[#3a3a3a] hover:bg-[#3a3a3a]/80 focus:bg-[#3a3a3a]/80 text-white outline-none rounded-[16px] duration-300"
           />
         ) : (
-          <div>{user?.email}</div>
+          <div className="px-2">{user?.email}</div>
         )}
       </div>
 
       {/* submit button */}
-      <div className="pt-6">
+      <div className="">
         {(editingName || editingEmail) && (
           <>
+            <p className="text-sm text-amber-400 px-1 pb-4">
+              Changing name/email will log you out. You'll need to log in again.
+            </p>
+
             {error && (
-              <div className="text-sm leading-none text-red-600 p-2">
+              <div className="text-sm leading-none text-red-600 px-1 pb-2">
                 {error}
               </div>
             )}
@@ -120,13 +124,13 @@ export default function AccountInfo() {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className={`w-[50%] p-[10px] rounded-[16px] duration-150 select-none outline-none border-none ${
+              className={`w-[50%] p-[10px] rounded-[16px] mt-4 duration-150 select-none outline-none border-none ${
                 loading
                   ? "bg-[#00bfff96] cursor-not-allowed"
                   : "bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63]"
               }`}
             >
-              {loading ? "Updating..." : "Submit"}
+              {loading ? "Updating..." : "Update"}
             </button>
           </>
         )}

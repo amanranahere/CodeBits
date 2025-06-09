@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import AccountInfo from "../Settings/AccountInfo";
-import ChangePassword from "../Settings/ChangePassword";
+import UpdatePassword from "../Settings/UpdatePassword";
 import DeleteAccount from "../Settings/DeleteAccount";
 
 function SettingsModal() {
@@ -10,7 +10,7 @@ function SettingsModal() {
   const [optActive, setOptActive] = useState("info");
 
   return (
-    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[800px] h-[80%] lg:h-[94%] z-[999] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col">
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[90%] max-w-[800px] h-[95%] md:h-[80%] z-[999] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col">
       <div
         onClick={() => {
           navigate(-1);
@@ -26,11 +26,11 @@ function SettingsModal() {
 
       <hr className="my-1 mx-3 border-[#e5e7eb] dark:border-[#4a4a4a]" />
 
-      <div className="flex flex-col lg:flex-row">
-        <div className="w-[30%] p-2 md:p-4 ">
+      <div className="flex flex-col md:flex-row flex-grow overflow-hidden pb-2">
+        <div className="md:w-[30%] m-2 md:m-0 p-2 md:p-4 flex flex-wrap md:flex-col bg-[#2a2a2a] md:bg-[#303030] rounded-xl">
           <button
             onClick={() => setOptActive("info")}
-            className={`w-full text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
+            className={`w-full text-center md:text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
               optActive === "info" && "bg-[#4a4a4a]"
             } `}
           >
@@ -39,16 +39,16 @@ function SettingsModal() {
 
           <button
             onClick={() => setOptActive("password")}
-            className={`w-full text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
+            className={`w-full text-center md:text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl whitespace-nowrap ${
               optActive === "password" && "bg-[#4a4a4a]"
             } `}
           >
-            Change Password
+            Update Password
           </button>
 
           <button
             onClick={() => setOptActive("delete")}
-            className={`w-full text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
+            className={`w-full text-center md:text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
               optActive === "delete" && "bg-[#4a4a4a]"
             } `}
           >
@@ -56,9 +56,9 @@ function SettingsModal() {
           </button>
         </div>
 
-        <div className="w-[70%] p-2 md:p-4">
+        <div className="w-full md:w-[70%] p-2 mt-2 md:mt-0 md:p-4 overflow-hidden overflow-y-auto">
           {optActive === "info" && <AccountInfo />}
-          {optActive === "password" && <ChangePassword />}
+          {optActive === "password" && <UpdatePassword />}
           {optActive === "delete" && <DeleteAccount />}
         </div>
       </div>

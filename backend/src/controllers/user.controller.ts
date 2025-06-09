@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler";
 import { ApiError } from "../utils/ApiError";
 import { ApiResponse } from "../utils/ApiResponse";
 import { User } from "../models/user.model";
+import { File } from "../models/file.model";
 import jwt from "jsonwebtoken";
 
 const generateAccessAndRefereshTokens = async (userId: string) => {
@@ -280,6 +281,34 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     );
 });
 
+const deleteAccount = asyncHandler(async (req, res) => {
+  const userId = (req as any).user._id;
+
+  //   delete all files
+  await File.deleteMany({ owner: userId });
+
+  //   delete user
+  await User.findByIdAndDelete(userId);
+
+  //   clear cookies
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+
+  return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(
+      new ApiResponse(
+        200,
+        {},
+        "User account and all associated files deleted successfully"
+      )
+    );
+});
+
 export {
   registerUser,
   loginUser,
@@ -288,4 +317,5 @@ export {
   updateUserDetails,
   changePassword,
   getCurrentUser,
+  deleteAccount,
 };

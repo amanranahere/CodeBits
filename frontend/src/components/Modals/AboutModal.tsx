@@ -1,5 +1,6 @@
 import { IoClose } from "react-icons/io5";
 import { useUIStore } from "../../stores/uiStore";
+import { MdArrowOutward } from "react-icons/md";
 
 export default function AboutModal() {
   const { toggleAboutModal } = useUIStore();
@@ -42,20 +43,26 @@ export default function AboutModal() {
         </div>
 
         <div className="flex justify-between px-4">
-          <span className="text-left text-[#bababa]">Developer</span>
-          <span className="w-[60%] text-right text-[#f1f1f1] font-medium font-mono">
-            Aman Rana
-          </span>
-        </div>
-
-        <div className="flex justify-between px-4">
           <span className="text-left text-[#bababa]">GitHub Repo</span>
           <a
             href="https://github.com/amanranahere/CodeBits"
             target="_blank"
-            className="w-[60%] text-right text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
+            className="w-[60%] flex items-center justify-end gap-x-2 text-right text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
           >
-            View on GitHub
+            <span>View on GitHub</span>
+            <MdArrowOutward />
+          </a>
+        </div>
+
+        <div className="flex justify-between px-4">
+          <span className="text-left text-[#bababa]">Developer</span>
+          <a
+            href="https://amanrana.vercel.app"
+            target="_blank"
+            className="w-[60%] flex items-center justify-end gap-x-2 text-right text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
+          >
+            <span>Aman Rana</span>
+            <MdArrowOutward />
           </a>
         </div>
 
@@ -64,26 +71,29 @@ export default function AboutModal() {
 
           <div className="w-[60%] text-right flex flex-wrap justify-end gap-x-6">
             <a
-              href="https://amanrana.vercel.app"
+              href="https://www.linkedin.com/in/aman-rana-709a0a330/"
               target="_blank"
-              className="text-right text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
+              className="text-right flex items-center justify-end text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
             >
-              Portfolio
+              <span>LinkedIn</span>
+              <MdArrowOutward />
             </a>
 
             <a
               href="https://github.com/amanranahere"
               target="_blank"
-              className="text-right text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
+              className="text-right flex items-center justify-end text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
             >
-              GitHub
+              <span>GitHub</span>
+              <MdArrowOutward />
             </a>
 
             <a
               href="mailto:amanranahere@gmail.com"
-              className="text-right text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
+              className="text-right flex items-center justify-end text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
             >
-              Email
+              <span>Email</span>
+              <MdArrowOutward />
             </a>
           </div>
         </div>

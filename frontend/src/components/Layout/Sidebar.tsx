@@ -212,7 +212,7 @@ const Sidebar = () => {
 
       <ConfirmDeleteModal
         open={!!fileToDelete}
-        title={`Delete "${fileToDelete?.name}"?`}
+        title={`Delete "${fileToDelete?.name}${fileToDelete?.extension}" ?`}
         onCancel={() => setFileToDelete(null)}
         onConfirm={async () => {
           if (fileToDelete) {

@@ -44,16 +44,18 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
       )}
 
       {/* settings */}
-      <button
-        onClick={() => {
-          onClose();
-          toggleSettingsPage();
-        }}
-        className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
-      >
-        <IoSettingsOutline className="w-5 h-5" />
-        <p>Settings</p>
-      </button>
+      {user && (
+        <button
+          onClick={() => {
+            onClose();
+            toggleSettingsPage();
+          }}
+          className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
+        >
+          <IoSettingsOutline className="w-5 h-5" />
+          <p>Settings</p>
+        </button>
+      )}
 
       {/* theme toggle */}
       <button

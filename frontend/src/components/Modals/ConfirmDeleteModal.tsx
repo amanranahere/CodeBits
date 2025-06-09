@@ -17,7 +17,7 @@ const ConfirmDeleteModal = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-[#1a1a1a] p-6 rounded-3xl shadow-lg max-w-sm w-full">
+      <div className="dark:bg-[#303030] dark:text-white p-6 rounded-3xl shadow-lg max-w-sm w-full">
         <p className="text-lg font-semibold mb-2 text-black dark:text-white">
           {title}
         </p>
@@ -26,17 +26,17 @@ const ConfirmDeleteModal = ({
           {description}
         </p>
 
-        <div className="flex justify-between gap-2">
+        <div className="flex justify-between gap-2 mt-6">
           <button
             onClick={onCancel}
-            className="w-full px-4 py-1 rounded-xl text-white bg-[#3a3a3a] hover:bg-[#4a4a4a] active:bg-[#3a3a3a]"
+            className="w-full px-4 py-2 rounded-xl text-white bg-[#3a3a3a] hover:bg-[#4a4a4a] active:bg-[#3a3a3a]"
           >
             Cancel
           </button>
 
           <button
             onClick={onConfirm}
-            className="w-full px-4 py-1 rounded-xl bg-red-400 hover:bg-red-400/80 active:bg-red-400/60 text-white"
+            className="w-full px-4 py-2 rounded-xl bg-red-400 hover:bg-red-400/80 active:bg-red-400/60 text-white"
           >
             Delete
           </button>
