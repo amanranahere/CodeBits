@@ -9,13 +9,14 @@ import Sidebar from "./components/Layout/Sidebar";
 import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
-import { FiSidebar } from "react-icons/fi";
 import ModalOverlay from "./components/Modals/ModalOverlay";
 import NewFileModal from "./components/Modals/NewFileModal";
 import SearchModal from "./components/Modals/SearchModal";
 import KeyboardShortcutsModal from "./components/Modals/KeyboardShortcutsModal";
 import AboutModal from "./components/Modals/AboutModal";
 import FeedbakcModal from "./components/Modals/FeedbackModal";
+import KeyboardShortcutListener from "./utils/KeyboardShortcutListener";
+import { TbLayoutSidebarFilled } from "react-icons/tb";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -82,7 +83,7 @@ function App() {
             onClick={toggleSidebar}
             className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
           >
-            <FiSidebar className="w-6 h-6" />
+            <TbLayoutSidebarFilled className="w-6 h-6" />
           </button>
         )
       ) : (
@@ -111,9 +112,9 @@ function App() {
 
         {/* modals */}
 
-        {searchModalOpen && <SearchModal />}
+        {user && searchModalOpen && <SearchModal />}
 
-        {(newFileModalOpen ||
+        {((user && newFileModalOpen) ||
           keyboardShortcutsModalOpen ||
           aboutModalOpen ||
           feedbackModalOpen) && (
@@ -126,13 +127,15 @@ function App() {
               else if (feedbackModalOpen) toggleFeedbackModal();
             }}
           >
-            {newFileModalOpen && <NewFileModal />}
+            {user && newFileModalOpen && <NewFileModal />}
             {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
             {aboutModalOpen && <AboutModal />}
             {feedbackModalOpen && <FeedbakcModal />}
           </ModalOverlay>
         )}
       </div>
+
+      <KeyboardShortcutListener />
 
       <ToastContainer
         position="bottom-right"

@@ -5,9 +5,9 @@ const shortcuts = [
   { combo: "Ctrl + K", action: "Open search modal" },
   { combo: "Ctrl + P", action: "Toggle file panel" },
   { combo: "Ctrl + B", action: "Toggle sidebar" },
-  { combo: "Ctrl + N", action: "New file" },
+  { combo: "Ctrl + /", action: "New file" },
   { combo: "Esc", action: "Close current modal" },
-  { combo: "Ctrl + /", action: "Open shortcut modal" },
+  { combo: "Ctrl + ;", action: "Open shortcut modal" },
 ];
 
 export default function KeyboardShortcutsModal() {

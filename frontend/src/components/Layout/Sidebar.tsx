@@ -6,7 +6,7 @@ import { useFileStore } from "../../stores/fileStore.ts";
 import { useUIStore } from "../../stores/uiStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
 import ConfirmDeleteModal from "../Modals/ConfirmDeleteModal.tsx";
-import { FiSidebar } from "react-icons/fi";
+import { TbLayoutSidebar } from "react-icons/tb";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import { IoSearch } from "react-icons/io5";
 
@@ -61,7 +61,7 @@ const Sidebar = () => {
             onClick={toggleSidebar}
             className="p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl"
           >
-            <FiSidebar className="w-6 h-6" />
+            <TbLayoutSidebar className="w-6 h-6" />
           </button>
         </div>
 

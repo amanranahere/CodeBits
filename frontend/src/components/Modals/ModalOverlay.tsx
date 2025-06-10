@@ -17,8 +17,24 @@ export default function ModalOverlay({ children, onClose }: ModalOverlayProps) {
         onClose();
       }
     };
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        onClose();
+      }
+    };
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "auto";
+    };
   }, [onClose]);
 
   return (
