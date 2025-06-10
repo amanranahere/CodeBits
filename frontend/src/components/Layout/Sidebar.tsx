@@ -6,6 +6,7 @@ import { useFileStore } from "../../stores/fileStore.ts";
 import { useUIStore } from "../../stores/uiStore.ts";
 import type { UserFile } from "../../stores/fileStore.ts";
 import ConfirmDeleteModal from "../Modals/ConfirmDeleteModal.tsx";
+import ProfileIcon from "./ProfileIcon.tsx";
 import { TbLayoutSidebar } from "react-icons/tb";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import { IoSearch } from "react-icons/io5";
@@ -47,8 +48,9 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside className="h-full w-full p-2 bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1]">
-        <div className="w-full flex justify-between">
+      <aside className="relative h-full w-full flex flex-col bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1] overflow-hidden overflow-y-auto custom_scrollbar">
+        {/* logo and sidebar toggle btn */}
+        <div className="sticky top-0 w-full p-1 flex justify-between bg-inherit z-10">
           <div
             onClick={() => navigate("/")}
             className="p-2 text-lg font-mono cursor-pointer"
@@ -65,15 +67,10 @@ const Sidebar = () => {
           </button>
         </div>
 
+        {/* new-file btn, search-files btn and all files */}
         <div className="h-full">
           {/* snippets list */}
-          <div
-            className="max-h-[calc(100vh-4rem)] overflow-y-auto mask-containerBottom"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
-          >
+          <div className="h-full p-1">
             <div className="py-3 flex flex-col">
               <button
                 onClick={toggleNewFileModal}
@@ -207,6 +204,11 @@ const Sidebar = () => {
               </ul>
             )}
           </div>
+        </div>
+
+        {/* profile icon */}
+        <div className="sticky bottom-0 w-full p-2 flex justify-between bg-inherit z-10">
+          <ProfileIcon />
         </div>
       </aside>
 

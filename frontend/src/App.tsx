@@ -4,7 +4,6 @@ import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
 import { useUIStore } from "./stores/uiStore";
 
-import Navbar from "./components/Layout/Navbar";
 import Sidebar from "./components/Layout/Sidebar";
 import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
@@ -94,12 +93,6 @@ function App() {
       )}
 
       <div className="relative flex-1 h-full">
-        {/* navbar */}
-
-        <div className="fixed top-0 right-0 z-[200]">
-          <Navbar isFilePage={isFilePage} />
-        </div>
-
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
         </main>
