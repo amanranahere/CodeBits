@@ -80,7 +80,7 @@ function App() {
           <button
             title="Open sidebar"
             onClick={toggleSidebar}
-            className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[999]"
+            className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
           >
             <FiSidebar className="w-6 h-6" />
           </button>
@@ -95,7 +95,7 @@ function App() {
       <div className="relative flex-1 h-full">
         {/* navbar */}
 
-        <div className="fixed top-0 right-0 z-[99] ">
+        <div className="fixed top-0 right-0 z-[200]">
           <Navbar isFilePage={isFilePage} />
         </div>
 
@@ -104,7 +104,7 @@ function App() {
         </main>
 
         {user && isFilePage && filePanelOpen && (
-          <div className="fixed top-[70px] right-5">
+          <div className="absolute top-[70px] right-5">
             <FilePanel />
           </div>
         )}

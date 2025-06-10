@@ -48,7 +48,7 @@ function SearchModal() {
   return (
     <div
       ref={ref}
-      className="w-[90%] lg:w-[48%] h-[65%] fixed inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[99] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col"
+      className="w-[90%] lg:w-[48%] h-[65%] fixed inset-0 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[950] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col"
     >
       <div
         onClick={() => toggleSearchModal()}

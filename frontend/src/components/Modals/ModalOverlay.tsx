@@ -22,7 +22,7 @@ export default function ModalOverlay({ children, onClose }: ModalOverlayProps) {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-40 bg-black/60 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[950]">
       <div ref={overlayRef}>{children}</div>
     </div>
   );

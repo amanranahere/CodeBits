@@ -19,7 +19,10 @@ export default function Navbar({ isFilePage }: NavbarProps) {
   useClickOutside(boxRef, () => setDropdownOpen(false));
 
   return (
-    <div ref={boxRef} className="p-3 flex items-center gap-x-2">
+    <div
+      ref={boxRef}
+      className="relative p-3 flex items-center gap-x-2 z-[950]"
+    >
       {/* file panel toggle button */}
       {isFilePage && (
         <button
@@ -47,7 +50,7 @@ export default function Navbar({ isFilePage }: NavbarProps) {
 
       {/* drop down */}
       {dropdownOpen && (
-        <div className="absolute right-2 top-14 mt-3 z-[999]">
+        <div className="fixed right-2 top-14 mt-3">
           <UserDropdown onClose={() => setDropdownOpen(false)} />
         </div>
       )}

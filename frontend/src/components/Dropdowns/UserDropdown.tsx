@@ -32,7 +32,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="w-72 bg-white dark:bg-[#303030] text-black dark:text-white shadow-xl rounded-2xl p-2 z-[999]">
+    <div className="w-72 bg-white dark:bg-[#303030] text-black dark:text-white shadow-xl rounded-2xl p-2 z-[900]">
       {user && (
         <>
           <div className="px-3 py-2 text-sm font-semibold truncate">

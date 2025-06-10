@@ -4,13 +4,15 @@ import { IoClose } from "react-icons/io5";
 import AccountInfo from "../Settings/AccountInfo";
 import UpdatePassword from "../Settings/UpdatePassword";
 import DeleteAccount from "../Settings/DeleteAccount";
+import { MdDeleteOutline } from "react-icons/md";
+import { TbLockPassword, TbUserEdit } from "react-icons/tb";
 
 function SettingsModal() {
   const navigate = useNavigate();
   const [optActive, setOptActive] = useState("info");
 
   return (
-    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[90%] max-w-[800px] h-[95%] md:h-[80%] z-[999] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col">
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] md:w-[90%] max-w-[800px] h-[95%] md:h-[80%] z-[950] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col">
       <div
         onClick={() => {
           navigate(-1);
@@ -30,29 +32,32 @@ function SettingsModal() {
         <div className="md:w-[30%] m-2 md:m-0 p-2 md:p-4 flex flex-wrap md:flex-col bg-[#2a2a2a] md:bg-[#303030] rounded-xl">
           <button
             onClick={() => setOptActive("info")}
-            className={`w-full text-center md:text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
+            className={`w-full flex items-center gap-x-2 p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
               optActive === "info" && "bg-[#4a4a4a]"
             } `}
           >
-            Account Info
+            <TbUserEdit />
+            <span>Account Info</span>
           </button>
 
           <button
             onClick={() => setOptActive("password")}
-            className={`w-full text-center md:text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl whitespace-nowrap ${
+            className={`w-full flex items-center gap-x-2 p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl whitespace-nowrap ${
               optActive === "password" && "bg-[#4a4a4a]"
             } `}
           >
-            Update Password
+            <TbLockPassword />
+            <span>Update Password</span>
           </button>
 
           <button
             onClick={() => setOptActive("delete")}
-            className={`w-full text-center md:text-left p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
+            className={`w-full flex items-center gap-x-2 p-2 text-[#e0e0e0] hover:bg-[#3a3a3a] duration-150 rounded-xl ${
               optActive === "delete" && "bg-[#4a4a4a]"
             } `}
           >
-            Delete Account
+            <MdDeleteOutline />
+            <span>Delete Account</span>
           </button>
         </div>
 

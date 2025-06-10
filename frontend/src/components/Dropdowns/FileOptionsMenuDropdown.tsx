@@ -32,7 +32,7 @@ const FileOptionsMenuDropdown = ({
       </button>
 
       {open && (
-        <div className="absolute -right-1 w-32 p-1 bg-white dark:bg-[#303030] shadow-md rounded-xl flex flex-col text-sm z-50">
+        <div className="absolute -right-1 w-32 p-1 bg-white dark:bg-[#303030] shadow-md rounded-xl flex flex-col text-sm z-[500]">
           <button
             onClick={() => {
               onRename();
