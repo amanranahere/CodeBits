@@ -97,7 +97,7 @@ const Sidebar = () => {
 
             <div className="p-3 text-[#8a8a8a]">Files</div>
 
-            <ul className="pb-32">
+            <ul className="pb-20">
               {files.map((file) => {
                 const isActive = file._id === activeFileId;
                 const isEditing = editingFileId === file._id;
