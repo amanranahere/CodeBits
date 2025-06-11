@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { useClickOutside } from "../../utils/useClickOutside";
 
 interface ModalOverlayProps {
   children: ReactNode;
@@ -8,34 +9,15 @@ interface ModalOverlayProps {
 export default function ModalOverlay({ children, onClose }: ModalOverlayProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  useClickOutside(overlayRef, onClose);
+
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        overlayRef.current &&
-        !overlayRef.current.contains(e.target as Node)
-      ) {
-        onClose();
-      }
-    };
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.stopPropagation();
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "auto";
     };
-  }, [onClose]);
+  }, []);
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[950]">

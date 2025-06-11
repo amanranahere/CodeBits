@@ -16,6 +16,7 @@ import AboutModal from "./components/Modals/AboutModal";
 import FeedbakcModal from "./components/Modals/FeedbackModal";
 import KeyboardShortcutListener from "./utils/KeyboardShortcutListener";
 import { TbLayoutSidebarFilled } from "react-icons/tb";
+import UserDropdown from "./components/Dropdowns/UserDropdown";
 
 function App() {
   const user = useUserStore((state) => state.user);
@@ -31,6 +32,7 @@ function App() {
     feedbackModalOpen,
     openLogin,
     openSignup,
+    userDropdownOpen,
     toggleSidebar,
     toggleNewFileModal,
     toggleKeyboardShortcutsModal,
@@ -71,6 +73,7 @@ function App() {
 
   return (
     <div className="h-screen flex">
+      {/*   sidebar and login/signup   */}
       {user ? (
         sidebarOpen ? (
           <div className="h-full w-[80%] md:w-[300px]">
@@ -92,6 +95,7 @@ function App() {
         </div>
       )}
 
+      {/*   main panel   */}
       <div className="relative flex-1 h-full">
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
@@ -102,33 +106,33 @@ function App() {
             <FilePanel />
           </div>
         )}
-
-        {/* modals */}
-
-        {user && searchModalOpen && <SearchModal />}
-
-        {((user && newFileModalOpen) ||
-          keyboardShortcutsModalOpen ||
-          aboutModalOpen ||
-          feedbackModalOpen) && (
-          <ModalOverlay
-            onClose={() => {
-              if (newFileModalOpen) toggleNewFileModal();
-              else if (keyboardShortcutsModalOpen)
-                toggleKeyboardShortcutsModal();
-              else if (aboutModalOpen) toggleAboutModal();
-              else if (feedbackModalOpen) toggleFeedbackModal();
-            }}
-          >
-            {user && newFileModalOpen && <NewFileModal />}
-            {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
-            {aboutModalOpen && <AboutModal />}
-            {feedbackModalOpen && <FeedbakcModal />}
-          </ModalOverlay>
-        )}
       </div>
 
+      {userDropdownOpen && <UserDropdown />}
+
       <KeyboardShortcutListener />
+
+      {/*   modals   */}
+      {user && searchModalOpen && <SearchModal />}
+
+      {((user && newFileModalOpen) ||
+        keyboardShortcutsModalOpen ||
+        aboutModalOpen ||
+        feedbackModalOpen) && (
+        <ModalOverlay
+          onClose={() => {
+            if (newFileModalOpen) toggleNewFileModal();
+            else if (keyboardShortcutsModalOpen) toggleKeyboardShortcutsModal();
+            else if (aboutModalOpen) toggleAboutModal();
+            else if (feedbackModalOpen) toggleFeedbackModal();
+          }}
+        >
+          {user && newFileModalOpen && <NewFileModal />}
+          {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
+          {aboutModalOpen && <AboutModal />}
+          {feedbackModalOpen && <FeedbakcModal />}
+        </ModalOverlay>
+      )}
 
       <ToastContainer
         position="bottom-right"

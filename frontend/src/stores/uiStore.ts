@@ -11,6 +11,7 @@ interface UIStore {
   feedbackModalOpen: boolean;
   openLogin: boolean;
   openSignup: boolean;
+  userDropdownOpen: boolean;
 
   toggleSidebar: () => void;
   toggleFilePanel: () => void;
@@ -20,6 +21,7 @@ interface UIStore {
   toggleKeyboardShortcutsModal: () => void;
   toggleAboutModal: () => void;
   toggleFeedbackModal: () => void;
+  toggleUserDropdown: () => void;
 
   setFilePanelOpen: (value: boolean) => void;
   openAuthBox: (type: "login" | "signup") => void;
@@ -34,6 +36,7 @@ export const useUIStore = create<UIStore>((set) => ({
   keyboardShortcutsModalOpen: false,
   aboutModalOpen: false,
   feedbackModalOpen: false,
+  userDropdownOpen: false,
 
   openLogin: true,
   openSignup: false,
@@ -58,6 +61,9 @@ export const useUIStore = create<UIStore>((set) => ({
 
   toggleFeedbackModal: () =>
     set((s) => ({ feedbackModalOpen: !s.feedbackModalOpen })),
+
+  toggleUserDropdown: () =>
+    set((s) => ({ userDropdownOpen: !s.userDropdownOpen })),
 
   openAuthBox: (type) =>
     set({

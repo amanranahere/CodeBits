@@ -48,8 +48,8 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside className="relative h-full w-full flex flex-col bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1] overflow-hidden overflow-y-auto custom_scrollbar">
-        {/* logo and sidebar toggle btn */}
+      <aside className="relative h-screen w-full flex flex-col bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1] overflow-hidden overflow-y-auto custom_scrollbar">
+        {/* top - logo and sidebar toggle btn */}
         <div className="sticky top-0 w-full p-1 flex justify-between bg-inherit z-10">
           <div
             onClick={() => navigate("/")}
@@ -67,11 +67,11 @@ const Sidebar = () => {
           </button>
         </div>
 
-        {/* new-file btn, search-files btn and all files */}
-        <div className="h-full">
+        {/* middle - new-file btn, search-files btn and all files */}
+        <div className="flex-1">
           {/* snippets list */}
           <div className="h-full p-1">
-            <div className="py-3 flex flex-col">
+            <div className="flex flex-col">
               <button
                 onClick={toggleNewFileModal}
                 className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
@@ -91,46 +91,63 @@ const Sidebar = () => {
 
             <div className="p-3 text-[#8a8a8a]">Files</div>
 
-            {files.length === 0 ? (
-              <div className="h-32 px-3 w-full italic text-gray-500">
-                No files found
-              </div>
-            ) : (
-              <ul className="pb-40">
-                {files.map((file) => {
-                  const isActive = file._id === activeFileId;
-                  const isEditing = editingFileId === file._id;
-                  const sanitizedInput = renameInput.trim().replace(/\s+/g, "");
+            <ul className="pb-32">
+              {files.map((file) => {
+                const isActive = file._id === activeFileId;
+                const isEditing = editingFileId === file._id;
+                const sanitizedInput = renameInput.trim().replace(/\s+/g, "");
 
-                  const isDuplicateName =
-                    isEditing &&
-                    files.some(
-                      (f) => f._id !== file._id && f.name === sanitizedInput
-                    );
+                const isDuplicateName =
+                  isEditing &&
+                  files.some(
+                    (f) => f._id !== file._id && f.name === sanitizedInput
+                  );
 
-                  return (
-                    <li
-                      key={file._id}
-                      className={`w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center duration-300 ${
-                        isActive
-                          ? "bg-[#222] text-[#fff]"
-                          : "text-[#bababa] hover:bg-[#2A2A2A]"
-                      }`}
+                return (
+                  <li
+                    key={file._id}
+                    className={`w-full rounded-md px-2 text-sm leading-tight group flex justify-between items-center duration-300 ${
+                      isActive
+                        ? "bg-[#222] text-[#fff]"
+                        : "text-[#bababa] hover:bg-[#2A2A2A]"
+                    }`}
+                  >
+                    <button
+                      onClick={() => openFile(file)}
+                      className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs overflow-hidden"
                     >
-                      <button
-                        onClick={() => openFile(file)}
-                        className="w-full flex items-center gap-x-1 text-left p-1 rounded-xs overflow-hidden"
-                      >
-                        <span>{getFileIcon(file.extension)}</span>
+                      <span>{getFileIcon(file.extension)}</span>
 
-                        {isEditing ? (
-                          <div className="flex flex-col">
-                            <input
-                              type="text"
-                              value={renameInput}
-                              autoFocus
-                              onChange={(e) => setRenameInput(e.target.value)}
-                              onBlur={async () => {
+                      {isEditing ? (
+                        <div className="flex flex-col">
+                          <input
+                            type="text"
+                            value={renameInput}
+                            autoFocus
+                            onChange={(e) => setRenameInput(e.target.value)}
+                            onBlur={async () => {
+                              if (
+                                sanitizedInput &&
+                                sanitizedInput !== file.name &&
+                                !isDuplicateName
+                              ) {
+                                await updateFile(file._id, {
+                                  name: sanitizedInput,
+                                });
+
+                                if (activeFileId === file._id) {
+                                  const newSlug = `${sanitizedInput}--${file._id}`;
+                                  navigate(`/file/${newSlug}`, {
+                                    replace: true,
+                                  });
+                                }
+                              }
+
+                              setRenameInput("");
+                              setEditingFileId(null);
+                            }}
+                            onKeyDown={async (e) => {
+                              if (e.key === "Enter") {
                                 if (
                                   sanitizedInput &&
                                   sanitizedInput !== file.name &&
@@ -147,74 +164,53 @@ const Sidebar = () => {
                                     });
                                   }
                                 }
-
                                 setRenameInput("");
                                 setEditingFileId(null);
-                              }}
-                              onKeyDown={async (e) => {
-                                if (e.key === "Enter") {
-                                  if (
-                                    sanitizedInput &&
-                                    sanitizedInput !== file.name &&
-                                    !isDuplicateName
-                                  ) {
-                                    await updateFile(file._id, {
-                                      name: sanitizedInput,
-                                    });
+                              } else if (e.key === "Escape") {
+                                setRenameInput("");
+                                setEditingFileId(null);
+                              }
+                            }}
+                            className="w-full bg-transparent text-white outline-none border border-gray-300 rounded px-1"
+                          />
 
-                                    if (activeFileId === file._id) {
-                                      const newSlug = `${sanitizedInput}--${file._id}`;
-                                      navigate(`/file/${newSlug}`, {
-                                        replace: true,
-                                      });
-                                    }
-                                  }
-                                  setRenameInput("");
-                                  setEditingFileId(null);
-                                } else if (e.key === "Escape") {
-                                  setRenameInput("");
-                                  setEditingFileId(null);
-                                }
-                              }}
-                              className="w-full bg-transparent text-white outline-none border border-gray-300 rounded px-1"
-                            />
+                          {isDuplicateName && (
+                            <div className="text-xs leading-tight text-red-300 px-1 mt-1 text-center">
+                              A file with this name already exists.
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="w-full mask-containerRight overflow-hidden">
+                          {file.name}.{file.extension}
+                        </span>
+                      )}
+                    </button>
 
-                            {isDuplicateName && (
-                              <div className="text-xs leading-tight text-red-300 px-1 mt-1 text-center">
-                                A file with this name already exists.
-                              </div>
-                            )}
-                          </div>
-                        ) : (
-                          <span className="w-full mask-containerRight overflow-hidden">
-                            {file.name}.{file.extension}
-                          </span>
-                        )}
-                      </button>
-
-                      <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                        <FileOptionsMenu
-                          onRename={() => setEditingFileId(file._id)}
-                          onDelete={() => setFileToDelete(file)}
-                        />
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+                    <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                      <FileOptionsMenu
+                        onRename={() => setEditingFileId(file._id)}
+                        onDelete={() => setFileToDelete(file)}
+                      />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
 
-        {/* profile icon */}
-        <div className="sticky bottom-0 w-full p-2 flex justify-between bg-inherit z-10">
-          <ProfileIcon />
+        {/* bottom - profile icon */}
+        <div className="sticky bottom-0 w-full h-32 p-2 pt-10 flex justify-between items-end bg-inherit z-10 mask-containerTop">
+          <div className="w-full py-1 px-2 rounded-xl flex justify-between bg-inherit hover:bg-[#2a2a2a] cursor-pointer">
+            <ProfileIcon />
+          </div>
         </div>
       </aside>
 
       <ConfirmDeleteModal
         open={!!fileToDelete}
-        title={`Delete "${fileToDelete?.name}${fileToDelete?.extension}" ?`}
+        title={`Delete "${fileToDelete?.name}.${fileToDelete?.extension}" ?`}
         onCancel={() => setFileToDelete(null)}
         onConfirm={async () => {
           if (fileToDelete) {

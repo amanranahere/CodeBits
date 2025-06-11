@@ -18,7 +18,7 @@
 /* scrollbar styles - start */
 
 .custom_scrollbar {
-  scrollbar-color: #6b6b6c #2a2a2a00;
+  scrollbar-color: #3b3b3c #2a2a2a00;
 }
 
 .custom_scrollbar::-webkit-scrollbar {
@@ -30,12 +30,26 @@
 }
 
 .custom_scrollbar::-webkit-scrollbar-thumb {
-  background-color: #6b6b6c;
+  background-color: #3b3b3c;
 }
 
 /* scrollbar styles - end */
 
 /*   masking - start   */
+
+.mask-containerTop {
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  transition: mask-image 0.3s ease;
+}
 
 .mask-containerRight {
   mask-image: linear-gradient(

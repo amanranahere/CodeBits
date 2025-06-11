@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useUserStore } from "../../stores/userStore";
 import { useUIStore } from "../../stores/uiStore";
@@ -6,8 +7,9 @@ import { LuLogOut } from "react-icons/lu";
 import { MdLightMode, MdDarkMode, MdOutlineFeedback } from "react-icons/md";
 import { RiInformation2Line } from "react-icons/ri";
 import { BsKeyboard } from "react-icons/bs";
+import { useClickOutside } from "../../utils/useClickOutside";
 
-export default function UserDropdown({ onClose }: { onClose: () => void }) {
+export default function UserDropdown() {
   const user = useUserStore((state) => state.user);
   const theme = useUserStore((state) => state.theme);
   const toggleTheme = useUserStore((state) => state.toggleTheme);
@@ -16,10 +18,14 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
     toggleFeedbackModal,
+    toggleUserDropdown,
   } = useUIStore();
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, toggleUserDropdown);
 
   const isSettingsPage = location.pathname === "/settings";
 
@@ -32,7 +38,10 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="w-72 bg-white dark:bg-[#303030] text-black dark:text-white shadow-xl rounded-2xl p-2 z-[900]">
+    <div
+      ref={ref}
+      className="fixed bottom-[70px] left-12 w-72 max-h-max bg-white dark:bg-[#303030] text-black dark:text-white shadow-xl rounded-2xl p-2 z-[900]"
+    >
       {user && (
         <>
           <div className="px-3 py-2 text-sm font-semibold truncate">
@@ -47,7 +56,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
       {user && (
         <button
           onClick={() => {
-            onClose();
+            toggleUserDropdown();
             toggleSettingsPage();
           }}
           className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
@@ -78,7 +87,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
       {/* keyboard shortcuts */}
       <button
         onClick={() => {
-          onClose();
+          toggleUserDropdown();
           toggleKeyboardShortcutsModal();
         }}
         className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
@@ -90,7 +99,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
       {/* about */}
       <button
         onClick={() => {
-          onClose();
+          toggleUserDropdown();
           toggleAboutModal();
         }}
         className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
@@ -102,7 +111,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
       {/* send feedback */}
       <button
         onClick={() => {
-          onClose();
+          toggleUserDropdown();
           toggleFeedbackModal();
         }}
         className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
@@ -119,7 +128,7 @@ export default function UserDropdown({ onClose }: { onClose: () => void }) {
           <button
             onClick={() => {
               logout();
-              onClose();
+              toggleUserDropdown();
               navigate("/");
             }}
             className="w-full px-3 py-2 rounded-xl hover:bg-[#4a4a4a]  transition-colors flex items-center gap-x-2"
