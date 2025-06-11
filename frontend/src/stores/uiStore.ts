@@ -1,20 +1,21 @@
 import { create } from "zustand";
+import type { UserFile } from "./fileStore";
 
 interface UIStore {
   sidebarOpen: boolean;
-  filePanelOpen: boolean;
-  newFileModalOpen: boolean;
+  openLogin: boolean;
+  openSignup: boolean;
+  userDropdownOpen: boolean;
+
+  fileInfoModalOpen: boolean;
   searchModalOpen: boolean;
   settingsModalOpen: boolean;
   keyboardShortcutsModalOpen: boolean;
   aboutModalOpen: boolean;
   feedbackModalOpen: boolean;
-  openLogin: boolean;
-  openSignup: boolean;
-  userDropdownOpen: boolean;
+  newFileModalOpen: boolean;
 
   toggleSidebar: () => void;
-  toggleFilePanel: () => void;
   toggleNewFileModal: () => void;
   toggleSearchModal: () => void;
   toggleSettingsModal: () => void;
@@ -23,13 +24,16 @@ interface UIStore {
   toggleFeedbackModal: () => void;
   toggleUserDropdown: () => void;
 
-  setFilePanelOpen: (value: boolean) => void;
+  setFileInfoModalOpen: (value: boolean) => void;
   openAuthBox: (type: "login" | "signup") => void;
+  selectedFileForInfo: UserFile | null;
+  openFileInfoModal: (file: UserFile) => void;
+  closeFileInfoModal: () => void;
 }
 
 export const useUIStore = create<UIStore>((set) => ({
   sidebarOpen: true,
-  filePanelOpen: true,
+  fileInfoModalOpen: false,
   newFileModalOpen: false,
   searchModalOpen: false,
   settingsModalOpen: false,
@@ -37,13 +41,12 @@ export const useUIStore = create<UIStore>((set) => ({
   aboutModalOpen: false,
   feedbackModalOpen: false,
   userDropdownOpen: false,
+  selectedFileForInfo: null,
 
   openLogin: true,
   openSignup: false,
 
   toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
-
-  toggleFilePanel: () => set((s) => ({ filePanelOpen: !s.filePanelOpen })),
 
   toggleNewFileModal: () =>
     set((s) => ({ newFileModalOpen: !s.newFileModalOpen })),
@@ -71,5 +74,11 @@ export const useUIStore = create<UIStore>((set) => ({
       openSignup: type === "signup",
     }),
 
-  setFilePanelOpen: (value: boolean) => set({ filePanelOpen: value }),
+  setFileInfoModalOpen: (value: boolean) => set({ fileInfoModalOpen: value }),
+
+  openFileInfoModal: (file) =>
+    set({ selectedFileForInfo: file, fileInfoModalOpen: true }),
+
+  closeFileInfoModal: () =>
+    set({ selectedFileForInfo: null, fileInfoModalOpen: false }),
 }));

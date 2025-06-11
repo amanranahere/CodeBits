@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useFileStore } from "../stores/fileStore";
+import { useUIStore } from "../stores/uiStore";
 import CodeEditor from "../components/Editor/CodeEditor";
 
 const extensionToLanguageMap: Record<string, string> = {
@@ -36,6 +37,8 @@ export default function FilePage() {
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("plaintext");
   const [isChanged, setIsChanged] = useState(false);
+
+  const { openFileInfoModal } = useUIStore();
 
   useEffect(() => {
     if (file) {
@@ -73,6 +76,15 @@ export default function FilePage() {
         <h1 className="text-xl font-bold">
           {file.name}.{file.extension}
         </h1>
+
+        {file && (
+          <button
+            onClick={() => openFileInfoModal(file)}
+            className="bg-white text-black rounded-xl p-1"
+          >
+            File Info
+          </button>
+        )}
 
         <div className="fixed top-2 left-[50%] flex items-center gap-4">
           <span

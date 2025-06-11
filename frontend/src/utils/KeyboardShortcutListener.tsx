@@ -1,13 +1,22 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useFileStore } from "../stores/fileStore";
 import { useUIStore } from "../stores/uiStore";
 
 export default function KeyboardShortcutListener() {
+  const location = useLocation();
+  const isFilePage = location.pathname.startsWith("/file");
+
+  const files = useFileStore((state) => state.files);
+
   const {
     toggleSearchModal,
     toggleSidebar,
-    toggleFilePanel,
     toggleKeyboardShortcutsModal,
     toggleNewFileModal,
+    fileInfoModalOpen,
+    openFileInfoModal,
+    closeFileInfoModal,
   } = useUIStore();
 
   useEffect(() => {
@@ -20,7 +29,17 @@ export default function KeyboardShortcutListener() {
         toggleSearchModal();
       } else if (ctrl && key === "p") {
         e.preventDefault();
-        toggleFilePanel();
+
+        if (fileInfoModalOpen) {
+          closeFileInfoModal();
+        } else {
+          const slug = location.pathname.split("/file/")[1];
+          const fileId = slug?.split("--").pop();
+          const file = files.find((f) => f._id === fileId);
+          if (file) {
+            openFileInfoModal(file);
+          }
+        }
       } else if (ctrl && key === "b") {
         e.preventDefault();
         toggleSidebar();
@@ -37,10 +56,14 @@ export default function KeyboardShortcutListener() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [
     toggleSearchModal,
-    toggleFilePanel,
+    openFileInfoModal,
+    closeFileInfoModal,
     toggleSidebar,
     toggleKeyboardShortcutsModal,
     toggleNewFileModal,
+    location.pathname,
+    files,
+    fileInfoModalOpen,
   ]);
 
   return null;

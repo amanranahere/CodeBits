@@ -19,6 +19,7 @@ const Sidebar = () => {
 
   const [editingFileId, setEditingFileId] = useState<string | null>(null);
   const [fileToDelete, setFileToDelete] = useState<UserFile | null>(null);
+  const [fileInfo, setFileInfo] = useState<UserFile | null>(null);
   const [renameInput, setRenameInput] = useState("");
 
   const files = useFileStore((state) => state.files);
@@ -26,7 +27,12 @@ const Sidebar = () => {
   const updateFile = useFileStore((state) => state.updateFile);
   const deleteFile = useFileStore((state) => state.deleteFile);
 
-  const { toggleSidebar, toggleSearchModal, toggleNewFileModal } = useUIStore();
+  const {
+    toggleSidebar,
+    toggleSearchModal,
+    toggleNewFileModal,
+    openFileInfoModal,
+  } = useUIStore();
 
   const openFile = (file: UserFile) => {
     const slug = `${file.name}--${file._id}`;
@@ -191,6 +197,7 @@ const Sidebar = () => {
                       <FileOptionsMenu
                         onRename={() => setEditingFileId(file._id)}
                         onDelete={() => setFileToDelete(file)}
+                        onFileInfo={() => openFileInfoModal(file)}
                       />
                     </div>
                   </li>

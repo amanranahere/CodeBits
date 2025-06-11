@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
 import { useUIStore } from "./stores/uiStore";
 
 import Sidebar from "./components/Layout/Sidebar";
-import FilePanel from "./components/Layout/FilePanel";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
 import ModalOverlay from "./components/Modals/ModalOverlay";
@@ -14,6 +13,7 @@ import SearchModal from "./components/Modals/SearchModal";
 import KeyboardShortcutsModal from "./components/Modals/KeyboardShortcutsModal";
 import AboutModal from "./components/Modals/AboutModal";
 import FeedbakcModal from "./components/Modals/FeedbackModal";
+import FileInfoModal from "./components/Modals/FileInfoModal";
 import KeyboardShortcutListener from "./utils/KeyboardShortcutListener";
 import { TbLayoutSidebarFilled } from "react-icons/tb";
 import UserDropdown from "./components/Dropdowns/UserDropdown";
@@ -24,7 +24,9 @@ function App() {
   const refresh = useUserStore((state) => state.refresh);
   const {
     sidebarOpen,
-    filePanelOpen,
+    fileInfoModalOpen,
+    selectedFileForInfo,
+    closeFileInfoModal,
     newFileModalOpen,
     searchModalOpen,
     keyboardShortcutsModalOpen,
@@ -38,11 +40,7 @@ function App() {
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
     toggleFeedbackModal,
-    setFilePanelOpen,
   } = useUIStore();
-
-  const location = useLocation();
-  const isFilePage = location.pathname.startsWith("/file");
 
   //   theme ? dark/light
   useEffect(() => {
@@ -52,13 +50,6 @@ function App() {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
-
-  //   auto-open file panel if on file page
-  useEffect(() => {
-    if (isFilePage) {
-      setFilePanelOpen(true);
-    }
-  }, [location.pathname]);
 
   //   refresh session if no user
   useEffect(() => {
@@ -100,17 +91,9 @@ function App() {
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
         </main>
-
-        {user && isFilePage && filePanelOpen && (
-          <div className="absolute top-[70px] right-5">
-            <FilePanel />
-          </div>
-        )}
       </div>
 
       {userDropdownOpen && <UserDropdown />}
-
-      <KeyboardShortcutListener />
 
       {/*   modals   */}
       {user && searchModalOpen && <SearchModal />}
@@ -118,21 +101,28 @@ function App() {
       {((user && newFileModalOpen) ||
         keyboardShortcutsModalOpen ||
         aboutModalOpen ||
-        feedbackModalOpen) && (
+        feedbackModalOpen ||
+        fileInfoModalOpen) && (
         <ModalOverlay
           onClose={() => {
             if (newFileModalOpen) toggleNewFileModal();
             else if (keyboardShortcutsModalOpen) toggleKeyboardShortcutsModal();
             else if (aboutModalOpen) toggleAboutModal();
             else if (feedbackModalOpen) toggleFeedbackModal();
+            else if (fileInfoModalOpen) closeFileInfoModal();
           }}
         >
           {user && newFileModalOpen && <NewFileModal />}
           {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
           {aboutModalOpen && <AboutModal />}
           {feedbackModalOpen && <FeedbakcModal />}
+          {fileInfoModalOpen && (
+            <FileInfoModal file={selectedFileForInfo ?? undefined} />
+          )}
         </ModalOverlay>
       )}
+
+      <KeyboardShortcutListener />
 
       <ToastContainer
         position="bottom-right"

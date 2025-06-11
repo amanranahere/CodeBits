@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useFileStore } from "../../stores/fileStore.ts";
+import { useFileStore, type UserFile } from "../../stores/fileStore.ts";
 import { MdModeEdit } from "react-icons/md";
 import { formatDateTime } from "../../utils/formatDateTime.tsx";
 
-const FilePanel = () => {
+const FileInfoModal = ({ file: passedFile }: { file?: UserFile }) => {
   const { slug } = useParams();
-  const fileId = slug?.split("--").pop();
+
   const files = useFileStore((state) => state.files);
   const updateFile = useFileStore((state) => state.updateFile);
   const navigate = useNavigate();
 
-  const file = files.find((f) => f._id === fileId);
+  const fileIdFromSlug = slug?.split("--").pop();
+  const fallbackFile = files.find((f) => f._id === fileIdFromSlug);
+
+  const file = passedFile || fallbackFile;
 
   const [editingTitle, setEditingTitle] = useState(false);
   const [titleInput, setTitleInput] = useState(file?.name || "");
@@ -24,7 +27,7 @@ const FilePanel = () => {
     file?.description || ""
   );
 
-  if (!slug || !file) {
+  if (!file) {
     return (
       <div className="w-full md:w-[250px] text-gray-500 dark:text-gray-400 bg-[#f1f1f1] dark:bg-[#212121] rounded-3xl flex justify-center items-center italic">
         Open a file to view its details...
@@ -238,4 +241,4 @@ const FilePanel = () => {
   );
 };
 
-export default FilePanel;
+export default FileInfoModal;
