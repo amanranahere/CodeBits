@@ -34,7 +34,9 @@ export default function KeyboardShortcutsModal() {
             key={idx}
             className="flex justify-between items-center px-4 py-2 rounded-lg"
           >
-            <span className="text-[#e0e0e0]">{item.action}</span>
+            <span className="text-gray-700 dark:text-[#8c8c8c] font-mono">
+              {item.action}
+            </span>
 
             <kbd className="text-[#f1f1f1]">{item.combo}</kbd>
           </div>

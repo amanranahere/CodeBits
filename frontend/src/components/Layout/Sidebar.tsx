@@ -19,7 +19,6 @@ const Sidebar = () => {
 
   const [editingFileId, setEditingFileId] = useState<string | null>(null);
   const [fileToDelete, setFileToDelete] = useState<UserFile | null>(null);
-  const [fileInfo, setFileInfo] = useState<UserFile | null>(null);
   const [renameInput, setRenameInput] = useState("");
 
   const files = useFileStore((state) => state.files);
@@ -80,18 +79,30 @@ const Sidebar = () => {
             <div className="flex flex-col">
               <button
                 onClick={toggleNewFileModal}
-                className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
+                className="flex justify-between p-2 rounded-xl hover:bg-[#2A2A2A] duration-150 group"
               >
-                <HiMiniPencilSquare className="w-5 h-5 mx-2" />
-                <span>New file</span>
+                <div className="flex items-center">
+                  <HiMiniPencilSquare className="w-5 h-5 mx-2" />
+                  <span>New file</span>
+                </div>
+
+                <div className="opacity-0 group-hover:opacity-100 pr-2 text-gray-700 dark:text-[#8c8c8c] font-mono duration-150">
+                  Ctrl+/
+                </div>
               </button>
 
               <button
                 onClick={toggleSearchModal}
-                className="flex items-center p-2 rounded-xl hover:bg-[#2A2A2A] "
+                className="flex justify-between p-2 rounded-xl hover:bg-[#2A2A2A] duration-150 group"
               >
-                <IoSearch className="w-5 h-5 mx-2" />
-                <span>Search files</span>
+                <div className="flex items-center">
+                  <IoSearch className="w-5 h-5 mx-2" />
+                  <span>Search files</span>
+                </div>
+
+                <div className="opacity-0 group-hover:opacity-100 pr-2 text-gray-700 dark:text-[#8c8c8c] font-mono duration-150">
+                  Ctrl+K
+                </div>
               </button>
             </div>
 

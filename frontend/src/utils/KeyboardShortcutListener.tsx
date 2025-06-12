@@ -5,7 +5,6 @@ import { useUIStore } from "../stores/uiStore";
 
 export default function KeyboardShortcutListener() {
   const location = useLocation();
-  const isFilePage = location.pathname.startsWith("/file");
 
   const files = useFileStore((state) => state.files);
 

@@ -12,7 +12,7 @@ import NewFileModal from "./components/Modals/NewFileModal";
 import SearchModal from "./components/Modals/SearchModal";
 import KeyboardShortcutsModal from "./components/Modals/KeyboardShortcutsModal";
 import AboutModal from "./components/Modals/AboutModal";
-import FeedbakcModal from "./components/Modals/FeedbackModal";
+import FeedbackModal from "./components/Modals/FeedbackModal";
 import FileInfoModal from "./components/Modals/FileInfoModal";
 import KeyboardShortcutListener from "./utils/KeyboardShortcutListener";
 import { TbLayoutSidebarFilled } from "react-icons/tb";
@@ -40,6 +40,7 @@ function App() {
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
     toggleFeedbackModal,
+    toggleSearchModal,
   } = useUIStore();
 
   //   theme ? dark/light
@@ -96,13 +97,11 @@ function App() {
       {userDropdownOpen && <UserDropdown />}
 
       {/*   modals   */}
-      {user && searchModalOpen && <SearchModal />}
 
-      {((user && newFileModalOpen) ||
+      {((user && (newFileModalOpen || fileInfoModalOpen || searchModalOpen)) ||
         keyboardShortcutsModalOpen ||
         aboutModalOpen ||
-        feedbackModalOpen ||
-        fileInfoModalOpen) && (
+        feedbackModalOpen) && (
         <ModalOverlay
           onClose={() => {
             if (newFileModalOpen) toggleNewFileModal();
@@ -110,15 +109,17 @@ function App() {
             else if (aboutModalOpen) toggleAboutModal();
             else if (feedbackModalOpen) toggleFeedbackModal();
             else if (fileInfoModalOpen) closeFileInfoModal();
+            else if (searchModalOpen) toggleSearchModal();
           }}
         >
           {user && newFileModalOpen && <NewFileModal />}
           {keyboardShortcutsModalOpen && <KeyboardShortcutsModal />}
           {aboutModalOpen && <AboutModal />}
-          {feedbackModalOpen && <FeedbakcModal />}
-          {fileInfoModalOpen && (
+          {feedbackModalOpen && <FeedbackModal />}
+          {user && fileInfoModalOpen && (
             <FileInfoModal file={selectedFileForInfo ?? undefined} />
           )}
+          {user && searchModalOpen && <SearchModal />}
         </ModalOverlay>
       )}
 
