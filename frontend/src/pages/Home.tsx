@@ -1,9 +1,11 @@
-const Home = () => {
-  return (
-    <div className="text-[#5c5c5c] dark:text-[#bababa] h-full w-full flex justify-center items-center text-5xl font-extrabold">
-      This is home page
-    </div>
-  );
-};
+import { useUserStore } from "../stores/userStore";
+import HomeGuest from "../components/Layout/HomeGuest";
+import HomeUser from "../components/Layout/HomeUser";
 
-export default Home;
+export default function Home() {
+  const user = useUserStore((state) => state.user);
+
+  return (
+    <div className="h-screen w-full">{user ? <HomeUser /> : <HomeGuest />}</div>
+  );
+}

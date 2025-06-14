@@ -15,7 +15,7 @@
 
 /*   fonts - end   */
 
-/* scrollbar styles - start */
+/*   scrollbar styles - start   */
 
 .custom_scrollbar {
   scrollbar-color: #3b3b3c #2a2a2a00;
@@ -33,7 +33,25 @@
   background-color: #3b3b3c;
 }
 
-/* scrollbar styles - end */
+/*   scrollbar styles - end   */
+
+/*   blinking cursor - start */
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/*   blinking cursor - end */
 
 /*   masking - start   */
 
