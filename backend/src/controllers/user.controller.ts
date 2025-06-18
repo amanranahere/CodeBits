@@ -4,6 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse";
 import { User } from "../models/user.model";
 import { File } from "../models/file.model";
 import jwt from "jsonwebtoken";
+import { getCookieOptions } from "../utils/getCookieOptions";
 
 const generateAccessAndRefereshTokens = async (userId: string) => {
   try {
@@ -101,15 +102,10 @@ const loginUser = asyncHandler(async (req, res) => {
     "-password -refreshToken"
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
-
   return res
     .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
+    .cookie("accessToken", accessToken, getCookieOptions())
+    .cookie("refreshToken", refreshToken, getCookieOptions())
     .json(
       new ApiResponse(
         200,
@@ -136,15 +132,10 @@ const logoutUser = asyncHandler(async (req, res) => {
     }
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
-
   return res
     .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
+    .clearCookie("accessToken", getCookieOptions())
+    .clearCookie("refreshToken", getCookieOptions())
     .json(new ApiResponse(200, {}, "User Logged Out successfully!"));
 });
 
@@ -172,19 +163,14 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
       throw new ApiError(401, "Refresh Token has expired!");
     }
 
-    const options = {
-      httpOnly: true,
-      secure: true,
-    };
-
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
       user.id
     );
 
     return res
       .status(200)
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
+      .cookie("accessToken", accessToken, getCookieOptions())
+      .cookie("refreshToken", refreshToken, getCookieOptions())
       .json(
         new ApiResponse(
           200,
@@ -290,16 +276,10 @@ const deleteAccount = asyncHandler(async (req, res) => {
   //   delete user
   await User.findByIdAndDelete(userId);
 
-  //   clear cookies
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
-
   return res
     .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
+    .clearCookie("accessToken", getCookieOptions())
+    .clearCookie("refreshToken", getCookieOptions())
     .json(
       new ApiResponse(
         200,

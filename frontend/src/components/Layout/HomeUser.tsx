@@ -47,12 +47,12 @@ export default function HomeUser() {
             Everything you've saved is right where you left it.
           </p>
 
-          <p className="lg:text-lg text-[#a0a0a0]">
+          <div className="lg:text-lg text-[#a0a0a0]">
             <TypingTextAnimation
               text="Let's write something worth reusing."
               speed={40}
             />
-          </p>
+          </div>
         </div>
 
         {/*   new file btn   */}
@@ -78,7 +78,11 @@ export default function HomeUser() {
             </p>
             <p>
               <span className="text-[#bababa]">Most Used Type:</span>{" "}
-              <span className="text-[#a0a0a0]">.{mostUsedExtension}</span>
+              {recentFiles.length > 0 ? (
+                <span className="text-[#a0a0a0]">.{mostUsedExtension}</span>
+              ) : (
+                <span className="text-[#a0a0a0]">?</span>
+              )}
             </p>
           </div>
         </div>
@@ -100,9 +104,10 @@ export default function HomeUser() {
               ))}
             </ul>
           ) : (
-            <p className="text-[#7a7a7a] italic">
-              Looks a bit empty. Try hitting + New File.
-            </p>
+            <>
+              <p className="text-[#7a7a7a] italic">Looks a bit empty.</p>
+              <p className="text-[#7a7a7a] italic">Try hitting + New File.</p>
+            </>
           )}
         </div>
       </div>
