@@ -35,12 +35,12 @@ export default function HomeUser() {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col justify-between overflow-hidden p-8 font-mono">
+    <div className="h-screen w-full flex flex-col justify-between overflow-hidden p-10 font-mono">
       <div className="flex justify-between">
         {/*   greeting div   */}
         <div>
           <h1 className="text-2xl lg:text-5xl font-bold dark:text-[#bababa]">
-            Welcome back, {user?.name}
+            Welcome back, {user?.name.split(" ")[0]}
           </h1>
 
           <p className="mt-6 lg:text-lg text-[#a0a0a0]">
@@ -50,7 +50,7 @@ export default function HomeUser() {
           <p className="lg:text-lg text-[#a0a0a0]">
             <TypingTextAnimation
               text="Let's write something worth reusing."
-              speed={50}
+              speed={40}
             />
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function HomeUser() {
         <div className="flex items-end">
           <div className="flex flex-col text-lg text-[#bababa]">
             <p>
-              <span className="text-[#bababa]">Total Snippets:</span>{" "}
+              <span className="text-[#bababa]">Total Files:</span>{" "}
               <span className="text-[#a0a0a0]">{files.length}</span>
             </p>
             <p>
@@ -84,20 +84,26 @@ export default function HomeUser() {
         </div>
 
         {/*   last edited files */}
-        <div className="lg:text-lg px-20">
+        <div className="lg:text-lg flex flex-col justify-end">
           <h2 className="text-[#bababa] mb-2">Last Edited</h2>
 
-          <ul className="text-[#a0a0a0]">
-            {recentFiles.map((file) => (
-              <li
-                key={file._id}
-                onClick={() => openFile(file)}
-                className="hover:text-[#7a7a7a] duration-150 whitespace-nowrap cursor-pointer"
-              >
-                {file.name}.{file.extension}
-              </li>
-            ))}
-          </ul>
+          {recentFiles.length > 0 ? (
+            <ul className="text-[#a0a0a0]">
+              {recentFiles.map((file) => (
+                <li
+                  key={file._id}
+                  onClick={() => openFile(file)}
+                  className="hover:text-[#7a7a7a] duration-150 whitespace-nowrap cursor-pointer"
+                >
+                  {file.name}.{file.extension}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-[#7a7a7a] italic">
+              Looks a bit empty. Try hitting + New File.
+            </p>
+          )}
         </div>
       </div>
     </div>
