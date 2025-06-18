@@ -4,7 +4,13 @@ import { useFileStore } from "../stores/fileStore";
 import { useUIStore } from "../stores/uiStore";
 import CodeEditor from "../components/Editor/CodeEditor";
 import { getFileIcon } from "../components/getFileIcon";
-import { IoInformationCircleOutline } from "react-icons/io5";
+import {
+  IoInformationCircleOutline,
+  IoCopyOutline,
+  IoCopy,
+  IoSaveOutline,
+  IoSave,
+} from "react-icons/io5";
 
 const extensionToLanguageMap: Record<string, string> = {
   js: "javascript",
@@ -40,6 +46,8 @@ export default function FilePage() {
   const [language, setLanguage] = useState("plaintext");
   const [isChanged, setIsChanged] = useState(false);
   const [prevFileId, setPrevFileId] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const { openFileInfoModal } = useUIStore();
 
@@ -73,10 +81,27 @@ export default function FilePage() {
 
   const handleSave = async () => {
     if (!file) return;
+    setIsSaving(true);
 
-    await updateFile(file._id, { code });
-    setIsChanged(false);
-    console.log("FILE SAVED!!!");
+    try {
+      await updateFile(file._id, { code });
+      setIsChanged(false);
+      console.log("FILE SAVED!!!");
+    } catch (err) {
+      console.error("Save failed:", err);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy code:", err);
+    }
   };
 
   if (!file) {
@@ -89,8 +114,8 @@ export default function FilePage() {
 
   return (
     <div className="h-full text-white flex flex-col">
-      <div className="flex items-center justify-between px-4 pt-4">
-        <div className="flex items-center gap-x-2">
+      <div className="flex items-center justify-between px-2 lg:px-4 py-2">
+        <div className="flex items-center gap-x-2 w-[60vw] md:w-full mask-containerRight overflow-hidden">
           <span className="text-xl">{getFileIcon(file.extension)}</span>
           <h1 className="text-xl font-bold">
             {file.name}.{file.extension}
@@ -98,40 +123,61 @@ export default function FilePage() {
         </div>
 
         {/* buttons */}
-        <div className="flex items-center gap-x-4">
-          {file && (
-            <button
-              onClick={() => openFileInfoModal(file)}
-              className="hover:bg-[#5a5a5a] rounded-xl px-2 py-1 flex items-center gap-x-1 border-2 border-[#5a5a5a] duration-150"
-            >
-              <IoInformationCircleOutline className="w-5 h-5" />
-              <span className="hidden lg:inline">File Info</span>
-            </button>
-          )}
-
-          <span
-            className={`rounded-xl px-2 py-1 border-2 border-[#5a5a5a] duration-150 ${
-              isChanged ? "text-yellow-400" : "text-green-400"
-            }`}
+        <div className="flex items-center">
+          <button
+            onClick={handleCopy}
+            className="hover:bg-[#3a3a3a] rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-2 duration-150"
           >
-            {isChanged ? "Unsaved changes" : "Saved"}
-          </span>
+            {copied ? (
+              <>
+                <IoCopy className="w-4 h-4" />
+                <span className="hidden lg:inline">Copied</span>
+              </>
+            ) : (
+              <>
+                <IoCopyOutline className="w-4 h-4" />
+                <span className="hidden lg:inline">Copy</span>
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={() => openFileInfoModal(file)}
+            className="hover:bg-[#3a3a3a] rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-1 duration-150"
+          >
+            <IoInformationCircleOutline className="w-5 h-5" />
+            <span className="hidden lg:inline whitespace-nowrap">
+              File Info
+            </span>
+          </button>
 
           <button
             onClick={handleSave}
             disabled={!isChanged}
-            className={`px-4 py-1 rounded-xl font-medium transition-all ${
-              isChanged
-                ? "bg-blue-600 hover:bg-blue-700"
-                : "bg-[#3a3a3a] cursor-not-allowed"
+            title={isChanged ? "Save changes" : "No changes to save"}
+            className={`px-2 lg:px-4 py-2 rounded-full transition-all duration-150 flex items-center gap-x-2
+            ${
+              isChanged && !isSaving
+                ? " hover:bg-[#3a3a3a] text-white"
+                : "bg-inherit text-[#9a9a9a] cursor-not-allowed"
             }`}
           >
-            Save
+            {isSaving ? (
+              <>
+                <IoSave className="w-5 h-5" />
+                <span className="hidden lg:inline">Saving</span>
+              </>
+            ) : (
+              <>
+                <IoSaveOutline className="w-5 h-5" />
+                <span className="hidden lg:inline">Save</span>
+              </>
+            )}
           </button>
         </div>
       </div>
 
-      <hr className="my-4 border-[#e5e7eb] dark:border-[#4a4a4a]" />
+      <hr className=" border-[#e5e7eb] dark:border-[#2a2a2a]" />
 
       <div className="flex-1 overflow-hidden h-0">
         <CodeEditor

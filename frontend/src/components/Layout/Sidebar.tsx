@@ -219,7 +219,7 @@ const Sidebar = () => {
         </div>
 
         {/* bottom - profile icon */}
-        <div className="sticky bottom-0 w-full h-32 p-2 pt-10 flex justify-between items-end bg-inherit z-10 mask-containerTop">
+        <div className="sticky bottom-0 w-full h-32 px-1 py-2 pt-10 flex justify-between items-end bg-inherit z-10 mask-containerTop">
           <div className="w-full py-1 px-2 rounded-xl flex justify-between bg-inherit hover:bg-[#2a2a2a] cursor-pointer">
             <ProfileIcon />
           </div>
