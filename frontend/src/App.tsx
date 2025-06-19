@@ -64,7 +64,7 @@ function App() {
   }, []);
 
   return (
-    <div className="h-screen flex">
+    <div className="h-screen flex overflow-hidden">
       {/*   sidebar and login/signup   */}
       {user ? (
         sidebarOpen ? (
@@ -88,7 +88,7 @@ function App() {
       )}
 
       {/*   main panel   */}
-      <div className="relative flex-1 h-full">
+      <div className="relative flex-1 min-w-0 h-full">
         <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
           <Outlet />
         </main>

@@ -49,7 +49,7 @@ export default function FilePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const { openFileInfoModal } = useUIStore();
+  const { openFileInfoModal, sidebarOpen } = useUIStore();
 
   useEffect(() => {
     //   auto-save on file change
@@ -114,8 +114,12 @@ export default function FilePage() {
 
   return (
     <div className="h-full text-white flex flex-col">
-      <div className="flex items-center justify-between px-2 lg:px-4 py-2">
-        <div className="flex items-center gap-x-2 w-[60vw] md:w-full mask-containerRight overflow-hidden">
+      <div className="flex items-center justify-between px-2 lg:px-4 py-2 pb-2">
+        <div
+          className={`flex items-center gap-x-2 w-[65vw] md:w-full mask-containerRight overflow-hidden ${
+            sidebarOpen ? "" : "pl-12 lg:pl-11"
+          }`}
+        >
           <span className="text-xl">{getFileIcon(file.extension)}</span>
           <h1 className="text-xl font-bold">
             {file.name}.{file.extension}

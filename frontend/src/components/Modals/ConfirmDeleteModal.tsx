@@ -18,7 +18,7 @@ const ConfirmDeleteModal = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-[999]">
       <div className="dark:bg-[#303030] dark:text-white p-6 rounded-3xl shadow-lg max-w-sm w-full">
-        <p className="text-lg font-semibold mb-2 text-black dark:text-white">
+        <p className="text-lg font-semibold mb-2 text-black dark:text-white overflow-hidden">
           {title}
         </p>
 
