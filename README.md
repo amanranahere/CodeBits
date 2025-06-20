@@ -2,6 +2,8 @@
 
 CodeBits is a full-stack web application that lets users create, manage, and organize code snippets with a powerful VS Code-like editor experience, built using Monaco Editor. It’s designed for developers who want a clean, distraction-free place to store their useful code bits.
 
+<br>
+
 ## Features
 
 - 🔐 User authentication (login/signup/logout)
@@ -16,8 +18,9 @@ CodeBits is a full-stack web application that lets users create, manage, and org
 - ⚙️ Settings: update password, delete account
 - 📱 Responsive design for mobile and desktop
 
+<br>
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend:**
 - React
@@ -34,7 +37,17 @@ CodeBits is a full-stack web application that lets users create, manage, and org
 - JWT authentication
 - Cookies for session management
 
-## Screenshots
+<br>
 
-> _Add screenshots or GIFs here for a visual preview_
+## Live Website
+
+Check out live site: [CodeBits](https://usecodebits.vercel.app)
+
+Use the following credentials to log in and explore the full functionality of the website:
+
+- **Email**: user@example.com
+- **Password**: password
+
+<br>
+
 
