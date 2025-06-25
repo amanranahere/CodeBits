@@ -84,7 +84,7 @@ export default function AboutModal() {
             </div>
             <div className="flex flex-wrap gap-x-6">
               <a
-                href="https://www.linkedin.com/in/aman-rana-709a0a330/"
+                href="https://www.linkedin.com/in/amanrana-dev/"
                 target="_blank"
                 className="text-right flex items-center justify-end text-[#f1f1f1] hover:text-[#bababa] transition-colors duration-150 font-mono"
               >
