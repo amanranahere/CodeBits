@@ -70,7 +70,7 @@ const FileInfoModal = ({ file: passedFile }: { file?: UserFile }) => {
 
       <hr className="my-1 mx-3 border-[#e5e7eb] dark:border-[#4a4a4a]" />
 
-      <div className="p-4 md:p-6 flex flex-col gap-y-8 font-mono">
+      <div className="p-4 md:p-6 flex flex-col gap-y-8 font-mono overflow-y-auto">
         {/*   title   */}
         <div className="relative group">
           <div

@@ -28,7 +28,7 @@ export default function KeyboardShortcutsModal() {
 
       <hr className="my-1 mx-3 border-[#e5e7eb] dark:border-[#4a4a4a]" />
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-2 custom_scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-2">
         {shortcuts.map((item, idx) => (
           <div
             key={idx}

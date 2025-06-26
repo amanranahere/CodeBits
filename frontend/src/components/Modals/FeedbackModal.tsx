@@ -43,7 +43,7 @@ export default function FeedbackModal() {
   };
 
   return (
-    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[60%] max-w-[600px] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col">
+    <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[60%] max-w-[600px] max-h-[80%] rounded-[20px] shadow-lg dark:bg-[#303030] dark:text-white flex flex-col">
       <div
         onClick={toggleFeedbackModal}
         className="absolute top-5 lg:top-6 right-5 lg:right-6 p-1 hover:bg-[#4a4a4a] text-[#9a9a9a] hover:text-[#f1f1f1] rounded-full cursor-pointer z-10 duration-100"
@@ -57,7 +57,7 @@ export default function FeedbackModal() {
 
       <hr className="my-1 mx-3 border-[#e5e7eb] dark:border-[#4a4a4a]" />
 
-      <div className="flex-1 overflow-y-auto p-2 md:p-6 space-y-6 custom_scrollbar">
+      <div className="flex-1 overflow-y-auto p-2 md:p-6 space-y-6">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <div>
             <input

@@ -81,24 +81,18 @@ function App() {
             <TbLayoutSidebarFilled className="w-6 h-6" />
           </button>
         )
-      ) : loginOpen || signupOpen ? (
-        <div className="h-full w-[80%] md:w-[400px]">
-          {loginOpen && <LoginBox />}
-          {signupOpen && <SignupBox />}
-        </div>
       ) : (
-        <button
-          title="Open login"
-          onClick={toggleLogin}
-          className="fixed top-8 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
-        >
-          <TbLayoutSidebarFilled className="w-6 h-6" />
-        </button>
+        (loginOpen || signupOpen) && (
+          <div className="h-full w-[80%] md:w-[400px]">
+            {loginOpen && <LoginBox />}
+            {signupOpen && <SignupBox />}
+          </div>
+        )
       )}
 
       {/*   main panel   */}
       <div className="relative flex-1 min-w-0 h-full">
-        <main className="w-full h-full bg-[#1E1E1E] overflow-auto">
+        <main className="w-full h-full bg-[#151515] text-white overflow-auto">
           <Outlet />
         </main>
       </div>

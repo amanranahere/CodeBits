@@ -17,19 +17,19 @@
 
 /*   scrollbar styles - start   */
 
-.custom_scrollbar {
+* {
   scrollbar-color: #3b3b3c #2a2a2a00;
 }
 
-.custom_scrollbar::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 8px;
 }
 
-.custom_scrollbar::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: #2a2a2a00;
 }
 
-.custom_scrollbar::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: #3b3b3c;
 }
 

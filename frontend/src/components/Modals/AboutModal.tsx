@@ -20,7 +20,7 @@ export default function AboutModal() {
 
       <hr className="my-1 mx-3 border-[#e5e7eb] dark:border-[#4a4a4a]" />
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col gap-y-8 font-mono custom_scrollbar">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 flex flex-col gap-y-8 font-mono">
         <div className="flex">
           <div className="w-[60%]">
             <div className="text-gray-700 dark:text-[#8c8c8c] select-none">

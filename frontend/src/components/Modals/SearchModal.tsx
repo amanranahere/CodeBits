@@ -81,7 +81,7 @@ function SearchModal() {
 
       <div className="border-b border-[#6a6a6a]"></div>
 
-      <div className="h-full p-2 rounded-b-[20px] overflow-y-auto custom_scrollbar">
+      <div className="h-full p-2 rounded-b-[20px] overflow-y-auto">
         {query ? (
           <div>
             {loading ? (
