@@ -3,8 +3,8 @@ import type { UserFile } from "./fileStore";
 
 interface UIStore {
   sidebarOpen: boolean;
-  openLogin: boolean;
-  openSignup: boolean;
+  loginOpen: boolean;
+  signupOpen: boolean;
   userDropdownOpen: boolean;
 
   fileInfoModalOpen: boolean;
@@ -16,6 +16,8 @@ interface UIStore {
   newFileModalOpen: boolean;
 
   toggleSidebar: () => void;
+  toggleLogin: () => void;
+  toggleSignup: () => void;
   toggleNewFileModal: () => void;
   toggleSearchModal: () => void;
   toggleSettingsModal: () => void;
@@ -25,7 +27,6 @@ interface UIStore {
   toggleUserDropdown: () => void;
 
   setFileInfoModalOpen: (value: boolean) => void;
-  openAuthBox: (type: "login" | "signup") => void;
   selectedFileForInfo: UserFile | null;
   openFileInfoModal: (file: UserFile) => void;
   closeFileInfoModal: () => void;
@@ -33,6 +34,8 @@ interface UIStore {
 
 export const useUIStore = create<UIStore>((set) => ({
   sidebarOpen: true,
+  loginOpen: false,
+  signupOpen: false,
   fileInfoModalOpen: false,
   newFileModalOpen: false,
   searchModalOpen: false,
@@ -43,10 +46,19 @@ export const useUIStore = create<UIStore>((set) => ({
   userDropdownOpen: false,
   selectedFileForInfo: null,
 
-  openLogin: true,
-  openSignup: false,
-
   toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
+
+  toggleLogin: () =>
+    set((s) => ({
+      loginOpen: !s.loginOpen,
+      signupOpen: false,
+    })),
+
+  toggleSignup: () =>
+    set((s) => ({
+      signupOpen: !s.signupOpen,
+      loginOpen: false,
+    })),
 
   toggleNewFileModal: () =>
     set((s) => ({ newFileModalOpen: !s.newFileModalOpen })),
@@ -67,12 +79,6 @@ export const useUIStore = create<UIStore>((set) => ({
 
   toggleUserDropdown: () =>
     set((s) => ({ userDropdownOpen: !s.userDropdownOpen })),
-
-  openAuthBox: (type) =>
-    set({
-      openLogin: type === "login",
-      openSignup: type === "signup",
-    }),
 
   setFileInfoModalOpen: (value: boolean) => set({ fileInfoModalOpen: value }),
 

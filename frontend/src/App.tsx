@@ -24,6 +24,8 @@ function App() {
   const refresh = useUserStore((state) => state.refresh);
   const {
     sidebarOpen,
+    loginOpen,
+    signupOpen,
     fileInfoModalOpen,
     selectedFileForInfo,
     closeFileInfoModal,
@@ -32,10 +34,9 @@ function App() {
     keyboardShortcutsModalOpen,
     aboutModalOpen,
     feedbackModalOpen,
-    openLogin,
-    openSignup,
     userDropdownOpen,
     toggleSidebar,
+    toggleLogin,
     toggleNewFileModal,
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
@@ -80,11 +81,19 @@ function App() {
             <TbLayoutSidebarFilled className="w-6 h-6" />
           </button>
         )
-      ) : (
+      ) : loginOpen || signupOpen ? (
         <div className="h-full w-[80%] md:w-[400px]">
-          {openLogin && <LoginBox />}
-          {openSignup && <SignupBox />}
+          {loginOpen && <LoginBox />}
+          {signupOpen && <SignupBox />}
         </div>
+      ) : (
+        <button
+          title="Open login"
+          onClick={toggleLogin}
+          className="fixed top-8 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
+        >
+          <TbLayoutSidebarFilled className="w-6 h-6" />
+        </button>
       )}
 
       {/*   main panel   */}

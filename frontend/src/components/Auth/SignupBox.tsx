@@ -17,7 +17,7 @@ function SignupBox() {
   const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const { openAuthBox } = useUIStore();
+  const { toggleLogin } = useUIStore();
 
   const onSubmit = async (data: SignupInput) => {
     try {
@@ -28,7 +28,7 @@ function SignupBox() {
         toast.success("Account created!");
 
         reset();
-        openAuthBox("login");
+        toggleLogin();
       }
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : "Login Failed!";
@@ -162,7 +162,7 @@ function SignupBox() {
       <div className="mt-4 text-center text-sm text-gray-400">
         Already have an account?{" "}
         <button
-          onClick={() => openAuthBox("login")}
+          onClick={toggleLogin}
           className="text-[#00bfff] hover:underline hover:text-[#00bfff]/90"
         >
           Login

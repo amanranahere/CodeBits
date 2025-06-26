@@ -13,7 +13,7 @@ interface LoginInput {
 function LoginBox() {
   const login = useUserStore((state) => state.login);
   const loading = useUserStore((state) => state.loading);
-  const { openAuthBox } = useUIStore();
+  const { toggleSignup } = useUIStore();
 
   const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -131,9 +131,9 @@ function LoginBox() {
       </form>
 
       <div className="mt-4 text-center text-sm text-gray-400">
-        Don’t have an account?{" "}
+        Don't have an account?{" "}
         <button
-          onClick={() => openAuthBox("signup")}
+          onClick={toggleSignup}
           className="text-[#00bfff] hover:underline hover:text-[#00bfff]/90"
         >
           Sign up
