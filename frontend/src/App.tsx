@@ -36,7 +36,6 @@ function App() {
     feedbackModalOpen,
     userDropdownOpen,
     toggleSidebar,
-    toggleLogin,
     toggleNewFileModal,
     toggleKeyboardShortcutsModal,
     toggleAboutModal,
