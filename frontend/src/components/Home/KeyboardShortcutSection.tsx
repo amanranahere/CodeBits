@@ -6,7 +6,7 @@ import {
   IoIosArrowForward,
 } from "react-icons/io";
 
-export default function ShortcutSection() {
+export default function KeyboardShortcutSection() {
   const [highlightedKeys, setHighlightedKeys] = useState<string[]>([
     "ControlLeft",
     "KeyK",
@@ -241,7 +241,7 @@ export default function ShortcutSection() {
 
       {/* title and subtext */}
       <div className="flex flex-col justify-center items-center max-w-[70vw] md:max-w-md">
-        <h1 className="text-2xl md:text-4xl font-semibold pb-2 md:pb-4">
+        <h1 className="text-2xl md:text-5xl font-bold py-2 md:py-4">
           Built for Your Flow
         </h1>
         <p className="text-xs md:text-base text-[#bababa] font-medium text-center">

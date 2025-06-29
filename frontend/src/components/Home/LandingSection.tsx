@@ -1,12 +1,12 @@
 export default function LandingSection() {
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-y-8">
-      <div className="text-4xl md:text-6xl lg:text-7xl font-semibold flex flex-col justify-center items-center">
+      <div className="text-4xl md:text-6xl lg:text-7xl font-bold flex flex-col justify-center items-center">
         <span>The definitive hub</span>
         <span>for your code snippets</span>
       </div>
 
-      <p className="w-[80%] md:w-[70%] lg:w-[35%] text-xs md:text-base text-[#bababa] font-medium text-center">
+      <p className="w-[80%] md:w-[70%] lg:w-[40%] text-xs md:text-base text-[#bababa] font-medium text-center">
         Store and label snippets as you code. Find exactly what you need with
         one click. All your snippets live in a single reliable place so you can
         spend more time building and less time searching.
