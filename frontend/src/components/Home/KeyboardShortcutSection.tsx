@@ -240,11 +240,11 @@ export default function KeyboardShortcutSection() {
       </div>
 
       {/* title and subtext */}
-      <div className="flex flex-col justify-center items-center max-w-[70vw] md:max-w-md">
-        <h1 className="text-2xl md:text-5xl font-bold py-2 md:py-4">
+      <div className="flex flex-col justify-center items-center px-3 md:px-0 w-full md:max-w-lg">
+        <h1 className="text-3xl md:text-5xl font-bold py-3 md:py-4">
           Built for Your Flow
         </h1>
-        <p className="text-xs md:text-base text-[#bababa] font-medium text-center">
+        <p className="md:text-lg text-[#bababa] font-semibold text-center">
           Move through CodeBits with intuitive shortcuts that keep your hands on
           the keys and your mind on the work.
         </p>

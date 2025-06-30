@@ -14,7 +14,7 @@
     "@monaco-editor/react": "^4.7.0",
     "axios": "^1.9.0",
     "framer-motion": "^12.19.1",
-    "prismjs": "^1.30.0",
+    "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.4",

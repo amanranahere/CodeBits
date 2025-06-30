@@ -13,11 +13,11 @@ export default function LanguageSupportSection() {
   return (
     <div className="h-[100vh] w-full flex flex-col justify-center items-center gap-y-8">
       {/* title and subtext */}
-      <div className="flex flex-col justify-center items-center max-w-[70vw] md:max-w-xl">
-        <h1 className="text-2xl md:text-5xl font-bold pb-2 md:pb-5">
+      <div className="flex flex-col justify-center items-center px-3 md:px-0 w-full md:max-w-2xl">
+        <h1 className="text-3xl md:text-5xl font-bold pb-3 md:pb-5">
           Built for your language
         </h1>
-        <p className="md:w-[85%] text-xs md:text-base text-[#bababa] font-medium text-center">
+        <p className="w-[92%] md:text-lg text-[#bababa] font-semibold text-center">
           CodeBits is built to support the languages you work with, offering
           accurate syntax highlighting and a consistent editing experience that
           adapts to your workflow.
@@ -34,8 +34,8 @@ export default function LanguageSupportSection() {
           <DiPython className="text-yellow-300 text-3xl md:text-5xl" />
           <DiReact className="text-cyan-300 text-3xl md:text-5xl" />
           <DiJavascript1 className="text-yellow-400 text-3xl md:text-5xl" />
-          <DiGo className="text-sky-400 text-3xl md:text-5xl" />
-          <SiRust className="text-orange-400 text-3xl md:text-5xl" />
+          <DiGo className="text-sky-400 text-3xl md:text-5xl opacity-0 md:opacity-100" />
+          <SiRust className="text-orange-400 text-3xl md:text-5xl opacity-0 md:opacity-100" />
         </div>
 
         <div className="absolute inset-y-0 left-0 w-[30%] pointer-events-none bg-gradient-to-r from-[#151515] to-transparent"></div>
