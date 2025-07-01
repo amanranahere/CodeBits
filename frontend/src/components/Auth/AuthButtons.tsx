@@ -8,7 +8,7 @@ export default function AuthButtons({
   handleSignupToggle,
 }: LoginBtnProp) {
   return (
-    <div className="fixed top-5 right-5 flex-1 flex flex-col items-center gap-x-2">
+    <div className="flex items-center gap-x-2">
       {[
         { label: "LOGIN", watermark: "CONTINUE" },
         { label: "SIGNUP", watermark: "REGISTER" },
@@ -16,7 +16,7 @@ export default function AuthButtons({
         <button
           key={label}
           onClick={label === "LOGIN" ? handleLoginToggle : handleSignupToggle}
-          className="relative h-14 flex-grow bg-white text-[#1f1f1f] dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-[1.2rem] overflow-hidden group"
+          className="relative h-14 w-[20vw] bg-white text-[#1f1f1f] dark:bg-[#1f1f1f] dark:text-[#f1f1f1] rounded-[1.2rem] overflow-hidden group"
         >
           <div className="relative z-10">{label}</div>
 

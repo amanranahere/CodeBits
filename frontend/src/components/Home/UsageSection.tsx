@@ -118,7 +118,7 @@ export const connectDB = async () => {
         </p>
 
         {/* examples list */}
-        <div className="pt-5 flex flex-col justify-start items-start md:text-lg text-[#7a7a7a] font-semibold">
+        <div className="pt-5 flex flex-col justify-start items-start md:text-lg  font-semibold">
           <p className="md:text-lg text-[#bababa] font-semibold pb-2">
             The kind of code you save to avoid déjà vu.
           </p>
@@ -127,8 +127,8 @@ export const connectDB = async () => {
             <button
               key={opt.key}
               onClick={() => setOptActive(opt.key)}
-              className={`hover:text-[#bababa] duration-150 ${
-                optActive === opt.key ? "text-white" : ""
+              className={`hover:text-[#9a9a9a] duration-150 ${
+                optActive === opt.key ? "text-[#bababa]" : "text-[#6a6a6a]"
               } `}
             >
               {opt.label}
