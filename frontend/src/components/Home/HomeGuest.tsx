@@ -1,10 +1,10 @@
 import { useUIStore } from "../../stores/uiStore";
 import { IoFingerPrintOutline } from "react-icons/io5";
-import KeyboardShortcutSection from "../Home/KeyboardShortcutSection";
-import LandingSection from "../Home/LandingSection";
-import SignupSection from "../Home/SignupSection";
-import LanguageSupportSection from "../Home/LanguageSupportSection";
-import UsageSection from "../Home/UsageSection";
+import KeyboardShortcutSection from "./KeyboardShortcutSection";
+import LandingSection from "./LandingSection";
+import SignupSection from "./SignupSection";
+import LanguageSupportSection from "./LanguageSupportSection";
+import UsageSection from "./UsageSection";
 import TypingTextAnimation from "../Animation/TypingTextAnimation";
 import { motion } from "framer-motion";
 

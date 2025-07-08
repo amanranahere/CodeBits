@@ -1,5 +1,5 @@
-import { useUserStore } from "../../stores/userStore";
-import { useUIStore } from "../../stores/uiStore";
+import { useUserStore } from "../stores/userStore";
+import { useUIStore } from "../stores/uiStore";
 
 export default function ProfileIcon() {
   const user = useUserStore((state) => state.user);

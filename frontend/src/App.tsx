@@ -4,7 +4,7 @@ import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
 import { useUIStore } from "./stores/uiStore";
 
-import Sidebar from "./components/Layout/Sidebar";
+import Sidebar from "./components/Sidebar";
 import LoginBox from "./components/Auth/LoginBox";
 import SignupBox from "./components/Auth/SignupBox";
 import ModalOverlay from "./components/Modals/ModalOverlay";

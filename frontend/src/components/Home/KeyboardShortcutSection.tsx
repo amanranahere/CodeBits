@@ -5,6 +5,7 @@ import {
   IoIosArrowDown,
   IoIosArrowForward,
 } from "react-icons/io";
+import { motion } from "framer-motion";
 
 export default function KeyboardShortcutSection() {
   const [highlightedKeys, setHighlightedKeys] = useState<string[]>([
@@ -198,7 +199,13 @@ export default function KeyboardShortcutSection() {
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-y-8">
       {/* keyboard */}
-      <div className="space-y-[2px] md:space-y-1 p-1 md:p-2 bg-zinc-50 dark:bg-[#1e1e1e] rounded-lg w-full max-w-[95vw] md:max-w-2xl mx-auto shadow-md">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        className="space-y-[2px] md:space-y-1 p-1 md:p-2 bg-zinc-50 dark:bg-[#1e1e1e] rounded-lg w-full max-w-[95vw] md:max-w-2xl mx-auto shadow-md"
+      >
         {keyboardRows.map((row, i) => (
           <div key={i} className="flex gap-[2px] md:gap-1">
             {row.map((key) => (
@@ -212,10 +219,16 @@ export default function KeyboardShortcutSection() {
             ))}
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* list of shortcuts */}
-      <div className="relative max-w-[80vw] md:max-w-lg overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        viewport={{ once: true, amount: 1 }}
+        className="relative max-w-[80vw] md:max-w-lg overflow-hidden"
+      >
         <div
           ref={scrollRef}
           className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth px-12 md:px-28"
@@ -237,17 +250,30 @@ export default function KeyboardShortcutSection() {
 
         <div className="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-[#151515] to-transparent"></div>
         <div className="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-[#151515] to-transparent"></div>
-      </div>
+      </motion.div>
 
       {/* title and subtext */}
       <div className="flex flex-col justify-center items-center px-3 md:px-0 w-full md:max-w-lg">
-        <h1 className="text-3xl md:text-5xl font-bold py-3 md:py-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true, amount: 1 }}
+          className="text-3xl md:text-5xl font-bold py-3 md:py-4"
+        >
           Built for Your Flow
-        </h1>
-        <p className="md:text-lg text-[#bababa] font-semibold text-center">
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+          viewport={{ once: true, amount: 1 }}
+          className="md:text-lg text-[#bababa] font-semibold text-center"
+        >
           Move through CodeBits with intuitive shortcuts that keep your hands on
           the keys and your mind on the work.
-        </p>
+        </motion.p>
       </div>
     </div>
   );

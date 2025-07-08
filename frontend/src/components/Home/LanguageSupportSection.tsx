@@ -47,11 +47,11 @@ const SlideRightAnimation = ({
 
 export default function LanguageSupportSection() {
   return (
-    <div className="h-[100vh] w-full flex flex-col justify-center items-center gap-y-10">
+    <div className="h-[80vh] w-full flex flex-col justify-center items-center gap-y-10">
       {/* title and subtext */}
       <div className="flex flex-col justify-center items-center px-3 md:px-0 w-full md:max-w-2xl">
         <motion.h1
-          initial={{ opacity: 0, y: -25 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true, amount: 1 }}
@@ -61,11 +61,11 @@ export default function LanguageSupportSection() {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           viewport={{ once: true, amount: 1 }}
-          className="w-[92%] md:text-lg text-[#bababa] font-semibold text-center"
+          className="w-full md:text-lg text-[#bababa] font-semibold text-center"
         >
           CodeBits is built to support the languages you work with, offering
           accurate syntax highlighting and a consistent editing experience that

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import FileOptionsMenu from "../Dropdowns/FileOptionsMenuDropdown.tsx";
-import { getFileIcon } from "../getFileIcon.tsx";
-import { useFileStore } from "../../stores/fileStore.ts";
-import { useUIStore } from "../../stores/uiStore.ts";
-import type { UserFile } from "../../stores/fileStore.ts";
-import ConfirmDeleteModal from "../Modals/ConfirmDeleteModal.tsx";
+import FileOptionsMenu from "./Dropdowns/FileOptionsMenuDropdown.tsx";
+import { getFileIcon } from "./getFileIcon.tsx";
+import { useFileStore } from "../stores/fileStore.ts";
+import { useUIStore } from "../stores/uiStore.ts";
+import type { UserFile } from "../stores/fileStore.ts";
+import ConfirmDeleteModal from "./Modals/ConfirmDeleteModal.tsx";
 import ProfileIcon from "./ProfileIcon.tsx";
 import { TbLayoutSidebar } from "react-icons/tb";
 import { HiMiniPencilSquare } from "react-icons/hi2";
