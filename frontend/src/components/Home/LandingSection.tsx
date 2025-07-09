@@ -19,7 +19,7 @@ export default function LandingSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
-        className="w-[90%] md:w-[70%] lg:w-[40%] md:text-lg text-[#bababa] font-semibold text-center"
+        className="w-[90%] md:w-[70%] lg:w-[40%] lg:min-w-[630px] md:text-lg text-[#bababa] font-semibold text-center"
       >
         Store and label snippets as you code. Find exactly what you need with
         one click. All your snippets live in a single reliable place so you can

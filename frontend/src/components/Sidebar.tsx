@@ -53,7 +53,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside className="relative h-screen w-full flex flex-col bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1] overflow-hidden overflow-y-auto">
+      <aside className="relative h-screen w-[280px] flex flex-col bg-[#f1f1f1] dark:bg-[#151515] text-[#f1f1f1] overflow-hidden overflow-y-auto">
         {/* top - logo and sidebar toggle btn */}
         <div className="sticky top-0 w-full p-1 flex justify-between bg-inherit z-10">
           <div

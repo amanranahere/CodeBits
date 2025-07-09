@@ -29,7 +29,7 @@ export default function SignupSection() {
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+          transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: true, amount: 1 }}
           onClick={toggleSignup}
           className="px-10 md:px-16 py-2 bg-[#1f1f1f] hover:bg-[#2a2a2a] active:bg-[#3a3a3a] rounded-full whitespace-nowrap"
@@ -40,7 +40,7 @@ export default function SignupSection() {
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+          transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: true, amount: 1 }}
           onClick={toggleLogin}
           className="px-10 md:px-16 py-2 bg-[#1f1f1f] hover:bg-[#2a2a2a] active:bg-[#3a3a3a] rounded-full whitespace-nowrap"

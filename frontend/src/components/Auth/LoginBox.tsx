@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useUserStore } from "../../stores/userStore";
 import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdKeyboardArrowLeft } from "react-icons/md";
 import TypingTextAnimation from "../Animation/TypingTextAnimation";
 
 interface LoginInput {
@@ -13,7 +14,7 @@ interface LoginInput {
 function LoginBox() {
   const login = useUserStore((state) => state.login);
   const loading = useUserStore((state) => state.loading);
-  const { toggleSignup } = useUIStore();
+  const { toggleSignup, toggleLogin } = useUIStore();
 
   const [error, setError] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -35,16 +36,23 @@ function LoginBox() {
   } = useForm<LoginInput>();
 
   return (
-    <div className="h-full w-full dark:bg-[#151515] dark:text-white relative overflow-hidden">
-      <form onSubmit={handleSubmit(onSubmit)} className="p-7 bg-[#121212]">
-        <div className="h-24 text-lg font-mono dark:text-[#ffffffb3]">
-          <TypingTextAnimation
-            text="Great to see you again! Ready to dive in?"
-            speed={40}
-          />
-        </div>
+    <div className="h-full w-[300px] md:w-[350px] lg:w-[400px] bg-black dark:text-white relative overflow-hidden">
+      <button
+        onClick={toggleLogin}
+        className="absolute top-2 right-2 text-white text-2xl p-2 rounded-full hover:bg-[#2a2a2a] z-50 block lg:hidden"
+      >
+        <MdKeyboardArrowLeft />
+      </button>
 
-        <div className="h-full w-full mt-6">
+      <div className="h-16 md:h-20 lg:h-24 px-5 md:px-8 pt-5 md:pt-10 text-lg font-mono dark:text-[#ffffffb3]">
+        <TypingTextAnimation
+          text="Great to see you again! Ready to dive in?"
+          speed={40}
+        />
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmit)} className="p-4 md:p-7 bg-black">
+        <div className="h-full w-full mt-20">
           <div className="floating-input-wrapper">
             {/* email input */}
             <label>

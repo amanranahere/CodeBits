@@ -110,8 +110,8 @@ export const connectDB = async () => {
       <div className="relative h-screen w-full md:w-[90%] lg:w-[85%] flex flex-col-reverse lg:flex-row justify-around gap-y-8 lg:gap-y-0 items-center">
         {/* codebox */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
           viewport={{ once: true, amount: 0.2 }}
           className="relative w-[95%] lg:w-[52%] min-h-[70vh] md:h-[80vh]"

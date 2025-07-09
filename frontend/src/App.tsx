@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
 import { useUIStore } from "./stores/uiStore";
+import { motion, AnimatePresence } from "framer-motion";
 
 import Sidebar from "./components/Sidebar";
 import LoginBox from "./components/Auth/LoginBox";
@@ -43,6 +44,8 @@ function App() {
     toggleSearchModal,
   } = useUIStore();
 
+  const [authboxWidth, setAuthboxWidth] = useState(300);
+
   //   theme ? dark/light
   useEffect(() => {
     if (theme === "dark") {
@@ -63,38 +66,81 @@ function App() {
     return () => clearTimeout(timeout);
   }, []);
 
+  //   auth box size
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+
+      if (width < 640) {
+        setAuthboxWidth(300);
+      } else if (width < 1024) {
+        setAuthboxWidth(350);
+      } else {
+        setAuthboxWidth(400);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="h-screen flex overflow-hidden">
       {/*   sidebar and login/signup   */}
       {user ? (
-        sidebarOpen ? (
-          <div className="h-full w-[80%] md:w-[300px]">
-            <Sidebar />
-          </div>
-        ) : (
-          <button
-            title="Open sidebar"
-            onClick={toggleSidebar}
-            className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
-          >
-            <TbLayoutSidebarFilled className="w-6 h-6" />
-          </button>
-        )
+        <>
+          <AnimatePresence mode="wait">
+            {sidebarOpen && (
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: 280 }}
+                exit={{ width: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="h-full overflow-hidden z-[299]"
+              >
+                <Sidebar />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {!sidebarOpen && (
+            <button
+              title="Open sidebar"
+              onClick={toggleSidebar}
+              className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
+            >
+              <TbLayoutSidebarFilled className="w-6 h-6" />
+            </button>
+          )}
+        </>
       ) : (
-        (loginOpen || signupOpen) && (
-          <div className="h-full w-[80%] md:w-[400px]">
-            {loginOpen && <LoginBox />}
-            {signupOpen && <SignupBox />}
-          </div>
-        )
+        <AnimatePresence mode="wait">
+          {(loginOpen || signupOpen) && (
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: authboxWidth }}
+              exit={{ width: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="h-full overflow-hidden z-[299]"
+            >
+              {loginOpen && <LoginBox />}
+              {signupOpen && <SignupBox />}
+            </motion.div>
+          )}
+        </AnimatePresence>
       )}
 
       {/*   main panel   */}
-      <div className="relative flex-1 min-w-0 h-full">
+      <motion.div
+        layout
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className="relative flex-1 min-w-0 h-full"
+      >
         <main className="w-full h-full bg-[#151515] text-white overflow-auto">
           <Outlet />
         </main>
-      </div>
+      </motion.div>
 
       {userDropdownOpen && <UserDropdown />}
 
