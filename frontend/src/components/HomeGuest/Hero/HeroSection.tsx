@@ -10,7 +10,7 @@ export default function LandingSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-        className="text-4xl md:text-6xl lg:text-7xl font-bold flex flex-col justify-center items-center text-center"
+        className="text-4xl md:text-6xl lg:text-7xl font-extrabold flex flex-col justify-center items-center text-center"
       >
         <span>The definitive hub</span>
         <span>for your code snippets</span>

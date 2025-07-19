@@ -5,9 +5,8 @@ import {
   IoIosArrowDown,
   IoIosArrowForward,
 } from "react-icons/io";
-import { motion } from "framer-motion";
 
-export default function KeyboardShortcutSection() {
+export default function KeyboardShortcuts() {
   const [highlightedKeys, setHighlightedKeys] = useState<string[]>([
     "ControlLeft",
     "KeyK",
@@ -163,16 +162,22 @@ export default function KeyboardShortcutSection() {
   }) => {
     const isWideKey = flex > 1;
 
+    const baseWidth = window.innerWidth >= 1024 ? 36 : 23;
+    const baseHeight = window.innerWidth >= 1024 ? 36 : 23;
+
     return (
       <div
-        className={`h-4 md:h-9 text-[5px] md:text-[8px] rounded-[4px] text-center select-none flex items-center justify-center font-medium ${
-          !isWideKey ? "aspect-square " : ""
-        } ${
+        className={`rounded-[2px] lg:rounded-[4px] text-[0.4rem] lg:text-[0.5rem] text-center select-none flex items-center justify-center font-medium hover:bg-[#2a2a2a] active:scale-95 duration-150 ${
           highlighted
-            ? "bg-[#7a7a7a] text-white"
-            : "text-zinc-700 dark:text-[#bababa] bg-zinc-100 dark:bg-[#2a2a2a]"
+            ? "bg-[#2a2a2a] text-white"
+            : "text-[#bababa] bg-[#1e1e1e]"
         }`}
-        style={{ flex }}
+        style={{
+          minWidth: isWideKey ? baseWidth * flex : baseWidth,
+          width: isWideKey ? baseWidth * flex : baseWidth,
+          height: baseHeight,
+          flexShrink: 0,
+        }}
       >
         {label}
       </div>
@@ -197,15 +202,9 @@ export default function KeyboardShortcutSection() {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center gap-y-8">
+    <div className="h-full flex flex-col justify-center items-center gap-y-5 overflow-hidden">
       {/* keyboard */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        className="space-y-[2px] md:space-y-1 p-1 md:p-2 bg-zinc-50 dark:bg-[#1e1e1e] rounded-lg w-full max-w-[95vw] md:max-w-2xl mx-auto shadow-md"
-      >
+      <div className="space-y-[2px] md:space-y-1 p-1 md:p-2 bg-[#121212] rounded-lg w-full mx-auto shadow-md lg:translate-x-16 -translate-y-2 lg:-translate-y-4">
         {keyboardRows.map((row, i) => (
           <div key={i} className="flex gap-[2px] md:gap-1">
             {row.map((key) => (
@@ -219,28 +218,22 @@ export default function KeyboardShortcutSection() {
             ))}
           </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* list of shortcuts */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        viewport={{ once: true, amount: 1 }}
-        className="relative max-w-[80vw] md:max-w-lg overflow-hidden"
-      >
+      <div className="w-full lg:w-[65%] relative overflow-hidden">
         <div
           ref={scrollRef}
-          className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth px-12 md:px-28"
+          className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth px-10"
         >
           {shortcuts.map((s, idx) => (
             <button
               key={idx}
               onClick={() => handleShortcutClick(idx)}
-              className={`px-3 py-1 md:px-4 md:py-2 rounded-full dark:hover:bg-[#4a4a4a] text-zinc-700 dark:text-[#bababa] text-xs md:text-sm font-medium duration-150 text-nowrap select-none ${
+              className={`px-3 py-1 md:px-4 md:py-2 rounded-full hover:bg-[#121212] text-[#bababa] text-xs font-medium duration-150 text-nowrap select-none outline-none ${
                 activeShortcutIndex === idx
-                  ? "bg-zinc-200 dark:bg-[#3a3a3a]"
-                  : "bg-zinc-100 dark:bg-[#2a2a2a]"
+                  ? "shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] bg-[#121212]"
+                  : "shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)]"
               }`}
             >
               {s.combo} - {s.action}
@@ -248,32 +241,18 @@ export default function KeyboardShortcutSection() {
           ))}
         </div>
 
-        <div className="absolute inset-y-0 left-0 w-16 pointer-events-none bg-gradient-to-r from-[#151515] to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 w-16 pointer-events-none bg-gradient-to-l from-[#151515] to-transparent"></div>
-      </motion.div>
+        <div className="absolute inset-y-0 left-0 w-10 pointer-events-none bg-gradient-to-r from-black to-transparent"></div>
+        <div className="absolute inset-y-0 right-0 w-10 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
+      </div>
 
       {/* title and subtext */}
-      <div className="flex flex-col justify-center items-center px-3 md:px-0 w-full md:max-w-lg">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true, amount: 1 }}
-          className="text-3xl md:text-5xl font-bold py-3 md:py-4"
-        >
-          Built for Your Flow
-        </motion.h1>
+      <div className="flex flex-col gap-y-2 w-full pr-8">
+        <h1 className="text-2xl md:text-3xl font-bold">Built for Your Flow</h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
-          viewport={{ once: true, amount: 1 }}
-          className="md:text-lg text-[#bababa] font-semibold text-center"
-        >
+        <p className="pr-6 md:pr-3 lg:pr-10 text-xs md:text-base text-[#bababa] font-semibold tracking-tight leading-tight md:leading-tight lg:leading-tight">
           Move through CodeBits with intuitive shortcuts that keep your hands on
           the keys and your mind on the work.
-        </motion.p>
+        </p>
       </div>
     </div>
   );
