@@ -203,7 +203,7 @@ export default function KeyboardShortcuts() {
 
   return (
     <div className="h-full flex flex-col justify-center items-center gap-y-5 overflow-hidden">
-      {/* keyboard */}
+      {/*  keyboard  */}
       <div className="space-y-[2px] md:space-y-1 p-1 md:p-2 bg-[#121212] rounded-lg w-full mx-auto shadow-md lg:translate-x-16 -translate-y-2 lg:-translate-y-4">
         {keyboardRows.map((row, i) => (
           <div key={i} className="flex gap-[2px] md:gap-1">
@@ -220,7 +220,7 @@ export default function KeyboardShortcuts() {
         ))}
       </div>
 
-      {/* list of shortcuts */}
+      {/*  list of shortcuts  */}
       <div className="w-full lg:w-[65%] relative overflow-hidden">
         <div
           ref={scrollRef}
@@ -245,7 +245,7 @@ export default function KeyboardShortcuts() {
         <div className="absolute inset-y-0 right-0 w-10 pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
       </div>
 
-      {/* title and subtext */}
+      {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
         <h1 className="text-2xl md:text-3xl font-bold">Built for Your Flow</h1>
 
