@@ -1,7 +1,7 @@
-import { useUIStore } from "../../stores/uiStore";
+import { useUIStore } from "../../../stores/uiStore";
 import { motion } from "framer-motion";
 
-export default function SignupSection() {
+export default function SignupCTASection() {
   const { toggleSignup, toggleLogin } = useUIStore();
 
   return (

@@ -137,7 +137,7 @@ function App() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="relative flex-1 min-w-0 h-full"
       >
-        <main className="w-full h-full bg-[#151515] text-white overflow-auto">
+        <main className="w-full h-full bg-black text-white">
           <Outlet />
         </main>
       </motion.div>

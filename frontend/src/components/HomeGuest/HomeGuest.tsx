@@ -1,22 +1,23 @@
 import { useUIStore } from "../../stores/uiStore";
 import { IoFingerPrintOutline } from "react-icons/io5";
-import KeyboardShortcutSection from "./KeyboardShortcutSection";
-import LandingSection from "./LandingSection";
-import SignupSection from "./SignupSection";
-import LanguageSupportSection from "./LanguageSupportSection";
-import UsageSection from "./UsageSection";
-import TypingTextAnimation from "../Animation/TypingTextAnimation";
+import HeroSection from "./Hero/HeroSection";
+import IntroSection from "./Intro/IntroSection";
+import FeatureSection from "./Features/FeaturesSection";
+import SnippetsShowcase from "./SnippetShowcase/SnippetShowcaseSection";
+import SignupCTASection from "./SignupCTA/SignupCTASection";
+import Footer from "./Footer/Footer";
 import { motion } from "framer-motion";
 
 export default function HomeGuest() {
   const { toggleLogin, loginOpen, signupOpen } = useUIStore();
 
   return (
-    <div className="w-full min-w-[300px]">
+    <div className="h-full w-full min-w-[300px] overflow-auto no-scrollbar ">
       <div className="sticky top-0 left-0 z-[9999] w-full bg-yellow-300 text-zinc-900 text-sm text-center font-mono font-medium py-1">
         Designing the homepage — updates soon.
       </div>
 
+      {/*  login btn  */}
       {(window.innerWidth > 640 || (!loginOpen && !signupOpen)) && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -30,31 +31,17 @@ export default function HomeGuest() {
         </motion.div>
       )}
 
-      <div className="relative h-[200vh]">
-        <div className="sticky top-0 h-screen z-0">
-          <LandingSection />
-        </div>
+      <HeroSection />
 
-        {/* video */}
-        <div className="relative top-0 left-0 z-10 w-full h-screen flex justify-center items-center">
-          <video className="w-[90%] md:w-[70%] h-auto" autoPlay loop muted>
-            <source src="/CodeBitsVid.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
+      <IntroSection />
 
-      <LanguageSupportSection />
+      <FeatureSection />
 
-      <KeyboardShortcutSection />
+      <SnippetsShowcase />
 
-      <UsageSection />
+      <SignupCTASection />
 
-      <SignupSection />
-
-      {/* footer */}
-      <div className="w-full flex justify-center items-center text-[#bababa] font-semibold">
-        <TypingTextAnimation text="Developed by amanrana" />
-      </div>
+      <Footer />
     </div>
   );
 }

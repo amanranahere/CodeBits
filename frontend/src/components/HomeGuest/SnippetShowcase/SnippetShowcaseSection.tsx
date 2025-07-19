@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import { motion } from "framer-motion";
 
-export default function UsageSection() {
+export default function SnippetShowcaseSection() {
   type OptKey = "axios" | "tsconfig" | "css" | "mongo";
 
   const [optActive, setOptActive] = useState<OptKey>("axios");
@@ -139,34 +139,36 @@ export const connectDB = async () => {
             </Highlight>
           </div>
 
-          <div className="absolute inset-y-0 right-0 w-[30%] pointer-events-none bg-gradient-to-l from-[#151515] to-transparent"></div>
+          <div className="absolute inset-y-0 right-0 w-[30%] pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
         </motion.div>
 
         {/* title and subtext */}
-        <div className="w-full lg:w-[48%] h-[80vh] flex flex-col gap-y-3 md:gap-y-5 px-4 md:px-0 pt-10 lg:-translate-x-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-            viewport={{ once: true, amount: 1 }}
-            className="text-3xl md:text-5xl font-bold"
-          >
-            Built for code you don't want to rewrite
-          </motion.h1>
+        <div className="w-full lg:w-[48%] h-[80vh] flex flex-col justify-between py-5 lg:-translate-x-6">
+          <div className="flex flex-col gap-y-3 md:gap-y-5 px-4 md:px-0">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+              viewport={{ once: true, amount: 1 }}
+              className="text-3xl md:text-5xl font-bold"
+            >
+              Built for code you don't want to rewrite
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-            viewport={{ once: true, amount: 1 }}
-            className="w-full md:text-lg text-[#bababa] font-semibold"
-          >
-            Instead of digging through old projects to copy the same config or
-            utility, save it once in CodeBits. It stays ready for whenever you
-            need it again.
-            <br />
-            The kind of code you save to avoid déjà vu.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true, amount: 1 }}
+              className="w-full md:text-lg text-[#bababa] font-semibold"
+            >
+              Instead of digging through old projects to copy the same config or
+              utility, save it once in CodeBits. It stays ready for whenever you
+              need it again.
+              <br />
+              The kind of code you save to avoid déjà vu.
+            </motion.p>
+          </div>
 
           {/* examples list */}
           <div className="flex flex-col justify-start items-start md:text-lg  font-semibold">

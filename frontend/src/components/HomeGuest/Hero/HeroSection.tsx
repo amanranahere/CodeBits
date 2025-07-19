@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 
 export default function LandingSection() {
   return (
-    <motion.div className="h-full flex flex-col justify-center items-center gap-y-8">
+    <motion.div className="relative min-h-screen flex flex-col justify-center items-center gap-y-8 overflow-hidden">
+      <div className="absolute top-[-150px] right-[-150px] w-[700px] h-[700px] bg-white opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
+
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
