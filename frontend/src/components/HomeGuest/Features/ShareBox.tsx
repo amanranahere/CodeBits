@@ -14,7 +14,14 @@ export default function ShareBox() {
   ];
 
   return (
-    <div className="h-full pb-10 pl-10 flex flex-col justify-between items-center gap-y-10 overflow-hidden select-none">
+    <div className="relative h-full pb-10 pl-10 flex flex-col justify-between items-center gap-y-10 overflow-hidden select-none">
+      <div className="absolute top-4 right-4 w-2.5 h-2.5 bg-yellow-300 rounded-full group">
+        {/* Tooltip */}
+        <div className="absolute top-[30px] right-0 opacity-0 group-hover:opacity-100 bg-[#333] text-white text-[10px] px-2 py-1 rounded-md shadow-md transition-opacity duration-200">
+          Coming soon...
+        </div>
+      </div>
+
       {/*  export dropdown  */}
       <div className="w-full pt-5 pl-5 flex flex-col">
         <div className="max-w-max py-1 px-4 bg-white/10 backdrop-blur-md  rounded-full shadow-[inset_0_0_0_1px_rgba(255,255,255,0.1)] flex justify-center items-center gap-x-2 font-bold text-lg transition-colors duration-300">
