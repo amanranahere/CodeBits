@@ -78,7 +78,7 @@ const Card = ({ label, icon }: { label: string; icon: React.ReactNode }) => {
   );
 };
 
-export default function LanguageSupport() {
+export default function LanguageSupportBox() {
   return (
     <div className="relative h-full flex flex-col justify-between items-center overflow-hidden group">
       {/*  icons  */}

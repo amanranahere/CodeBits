@@ -1,4 +1,4 @@
-export default function SearchSnippets() {
+export default function SearchSnippetsBox() {
   return (
     <div className="h-full flex flex-col justify-between items-center overflow-hidden">
       {/*  title and subtext  */}

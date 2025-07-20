@@ -6,7 +6,7 @@ import {
   IoIosArrowForward,
 } from "react-icons/io";
 
-export default function KeyboardShortcuts() {
+export default function KeyboardShortcutsBox() {
   const [highlightedKeys, setHighlightedKeys] = useState<string[]>([
     "ControlLeft",
     "KeyK",
