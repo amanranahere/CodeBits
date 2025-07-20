@@ -230,7 +230,7 @@ export default function KeyboardShortcuts() {
             <button
               key={idx}
               onClick={() => handleShortcutClick(idx)}
-              className={`px-3 py-1 md:px-4 md:py-2 rounded-full hover:bg-[#121212] text-[#bababa] text-xs font-medium duration-150 text-nowrap select-none outline-none ${
+              className={`px-3 py-2 md:px-4 rounded-full hover:bg-[#121212] text-[#bababa] text-xs font-medium duration-150 text-nowrap select-none outline-none ${
                 activeShortcutIndex === idx
                   ? "shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] bg-[#121212]"
                   : "shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)]"
@@ -247,7 +247,9 @@ export default function KeyboardShortcuts() {
 
       {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
-        <h1 className="text-2xl md:text-3xl font-bold">Built for Your Flow</h1>
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+          Built for Your Flow
+        </h1>
 
         <p className="pr-6 md:pr-3 lg:pr-10 text-xs md:text-base text-[#bababa] font-semibold tracking-tight leading-tight md:leading-tight lg:leading-tight">
           Move through CodeBits with intuitive shortcuts that keep your hands on

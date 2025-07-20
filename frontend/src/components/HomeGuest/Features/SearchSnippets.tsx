@@ -3,7 +3,7 @@ export default function SearchSnippets() {
     <div className="h-full flex flex-col justify-between items-center overflow-hidden">
       {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
-        <h1 className="text-2xl md:text-3xl font-bold">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
           Find Your Snippets in Seconds
         </h1>
 

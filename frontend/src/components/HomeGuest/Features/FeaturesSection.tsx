@@ -1,6 +1,8 @@
 import SearchSnippets from "./SearchSnippets";
 import KeyboardShortcuts from "./KeyboardShortcuts";
 
+import LanguageSupport from "./LanguageSupport";
+
 export default function FeaturesSection() {
   return (
     <section className="relative w-full bg-black text-white py-20 flex flex-col items-center justify-center gap-y-6 overflow-hidden px-4">
@@ -20,13 +22,15 @@ export default function FeaturesSection() {
         </div>
 
         {/*  4th box  */}
-        <div className="p-10 md:col-span-4 md:order-3 lg:col-span-2 lg:order-4 h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden"></div>
+        <div className="p-10 md:col-span-4 md:order-3 lg:col-span-2 lg:order-4 max-h-max lg:min-h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden"></div>
 
         {/*  3rd box  */}
-        <div className="p-10 md:col-span-2 md:order-4 lg:col-span-1 lg:order-3 h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden"></div>
+        <div className="p-10 md:col-span-2 md:order-4 lg:col-span-1 lg:order-3 max-h-max  lg:min-h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden"></div>
 
         {/*  language support  */}
-        <div className="p-10 md:col-span-2 md:order-5 lg:col-span-1 lg:order-5 h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden"></div>
+        <div className=" md:col-span-2 md:order-5 lg:col-span-1 lg:order-5 max-h-max min-h-[400px] lg:min-h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden">
+          <LanguageSupport />
+        </div>
       </div>
     </section>
   );
