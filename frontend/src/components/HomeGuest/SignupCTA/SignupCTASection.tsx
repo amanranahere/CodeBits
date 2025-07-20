@@ -6,7 +6,7 @@ export default function SignupCTASection() {
 
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-y-6 md:gap-y-10">
-      <div className="text-2xl md:text-5xl font-bold text-center flex flex-col justify-center items-center md:gap-y-2">
+      <div className="text-2xl md:text-5xl font-extrabold text-center flex flex-col justify-center items-center md:gap-y-2">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

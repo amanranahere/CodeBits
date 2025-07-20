@@ -130,7 +130,7 @@ export default function FilePage() {
         <div className="flex items-center">
           <button
             onClick={handleCopy}
-            className="hover:bg-[#3a3a3a] rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-2 duration-150"
+            className="hover:bg-[#3a3a3a] font-bold rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-2 duration-150"
           >
             {copied ? (
               <>
@@ -147,7 +147,7 @@ export default function FilePage() {
 
           <button
             onClick={() => openFileInfoModal(file)}
-            className="hover:bg-[#3a3a3a] rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-1 duration-150"
+            className="hover:bg-[#3a3a3a] font-bold rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-1 duration-150"
           >
             <IoInformationCircleOutline className="w-5 h-5" />
             <span className="hidden lg:inline whitespace-nowrap">
@@ -159,7 +159,7 @@ export default function FilePage() {
             onClick={handleSave}
             disabled={!isChanged}
             title={isChanged ? "Save changes" : "No changes to save"}
-            className={`px-2 lg:px-4 py-2 rounded-full transition-all duration-150 flex items-center gap-x-2
+            className={`px-2 lg:px-4 py-2 rounded-full transition-all duration-150 flex items-center gap-x-2 font-bold 
             ${
               isChanged && !isSaving
                 ? " hover:bg-[#3a3a3a] text-white"

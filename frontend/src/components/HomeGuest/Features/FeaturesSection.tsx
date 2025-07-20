@@ -1,5 +1,6 @@
 import SearchSnippetsBox from "./SearchSnippetsBox";
 import KeyboardShortcutsBox from "./KeyboardShortcutsBox";
+import ShareBox from "./ShareBox";
 import FileInfoBox from "./FileInfoBox";
 import LanguageSupportBox from "./LanguageSupportBox";
 
@@ -22,12 +23,14 @@ export default function FeaturesSection() {
         </div>
 
         {/*  4th box  */}
-        <div className="pt-10 px-10 md:col-span-4 md:order-3 lg:col-span-2 lg:order-4 h-[450px] lg:min-h-[470px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden">
+        <div className="md:col-span-4 md:order-3 lg:col-span-2 lg:order-4 h-[450px] lg:min-h-[470px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden">
           <FileInfoBox />
         </div>
 
         {/*  3rd box  */}
-        <div className="p-10 md:col-span-2 md:order-4 lg:col-span-1 lg:order-3 max-h-max lg:min-h-[470px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden"></div>
+        <div className="md:col-span-2 md:order-4 lg:col-span-1 lg:order-3 max-h-max lg:min-h-[470px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden">
+          <ShareBox />
+        </div>
 
         {/*  language support  */}
         <div className=" md:col-span-2 md:order-5 lg:col-span-1 lg:order-5 max-h-max min-h-[400px] lg:min-h-[450px] bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] overflow-hidden">

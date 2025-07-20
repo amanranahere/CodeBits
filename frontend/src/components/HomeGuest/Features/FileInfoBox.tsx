@@ -25,7 +25,7 @@ export default function FileInfoBox() {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="h-full flex flex-col justify-between items-center gap-y-10 overflow-hidden"
+      className="h-full pt-10 px-10  flex flex-col justify-between items-center gap-y-10 overflow-hidden"
     >
       {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
@@ -87,10 +87,10 @@ export default function FileInfoBox() {
                 DESCRIPTION
               </span>
               <span className="text-sm lg:text-base">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa
-                assumenda cupiditate obcaecati itaque minus voluptas corporis
-                libero, aliquid sapiente incidunt iusto explicabo expedita,
-                numquam facere nulla suscipit, pariatur recusandae laboriosam.
+                This code sets up an Axios instance that adds an access token to
+                requests and automatically refreshes it if expired. It's useful
+                for handling authenticated API calls without repeating token
+                logic across the app.
               </span>
             </div>
 
