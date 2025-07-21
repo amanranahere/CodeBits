@@ -13,7 +13,7 @@ export default function HomeGuest() {
 
   return (
     <div className="h-full w-full min-w-[300px] overflow-auto no-scrollbar ">
-      <div className="sticky top-0 left-0 z-[9999] w-full bg-yellow-300 text-zinc-900 text-sm text-center font-mono font-medium py-1">
+      <div className=" w-full bg-yellow-300 text-zinc-900 text-sm text-center font-mono font-medium py-1">
         Designing the homepage — updates soon.
       </div>
 
@@ -31,13 +31,21 @@ export default function HomeGuest() {
         </motion.div>
       )}
 
-      <HeroSection />
+      <div id="hero">
+        <HeroSection />
+      </div>
 
-      <IntroSection />
+      <div id="intro">
+        <IntroSection />
+      </div>
 
-      <FeatureSection />
+      <div id="features">
+        <FeatureSection />
+      </div>
 
-      <SnippetsShowcase />
+      <div id="showcase">
+        <SnippetsShowcase />
+      </div>
 
       <SignupCTASection />
 
