@@ -1,17 +1,37 @@
 import { useState } from "react";
 import { Highlight, themes } from "prism-react-renderer";
-import { motion } from "framer-motion";
+import { IoSunny, IoMoon, IoCopyOutline } from "react-icons/io5";
+import { TiTick } from "react-icons/ti";
+import { SiJavascript, SiTypescript, SiCss3 } from "react-icons/si";
 
 export default function SnippetShowcaseSection() {
+  type Theme = "light" | "dark";
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [copied, setCopied] = useState(false);
+
   type OptKey = "axios" | "tsconfig" | "css" | "mongo";
-
   const [optActive, setOptActive] = useState<OptKey>("axios");
-
-  const options: { key: OptKey; label: string }[] = [
-    { key: "axios", label: "Axios Configuration" },
-    { key: "tsconfig", label: "TS Config Setup" },
-    { key: "css", label: "CSS Button Variants" },
-    { key: "mongo", label: "MongoDB Setup" },
+  const options: { key: OptKey; label: string; icon: React.ReactNode }[] = [
+    {
+      key: "axios",
+      label: "Axios Configuration",
+      icon: <SiJavascript className="w-4 h-4" />,
+    },
+    {
+      key: "tsconfig",
+      label: "TS Config Setup",
+      icon: <SiTypescript className="w-4 h-4" />,
+    },
+    {
+      key: "css",
+      label: "CSS Button Variants",
+      icon: <SiCss3 className="w-4 h-4" />,
+    },
+    {
+      key: "mongo",
+      label: "MongoDB Setup",
+      icon: <SiJavascript className="w-4 h-4" />,
+    },
   ];
 
   const code = {
@@ -105,22 +125,94 @@ export const connectDB = async () => {
 };`,
   };
 
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code[optActive]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy code:", err);
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center">
-      <div className="relative h-screen w-full md:w-[90%] lg:w-[85%] flex flex-col-reverse lg:flex-row justify-around gap-y-8 lg:gap-y-0 items-center">
-        {/* codebox */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          className="relative w-[95%] lg:w-[52%] min-h-[70vh] md:h-[80vh]"
-        >
-          <div className="w-full h-full bg-[#1e1e1e] rounded-xl rounded-bl-xl overflow-hidden overflow-y-auto overflow-x-auto no-scrollbar">
+    <section className="relative w-full bg-black text-white py-20 px-4 flex flex-col items-center justify-center gap-y-6 overflow-hidden">
+      <h2 className="text-3xl md:text-5xl font-extrabold text-center">
+        Built for code you don't want to rewrite
+      </h2>
+
+      <p className="w-[90%] md:w-[70%] lg:w-[45%] text-[#bababa] text-lg font-medium text-center leading-relaxed">
+        Instead of digging through old projects to copy the same config or
+        utility, save it once in CodeBits. It stays ready for whenever you need
+        it again. The kind of code you save to avoid déjà vu.
+      </p>
+
+      {/*  codebox  */}
+      <div className="w-[100%] lg:w-[80%] h-[90vh] border-2 border-[#d6ebfd30] rounded-[25px] flex flex-col overflow-hidden">
+        {/*  navbar  */}
+        <div className="min-h-10 lg:min-h-12 px-4 lg:px-5 border-b-2 border-[#d6ebfd30] flex justify-between">
+          <div className="flex gap-x-2 items-center justify-center">
+            <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-[#ff6465eb]"></div>
+            <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-[#ffd60a]"></div>
+            <div className="w-2 h-2 lg:w-3 lg:h-3 rounded-full bg-[#43fea4ab]"></div>
+          </div>
+
+          <div className="flex gap-x-2 justify-center items-center">
+            <button
+              onClick={handleCopy}
+              className="p-2 hover:bg-[#1a1a1a] border-2 border-[#d6ebfd30] font-bold rounded-lg flex items-center gap-x-2 duration-150"
+            >
+              {copied ? (
+                <>
+                  <TiTick className="w-3 h-3 lg:w-4 lg:h-4 text-green-400" />
+                </>
+              ) : (
+                <>
+                  <IoCopyOutline className="w-3 h-3 lg:w-4 lg:h-4" />
+                </>
+              )}
+            </button>
+
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 hover:bg-[#1a1a1a] border-2 border-[#d6ebfd30] font-bold rounded-lg flex justify-center items-center gap-x-2 duration-150"
+            >
+              {theme === "dark" ? (
+                <IoSunny className="w-3 h-3 lg:w-4 lg:h-4" />
+              ) : (
+                <IoMoon className="w-3 h-3 lg:w-4 lg:h-4" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        <div className="h-full flex flex-col lg:flex-row">
+          {/*  left-panel */}
+          <div className="max-h-min lg:h-full w-full lg:w-[300px] p-4 flex flex-row lg:flex-col justify-start items-start gap-x-6 lg:gap-x-0 md:text-lg font-semibold overflow-x-auto no-scrollbar">
+            {options.map((opt) => (
+              <button
+                key={opt.key}
+                onClick={() => setOptActive(opt.key)}
+                className={`flex justify-center items-center gap-x-2 hover:text-[#9a9a9a] duration-150 whitespace-nowrap ${
+                  optActive === opt.key ? "text-[#bababa]" : "text-[#6a6a6a]"
+                } `}
+              >
+                {opt.icon}
+                {opt.label}
+              </button>
+            ))}
+          </div>
+
+          {/*  right-panel  */}
+          <div
+            className={`w-full h-full overflow-auto rounded-br-[25px] pb-20 
+          ${theme === "dark" ? "bg-[#1e1e1e]" : "bg-[#fff]"}
+          `}
+          >
             <Highlight
               code={code[optActive]}
               language="ts"
-              theme={themes.vsDark}
+              theme={theme === "dark" ? themes.vsDark : themes.vsLight}
             >
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <pre className={`${className} pt-3`} style={style}>
@@ -138,61 +230,8 @@ export const connectDB = async () => {
               )}
             </Highlight>
           </div>
-
-          <div className="absolute inset-y-0 right-0 w-[30%] pointer-events-none bg-gradient-to-l from-black to-transparent"></div>
-        </motion.div>
-
-        {/* title and subtext */}
-        <div className="w-full lg:w-[48%] h-[80vh] flex flex-col justify-between py-5 lg:-translate-x-6">
-          <div className="flex flex-col gap-y-3 md:gap-y-5 px-4 md:px-0">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-              viewport={{ once: true, amount: 1 }}
-              className="text-3xl md:text-5xl font-bold"
-            >
-              Built for code you don't want to rewrite
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-              viewport={{ once: true, amount: 1 }}
-              className="w-full md:text-lg text-[#bababa] font-semibold"
-            >
-              Instead of digging through old projects to copy the same config or
-              utility, save it once in CodeBits. It stays ready for whenever you
-              need it again.
-              <br />
-              The kind of code you save to avoid déjà vu.
-            </motion.p>
-          </div>
-
-          {/* examples list */}
-          <div className="flex flex-col justify-start items-start md:text-lg  font-semibold">
-            {options.map((opt, i) => (
-              <motion.button
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeOut",
-                  delay: 0.4 + i * 0.1,
-                }}
-                key={opt.key}
-                onClick={() => setOptActive(opt.key)}
-                className={`hover:text-[#9a9a9a] duration-150 ${
-                  optActive === opt.key ? "text-[#bababa]" : "text-[#6a6a6a]"
-                } `}
-              >
-                {opt.label}
-              </motion.button>
-            ))}
-          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

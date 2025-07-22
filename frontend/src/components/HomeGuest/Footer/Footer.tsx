@@ -16,9 +16,9 @@ export default function Footer() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+        transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
         viewport={{ once: true, amount: 1 }}
-        className="text-[clamp(4rem,18vw,16rem)] text-[#0b0b0b]  font-extrabold leading-none md:leading-none lg:leading-none translate-y-[18%] z-0"
+        className="text-[clamp(4rem,18vw,16rem)] text-[#0e0e0e]  font-extrabold leading-none md:leading-none lg:leading-none translate-y-[18%] z-0 select-none"
       >
         CodeBits
       </motion.div>

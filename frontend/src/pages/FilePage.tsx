@@ -7,10 +7,10 @@ import { getFileIcon } from "../components/getFileIcon";
 import {
   IoInformationCircleOutline,
   IoCopyOutline,
-  IoCopy,
   IoSaveOutline,
   IoSave,
 } from "react-icons/io5";
+import { TiTick } from "react-icons/ti";
 
 const extensionToLanguageMap: Record<string, string> = {
   js: "javascript",
@@ -134,7 +134,7 @@ export default function FilePage() {
           >
             {copied ? (
               <>
-                <IoCopy className="w-4 h-4" />
+                <TiTick className="w-4 h-4 text-green-400" />
                 <span className="hidden lg:inline">Copied</span>
               </>
             ) : (

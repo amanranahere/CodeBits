@@ -32,7 +32,7 @@ export default function SignupCTASection() {
           transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: true, amount: 1 }}
           onClick={toggleSignup}
-          className="px-10 md:px-16 py-2 bg-[#1f1f1f] hover:bg-[#2a2a2a] active:bg-[#3a3a3a] rounded-full whitespace-nowrap"
+          className="px-10 md:px-16 py-2 flex justify-center items-center gap-x-1 md:gap-x-2 rounded-full bg-[#ffffff06] backdrop-blur-sm shadow-[inset_0_0_8vw_hsla(0,0%,100%,0.05)] cursor-pointer transition-shadow duration-300 hover:shadow-[inset_0_0_8vw_hsla(0,0%,100%,0.15)] font-semibold"
         >
           Sign Up
         </motion.button>
@@ -43,7 +43,7 @@ export default function SignupCTASection() {
           transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: true, amount: 1 }}
           onClick={toggleLogin}
-          className="px-10 md:px-16 py-2 bg-[#1f1f1f] hover:bg-[#2a2a2a] active:bg-[#3a3a3a] rounded-full whitespace-nowrap"
+          className="px-10 md:px-16 py-2 flex justify-center items-center gap-x-1 md:gap-x-2 rounded-full bg-[#ffffff06] backdrop-blur-sm shadow-[inset_0_0_8vw_hsla(0,0%,100%,0.05)] cursor-pointer transition-shadow duration-300 hover:shadow-[inset_0_0_8vw_hsla(0,0%,100%,0.15)] font-semibold"
         >
           Log In
         </motion.button>
