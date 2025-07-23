@@ -3,6 +3,7 @@ import { Highlight, themes } from "prism-react-renderer";
 import { IoSunny, IoMoon, IoCopyOutline } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
 import { SiJavascript, SiTypescript, SiCss3 } from "react-icons/si";
+import { BiCodeBlock } from "react-icons/bi";
 
 export default function SnippetShowcaseSection() {
   type Theme = "light" | "dark";
@@ -136,19 +137,26 @@ export const connectDB = async () => {
   };
 
   return (
-    <section className="relative w-full bg-black text-white py-20 px-4 flex flex-col items-center justify-center gap-y-6 overflow-hidden">
-      <h2 className="text-3xl md:text-5xl font-extrabold text-center">
-        Built for code you don't want to rewrite
-      </h2>
+    <section className="relative w-full bg-black text-white py-16 md:py-24 lg:py-28 px-4 md:px-10 flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden">
+      <div className="flex flex-col justify-center items-center gap-y-3">
+        <div className="flex justify-center items-center gap-x-1 px-3 py-1 text-sm text-[#ffffff80] rounded-full shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),_inset_0_0_1vw_hsla(0,0%,100%,0.2)] select-none">
+          <BiCodeBlock className="w-3 h-3 lg:w-4 lg:h-4" />
+          <span>Example Snippets</span>
+        </div>
 
-      <p className="w-[90%] md:w-[70%] lg:w-[45%] text-[#bababa] text-lg font-medium text-center leading-relaxed">
-        Instead of digging through old projects to copy the same config or
-        utility, save it once in CodeBits. It stays ready for whenever you need
-        it again. The kind of code you save to avoid déjà vu.
+        <h2 className="text-3xl md:text-5xl font-extrabold text-center">
+          Code you don't want to rewrite
+        </h2>
+      </div>
+
+      <p className="w-full lg:w-[60%] text-[#bababa] text-lg font-medium text-center leading-tight">
+        Some snippets are worth saving because you use them everywhere. Store
+        them once in CodeBits and they'll always be ready when you need them
+        again.
       </p>
 
       {/*  codebox  */}
-      <div className="w-[100%] lg:w-[80%] h-[90vh] border-2 border-[#d6ebfd30] rounded-[25px] flex flex-col overflow-hidden">
+      <div className="w-[100%] lg:w-[80%] h-[90vh] border-2 border-[#d6ebfd30] rounded-[25px] flex flex-col overflow-hidden my-3 lg:my-6">
         {/*  navbar  */}
         <div className="min-h-10 lg:min-h-12 px-4 lg:px-5 border-b-2 border-[#d6ebfd30] flex justify-between">
           <div className="flex gap-x-2 items-center justify-center">
@@ -188,12 +196,12 @@ export const connectDB = async () => {
 
         <div className="h-full flex flex-col lg:flex-row">
           {/*  left-panel */}
-          <div className="max-h-min lg:h-full w-full lg:w-[300px] p-4 flex flex-row lg:flex-col justify-start items-start gap-x-6 lg:gap-x-0 md:text-lg font-semibold overflow-x-auto no-scrollbar">
+          <div className="max-h-min lg:h-full w-full lg:w-[300px] p-4 flex flex-row lg:flex-col justify-start items-start gap-x-6 lg:gap-x-0 lg:gap-y-1 md:text-lg font-semibold overflow-x-auto no-scrollbar">
             {options.map((opt) => (
               <button
                 key={opt.key}
                 onClick={() => setOptActive(opt.key)}
-                className={`flex justify-center items-center gap-x-2 hover:text-[#9a9a9a] duration-150 whitespace-nowrap ${
+                className={`h-full lg:h-min flex justify-center items-center gap-x-2 hover:text-[#9a9a9a] duration-150 whitespace-nowrap ${
                   optActive === opt.key ? "text-[#bababa]" : "text-[#6a6a6a]"
                 } `}
               >

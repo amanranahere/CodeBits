@@ -18,14 +18,14 @@ export default function Footer() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
         viewport={{ once: true, amount: 1 }}
-        className="text-[clamp(4rem,18vw,16rem)] text-[#0e0e0e]  font-extrabold leading-none md:leading-none lg:leading-none translate-y-[18%] z-0 select-none"
+        className="text-[clamp(5rem,18vw,16rem)] text-[#0e0e0e]  font-extrabold leading-none md:leading-none lg:leading-none translate-y-[18%] z-0 select-none"
       >
         CodeBits
       </motion.div>
 
       <div className="relative w-full bg-black z-50">
         {/*  horizontal line  */}
-        <div className="relative w-full h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+        <div className="relative w-full h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
 
         {/*  radial glow  */}
         <div
@@ -34,16 +34,22 @@ export default function Footer() {
         ></div>
 
         {/*  lower footer  */}
-        <div className="relative w-full min-h-min md:min-h-[30vh] lg:min-h-[50vh] font-medium px-8 pt-8 pb-8 lg:px-14 lg:pt-14 lg:pb-10 text-[#f1f1f1] text-sm flex flex-col justify-between gap-y-20 md:gap-y-0">
+        <div className="relative w-full min-h-min md:min-h-[30vh] lg:min-h-[50vh] font-medium px-4 pt-8 pb-8 lg:px-14 lg:pt-14 lg:pb-10 text-[#f1f1f1] text-sm flex flex-col justify-between gap-y-20 md:gap-y-0">
           <div className="flex flex-col md:flex-row gap-y-14 md:gap-x-10 lg:gap-y-0">
-            <div className="w-full lg:w-1/2 uppercase text-center md:text-start font-mono font-medium">
-              Made for developers who hate copy-pasting the{" "}
-              <br className="hidden lg:visible" /> same thing twice.
+            <div className="w-full lg:w-1/2 uppercase text-center md:text-start font-mono font-medium flex flex-col gap-y-4">
+              <p>
+                Made for developers who hate déjà vu. Save your best code once,
+                find it <br className="hidden lg:block" /> instantly, and keep
+                building without repeating yourself.
+              </p>
+              <p className="hidden md:flex items-center">
+                Built with React, Node.js, and a lot of ☕
+              </p>
             </div>
 
-            <div className="w-full lg:w-1/2 flex gap-x-16 md:gap-x-0">
+            <div className="w-full lg:w-1/2 px-3 md:px-0 flex gap-x-16 md:gap-x-0">
               {/*  sitemap  */}
-              <div className="w-1/2 flex justify-center">
+              <div className="w-1/2 flex justify-start md:justify-center">
                 <div className="flex flex-col items-start gap-y-1">
                   <p className="text-[#6a6a6a] font-bold pb-4">SITEMAP</p>
 
@@ -58,7 +64,7 @@ export default function Footer() {
                     onClick={() => scrollToSection("intro")}
                     className="hover:text-[#bababa] duration-150 transition-colors"
                   >
-                    How it works
+                    Overview
                   </button>
 
                   <button
@@ -70,9 +76,9 @@ export default function Footer() {
 
                   <button
                     onClick={() => scrollToSection("showcase")}
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors whitespace-nowrap"
                   >
-                    Snippets Showcase
+                    Example Snippets
                   </button>
                 </div>
               </div>
@@ -111,38 +117,41 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-y-2 font-bold">
-            <p className="order-3 md:order-1 uppercase font-mono flex justify-center md:justify-start">
+          <div className="w-full px-3 md:px-0 flex flex-col md:flex-row justify-between items-center font-bold gap-y-4 md:gap-y-0">
+            <p className="uppercase font-mono order-3 md:order-1">
               © 2025 CodeBits. All rights reserved.
             </p>
 
-            <div className="order-1 md:order-2 pb-4 md:pb-0 flex justify-center gap-x-4 font-mono">
-              <button
-                onClick={toggleLogin}
-                className="hover:text-[#bababa] duration-150 transition-colors uppercase"
-              >
-                Login
-              </button>
+            {/* buttons */}
+            <div className="w-full md:w-1/2 flex flex-row justify-between items-center order-1 md:order-2">
+              <div className="flex gap-x-2 font-mono lg:-translate-x-1/2">
+                <button
+                  onClick={toggleLogin}
+                  className="hover:text-[#bababa] duration-150 transition-colors uppercase"
+                >
+                  Login,
+                </button>
 
-              <button
-                onClick={toggleSignup}
-                className="hover:text-[#bababa] duration-150 transition-colors uppercase"
-              >
-                Signup
-              </button>
+                <button
+                  onClick={toggleSignup}
+                  className="hover:text-[#bababa] duration-150 transition-colors uppercase"
+                >
+                  Signup
+                </button>
+              </div>
+
+              <p className="flex items-center uppercase font-mono">
+                <span className="ml-2 whitespace-nowrap">A thing by&nbsp;</span>
+                <a
+                  href="https://amanrana.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#bababa] duration-150 transition-colors"
+                >
+                  Aman_Rana
+                </a>
+              </p>
             </div>
-
-            <p className="order-2 md:order-3 flex justify-center md:justify-end uppercase font-mono hover:">
-              A thing by&nbsp;
-              <a
-                href="https://amanrana.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#bababa] duration-150 transition-colors"
-              >
-                Aman_Rana
-              </a>
-            </p>
           </div>
         </div>
       </div>

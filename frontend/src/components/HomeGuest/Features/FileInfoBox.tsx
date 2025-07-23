@@ -30,20 +30,19 @@ export default function FileInfoBox() {
       {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-          Your Snippets, Fully Documented
+          Every snippet, fully documented
         </h1>
 
         <p className="text-xs md:text-base text-[#bababa] font-semibold tracking-tight leading-tight md:leading-tight lg:leading-tight">
-          Every snippet you save comes with its own file panel. Add a clear
-          title, choose the correct file type, and write a detailed description
-          so you'll never forget what the snippet does. The panel automatically
-          tracks the last edited time and updates instantly as you make changes,
-          keeping your library organized and always up to date.
+          Each snippet has its own file panel. Add a title, select the right
+          file type, and write a description so you'll always know what it does.
+          The panel tracks edits automatically, keeping your library organized
+          and up to date.
         </p>
       </div>
 
       {/*  file info modal  */}
-      <div className="w-full h-full lg:px-10 overflow-hidden select-none">
+      <div className="w-full max-h-[280px] lg:px-10 overflow-hidden select-none">
         <div className="relative h-full dark:bg-[#303030] rounded-t-[25px] p">
           <div className="absolute top-3 lg:top-4 right-4 lg:right-6 p-1 hover:bg-[#4a4a4a] text-[#9a9a9a] hover:text-[#f1f1f1] rounded-full z-10 duration-100">
             <IoClose className="w-4 h-4 lg:w-5 lg:h-5" />

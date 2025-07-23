@@ -52,12 +52,12 @@ export default function ShareBox() {
       {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-          Share Your Snippets Anywhere
+          Share snippets anywhere
         </h1>
 
         <p className="text-xs md:text-base text-[#bababa] font-semibold tracking-tight leading-tight md:leading-tight lg:leading-tight">
           Export snippets as a shareable link, Markdown, JSON, or even a styled
-          image — perfect for documentation, backups, or sharing with your team.
+          image. Perfect for documentation, backups, or sharing with your team.
         </p>
       </div>
     </div>

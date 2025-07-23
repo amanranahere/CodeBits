@@ -248,7 +248,7 @@ export default function KeyboardShortcutsBox() {
       {/*  title and subtext  */}
       <div className="flex flex-col gap-y-2 w-full pr-8">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
-          Built for Your Flow
+          Stay in your flow
         </h1>
 
         <p className="pr-6 md:pr-3 lg:pr-10 text-xs md:text-base text-[#bababa] font-semibold tracking-tight leading-tight md:leading-tight lg:leading-tight">

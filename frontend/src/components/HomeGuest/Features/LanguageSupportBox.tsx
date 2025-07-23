@@ -100,13 +100,12 @@ export default function LanguageSupportBox() {
       {/*  title and subtext  */}
       <div className="w-full h-full flex flex-col justify-end gap-y-2 px-6 pb-10">
         <h1 className="text-2xl md:text-3xl font-bold tracking-tight z-10">
-          Built for your lang
+          Built for your stack
         </h1>
 
         <p className="text-xs md:text-[0.9rem] text-[#bababa] font-semibold tracking-tight leading-tight md:leading-tight lg:leading-tight z-10">
-          CodeBits is built to support the languages you work with, offering
-          accurate syntax highlighting and a consistent editing experience that
-          adapts to your workflow.
+          CodeBits supports the languages you work with, offering accurate
+          syntax highlighting and a consistent editing experience.
         </p>
       </div>
     </div>
