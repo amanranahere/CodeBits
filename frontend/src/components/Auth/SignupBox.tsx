@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import useRegister from "../../hooks/user/useRegister";
 import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
-import TypingTextAnimation from "../Animation/TypingTextAnimation";
 
 interface SignupInput {
   name: string;
@@ -45,37 +44,31 @@ function SignupBox() {
   } = useForm<SignupInput>();
 
   return (
-    <div className="h-full w-[300px] md:w-[350px] lg:w-[400px] bg-black dark:text-white relative overflow-hidden">
+    <div className="h-full w-full text-white relative overflow-hidden py-10 lg:py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500">
       <button
         onClick={toggleSignup}
-        className="absolute top-2 right-2 text-white text-2xl p-2 rounded-full hover:bg-[#2a2a2a] z-50 block lg:hidden"
+        className="absolute top-3 right-2 text-white/50 hover:text-white/90 duration-500 p-2 z-50"
       >
-        <MdKeyboardArrowLeft />
+        <IoClose className="w-5 h-5" />
       </button>
 
-      <div className="h-16 md:h-20 lg:h-24 px-5 md:px-8 pt-5 md:pt-10 text-lg font-mono dark:text-[#ffffffb3]">
-        <TypingTextAnimation
-          text="Sign up now to enjoy complete access to all features."
-          speed={40}
-        />
-      </div>
+      <h1 className="text-center text-lg font-bold text-white/90 pb-6">
+        Keep your best code in <br /> one place
+      </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="p-4 md:p-7 bg-black">
-        <div className="h-full w-full mt-20 lg:mt-6">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="h-full w-full">
           <div className="floating-input-wrapper">
             {/* name input */}
-            <label>
-              <input
-                className="floating-label-input"
-                type="text"
-                placeholder=""
-                required
-                {...register("name", {
-                  required: "Name required",
-                })}
-              />
-              <span>Name</span>
-            </label>
+            <input
+              className="w-full p-2 bg-inherit border-b border-[#6b6b6c] hover:border-[#ffffff84] focus:border-[#f7f7f7] text-[#f7f7f7] outline-none transition-colors duration-500"
+              type="text"
+              placeholder="Name"
+              required
+              {...register("name", {
+                required: "Name required",
+              })}
+            />
 
             {typeof errors.name?.message === "string" && (
               <p className="text-sm leading-none text-red-600 px-2 pb-2">
@@ -84,24 +77,20 @@ function SignupBox() {
             )}
 
             {/* email input */}
-            <label>
-              <input
-                className="floating-label-input"
-                type="email"
-                placeholder=""
-                required
-                {...register("email", {
-                  required: "Email required",
-                  validate: {
-                    matchPattern: (value) =>
-                      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-                        value
-                      ) || "Email address must be a valid address",
-                  },
-                })}
-              />
-              <span>Email</span>
-            </label>
+            <input
+              className="w-full p-2 bg-inherit border-b border-[#6b6b6c] hover:border-[#ffffff84] focus:border-[#f7f7f7] text-[#f7f7f7] outline-none transition-colors duration-500"
+              type="email"
+              placeholder="Email"
+              required
+              {...register("email", {
+                required: "Email required",
+                validate: {
+                  matchPattern: (value) =>
+                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                    "Email address must be a valid address",
+                },
+              })}
+            />
 
             {typeof errors.email?.message === "string" && (
               <p className="text-sm leading-none text-red-600 px-2 pb-2">
@@ -112,17 +101,16 @@ function SignupBox() {
             {/* password input */}
             <label className="relative">
               <input
-                className="floating-label-input"
+                className="w-full p-2 lg:pr-10 bg-inherit border-b border-[#6b6b6c] hover:border-[#ffffff84] focus:border-[#f7f7f7] text-[#f7f7f7] outline-none transition-colors duration-500 peer"
                 type={passwordVisible ? "text" : "password"}
-                placeholder=""
+                placeholder="Password"
                 required
                 {...register("password", {
                   required: "Password required",
                 })}
               />
-              <span>Password</span>
 
-              <div className="absolute inset-y-0 right-2 flex items-center">
+              <div className="absolute inset-y-0 right-2 flex items-center text-[#6b6b6c] peer-hover:text-[#ffffff84] peer-focus:text-[#f7f7f7] duration-300">
                 {passwordVisible ? (
                   <FaEye
                     className="cursor-pointer"
@@ -151,7 +139,8 @@ function SignupBox() {
 
             {/* submit button */}
             <button
-              className="p-[10px] bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63] rounded-[10px] duration-200 select-none outline-none border-none"
+              className="h-11 mt-5 select-none rounded-2xl text-white font-semibold bg-[#ffffff06] border border-white/10 shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),inset_0_0_12px_hsla(0,0%,100%,0.05)]
+              hover:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),inset_0_0_22px_hsla(0,0%,100%,0.15)] backdrop-blur-md transition-all duration-300 ease-out"
               type="submit"
               disabled={loading}
             >
@@ -171,13 +160,13 @@ function SignupBox() {
         Already have an account?{" "}
         <button
           onClick={toggleLogin}
-          className="text-[#00bfff] hover:underline hover:text-[#00bfff]/90"
+          className="text-[#f1f1f1] hover:underline"
         >
           Login
         </button>
       </div>
 
-      <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pl-20 tracking-tighter leading-none text-[12.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
+      <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pl-20 tracking-tighter leading-none text-[10.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
         SIGNUP
       </div>
     </div>

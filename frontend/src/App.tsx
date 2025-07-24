@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { Slide, ToastContainer } from "react-toastify";
 import { useUserStore } from "./stores/userStore";
@@ -6,8 +6,7 @@ import { useUIStore } from "./stores/uiStore";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Sidebar from "./components/Sidebar";
-import LoginBox from "./components/Auth/LoginBox";
-import SignupBox from "./components/Auth/SignupBox";
+import AuthPanel from "./components/Auth/AuthPanel";
 import ModalOverlay from "./components/Modals/ModalOverlay";
 import NewFileModal from "./components/Modals/NewFileModal";
 import SearchModal from "./components/Modals/SearchModal";
@@ -25,8 +24,6 @@ function App() {
   const refresh = useUserStore((state) => state.refresh);
   const {
     sidebarOpen,
-    loginOpen,
-    signupOpen,
     fileInfoModalOpen,
     selectedFileForInfo,
     closeFileInfoModal,
@@ -43,8 +40,6 @@ function App() {
     toggleFeedbackModal,
     toggleSearchModal,
   } = useUIStore();
-
-  const [authboxWidth, setAuthboxWidth] = useState(300);
 
   //   theme ? dark/light
   useEffect(() => {
@@ -66,28 +61,9 @@ function App() {
     return () => clearTimeout(timeout);
   }, []);
 
-  //   auth box size
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-
-      if (width < 640) {
-        setAuthboxWidth(300);
-      } else if (width < 1024) {
-        setAuthboxWidth(350);
-      } else {
-        setAuthboxWidth(400);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div className="h-screen flex overflow-hidden">
-      {/*   sidebar and login/signup   */}
+      {/*   sidebar and login/signup panel   */}
       {user ? (
         <>
           <AnimatePresence mode="wait">
@@ -115,20 +91,7 @@ function App() {
           )}
         </>
       ) : (
-        <AnimatePresence mode="wait">
-          {(loginOpen || signupOpen) && (
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: authboxWidth }}
-              exit={{ width: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="h-full overflow-hidden z-[299]"
-            >
-              {loginOpen && <LoginBox />}
-              {signupOpen && <SignupBox />}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <AuthPanel />
       )}
 
       {/*   main panel   */}

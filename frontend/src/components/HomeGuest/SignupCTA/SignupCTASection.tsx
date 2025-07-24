@@ -21,16 +21,16 @@ export default function SignupCTASection() {
         <div className="flex justify-center items-center gap-x-3 md:gap-x-8">
           <button
             onClick={toggleSignup}
-            className="select-none rounded-2xl text-white border border-white/20 bg-[rgba(255,255,255,0.06)] backdrop-blur-md
-            shadow-[inset_0_0_8px_rgba(255,255,255,0.2),0_0_4px_rgba(255,255,255,0.1)] hover:shadow-[inset_0_0_18px_rgba(255,255,255,0.25),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-300 ease-out text-base h-10 lg:h-12 px-10 md:px-16 font-semibold"
+            className="select-none rounded-2xl text-white font-semibold bg-[#ffffff06] border border-white/10 shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),inset_0_0_12px_hsla(0,0%,100%,0.05)]
+            hover:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),inset_0_0_22px_hsla(0,0%,100%,0.15)] backdrop-blur-md transition-all duration-300 ease-out h-10 lg:h-12 px-10 md:px-16"
           >
             Sign Up
           </button>
 
           <button
             onClick={toggleLogin}
-            className="select-none rounded-2xl text-white border border-white/20 bg-[rgba(255,255,255,0.06)] backdrop-blur-md
-            shadow-[inset_0_0_8px_rgba(255,255,255,0.2),0_0_4px_rgba(255,255,255,0.1)] hover:shadow-[inset_0_0_18px_rgba(255,255,255,0.25),0_0_6px_rgba(255,255,255,0.2)] transition-all duration-300 ease-out text-base h-10 lg:h-12 px-10 md:px-16 font-semibold"
+            className="select-none rounded-2xl text-white font-semibold bg-[#ffffff06] border border-white/10 shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),inset_0_0_12px_hsla(0,0%,100%,0.05)]
+            hover:shadow-[inset_0_0_0_1px_hsla(0,0%,100%,0.075),inset_0_0_22px_hsla(0,0%,100%,0.15)] backdrop-blur-md transition-all duration-300 ease-out h-10 lg:h-12 px-10 md:px-16"
           >
             Log In
           </button>
