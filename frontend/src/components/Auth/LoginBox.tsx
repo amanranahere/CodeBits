@@ -4,6 +4,7 @@ import { useUserStore } from "../../stores/userStore";
 import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 interface LoginInput {
   email: string;
@@ -35,7 +36,12 @@ function LoginBox() {
   } = useForm<LoginInput>();
 
   return (
-    <div className="h-full w-full text-white relative overflow-hidden py-12 lg:py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="h-full w-full text-white relative overflow-hidden py-12 lg:py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500"
+    >
       <button
         onClick={toggleLogin}
         className="absolute top-3 right-2 text-white/50 hover:text-white/90 duration-500 p-2 z-50"
@@ -143,7 +149,7 @@ function LoginBox() {
       <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pr-3 tracking-tighter leading-none text-[10.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
         LOGIN
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -5,6 +5,7 @@ import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 interface SignupInput {
   name: string;
@@ -44,7 +45,12 @@ function SignupBox() {
   } = useForm<SignupInput>();
 
   return (
-    <div className="h-full w-full text-white relative overflow-hidden py-10 lg:py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="h-full w-full text-white relative overflow-hidden py-10 lg:py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500"
+    >
       <button
         onClick={toggleSignup}
         className="absolute top-3 right-2 text-white/50 hover:text-white/90 duration-500 p-2 z-50"
@@ -169,7 +175,7 @@ function SignupBox() {
       <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 pl-20 tracking-tighter leading-none text-[10.5rem] font-extrabold text-[#ffffff14] oswald-text select-none">
         SIGNUP
       </div>
-    </div>
+    </motion.div>
   );
 }
 
