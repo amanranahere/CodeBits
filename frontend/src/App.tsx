@@ -24,6 +24,8 @@ function App() {
   const refresh = useUserStore((state) => state.refresh);
   const {
     sidebarOpen,
+    loginOpen,
+    signupOpen,
     fileInfoModalOpen,
     selectedFileForInfo,
     closeFileInfoModal,
@@ -63,8 +65,8 @@ function App() {
 
   return (
     <div className="h-screen flex overflow-hidden">
-      {/*   sidebar and login/signup panel   */}
-      {user ? (
+      {/*  sidebar  */}
+      {user && (
         <>
           <AnimatePresence mode="wait">
             {sidebarOpen && (
@@ -90,9 +92,10 @@ function App() {
             </button>
           )}
         </>
-      ) : (
-        <AuthPanel />
       )}
+
+      {/*  login/signup panel  */}
+      {!user && (loginOpen || signupOpen) && <AuthPanel />}
 
       {/*   main panel   */}
       <motion.div
