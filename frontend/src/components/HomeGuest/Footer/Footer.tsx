@@ -36,7 +36,13 @@ export default function Footer() {
         {/*  lower footer  */}
         <div className="relative w-full min-h-min md:min-h-[30vh] lg:min-h-[50vh] font-medium px-4 pt-8 pb-8 lg:px-14 lg:pt-14 lg:pb-10 text-[#f1f1f1] text-sm flex flex-col justify-between gap-y-20 md:gap-y-0">
           <div className="flex flex-col md:flex-row gap-y-14 md:gap-x-10 lg:gap-y-0">
-            <div className="w-full lg:w-[40%] uppercase text-center md:text-start font-mono font-medium flex flex-col gap-y-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              viewport={{ once: true, amount: 1 }}
+              className="w-full lg:w-[40%] uppercase text-center md:text-start font-mono font-medium flex flex-col gap-y-4"
+            >
               <p>
                 Made for developers who hate déjà vu. Save your best code once,
                 find it instantly, and keep building without repeating yourself.
@@ -44,9 +50,15 @@ export default function Footer() {
               <p className="hidden md:flex items-center">
                 Built with React, Node.js, and a lot of ☕
               </p>
-            </div>
+            </motion.div>
 
-            <div className="w-full lg:w-1/2 px-3 md:px-0 flex gap-x-16 md:gap-x-0 md:pb-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true, amount: 1 }}
+              className="w-full lg:w-1/2 px-3 md:px-0 flex gap-x-16 md:gap-x-0 md:pb-10"
+            >
               {/*  sitemap  */}
               <div className="w-1/2 flex justify-start md:justify-center">
                 <div className="flex flex-col items-start gap-y-1">
@@ -113,10 +125,16 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="w-full px-3 md:px-0 flex flex-col md:flex-row justify-between items-center font-bold gap-y-4 md:gap-y-0">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true, amount: 1 }}
+            className="w-full px-3 md:px-0 flex flex-col md:flex-row justify-between items-center font-bold gap-y-4 md:gap-y-0"
+          >
             <p className="uppercase font-mono order-3 md:order-1 pr-20">
               © 2025 CodeBits. All rights reserved.
             </p>
@@ -151,7 +169,7 @@ export default function Footer() {
                 </a>
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

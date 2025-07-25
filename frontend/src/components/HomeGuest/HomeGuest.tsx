@@ -13,16 +13,13 @@ export default function HomeGuest() {
 
   return (
     <div className="h-full w-full min-w-[300px] overflow-auto no-scrollbar ">
-      <div className=" w-full bg-yellow-300 text-zinc-900 text-sm text-center font-mono font-medium py-1">
-        Designing the homepage — updates soon.
-      </div>
-
       {/*  login btn  */}
       {(window.innerWidth > 640 || (!loginOpen && !signupOpen)) && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 1 }}
+          viewport={{ once: true }}
           onClick={toggleLogin}
           className="fixed top-1 right-1 md:top-8 md:right-12 z-[99] py-2 px-4 flex justify-center items-center gap-x-1 md:gap-x-2 rounded-full bg-[#ffffff06] backdrop-blur-sm shadow-[inset_0_0_8vw_hsla(0,0%,100%,0.05)] cursor-pointer transition-shadow duration-300 hover:shadow-[inset_0_0_8vw_hsla(0,0%,100%,0.15)] select-none"
         >

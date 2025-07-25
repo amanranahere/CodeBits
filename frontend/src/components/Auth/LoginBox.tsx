@@ -40,7 +40,7 @@ function LoginBox() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="h-full w-full text-white relative overflow-hidden py-12 lg:py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500"
+      className="h-full w-full text-white relative overflow-hidden py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500"
     >
       <button
         onClick={toggleLogin}
