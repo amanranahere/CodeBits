@@ -1,5 +1,9 @@
 import { useUIStore } from "../../../stores/uiStore";
 import { motion } from "framer-motion";
+import { IoConstruct, IoHome, IoPlayCircle } from "react-icons/io5";
+import { BiCodeBlock } from "react-icons/bi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdMail } from "react-icons/md";
 
 export default function Footer() {
   const { toggleLogin, toggleSignup } = useUIStore();
@@ -43,6 +47,11 @@ export default function Footer() {
               viewport={{ once: true, amount: 1 }}
               className="w-full lg:w-[40%] text-center md:text-start font-mono font-medium flex flex-col gap-y-4"
             >
+              <span className="font-mono text-white text-3xl font-bold leading-none select-none">
+                Code<span className="text-cyan-400">{"{"}</span>Bits
+                <span className="text-cyan-400">{"}"}</span>
+              </span>
+
               <p>
                 Made for developers who hate déjà vu. Save your best code once,
                 find it instantly, and keep building without repeating yourself.
@@ -61,34 +70,46 @@ export default function Footer() {
             >
               {/*  sitemap  */}
               <div className="w-1/2 flex justify-start md:justify-center">
-                <div className="flex flex-col items-start gap-y-1">
+                <div className="flex flex-col items-start gap-y-2">
                   <p className="text-[#6a6a6a] font-bold pb-4">SITEMAP</p>
 
                   <button
                     onClick={() => scrollToSection("hero")}
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2"
                   >
+                    <span>
+                      <IoHome className="w-4 h-4" />
+                    </span>
                     Home
                   </button>
 
                   <button
                     onClick={() => scrollToSection("intro")}
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2"
                   >
+                    <span>
+                      <IoPlayCircle className="w-4 h-4" />
+                    </span>
                     Overview
                   </button>
 
                   <button
                     onClick={() => scrollToSection("features")}
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2"
                   >
+                    <span>
+                      <IoConstruct className="w-4 h-4" />
+                    </span>
                     Features
                   </button>
 
                   <button
                     onClick={() => scrollToSection("showcase")}
-                    className="hover:text-[#bababa] duration-150 transition-colors whitespace-nowrap"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2 whitespace-nowrap"
                   >
+                    <span>
+                      <BiCodeBlock className="w-4 h-4" />
+                    </span>
                     Example Snippets
                   </button>
                 </div>
@@ -96,15 +117,18 @@ export default function Footer() {
 
               {/*  contacts  */}
               <div className="w-1/2 flex justify-center">
-                <div className="flex flex-col items-start gap-y-1">
+                <div className="flex flex-col items-start gap-y-2">
                   <p className="text-[#6a6a6a] font-bold pb-4">SOCIALS</p>
 
                   <a
                     href="https://github.com/amanranahere/CodeBits"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2"
                   >
+                    <span>
+                      <FaGithub className="w-4 h-4" />
+                    </span>
                     Github
                   </a>
 
@@ -112,15 +136,21 @@ export default function Footer() {
                     href="https://www.linkedin.com/in/amanrana-dev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2"
                   >
+                    <span>
+                      <FaLinkedin className="w-4 h-4" />
+                    </span>
                     Linkedin
                   </a>
 
                   <a
                     href="mailto:amanranahere@gmail.com"
-                    className="hover:text-[#bababa] duration-150 transition-colors"
+                    className="hover:text-[#bababa] duration-150 transition-colors flex justify-center items-center gap-x-2"
                   >
+                    <span>
+                      <MdMail className="w-4 h-4" />
+                    </span>
                     Mail
                   </a>
                 </div>

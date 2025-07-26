@@ -142,7 +142,7 @@ function App() {
       <ToastContainer
         position="bottom-right"
         autoClose={2000}
-        hideProgressBar={true}
+        hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}

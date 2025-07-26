@@ -56,11 +56,14 @@ const Sidebar = () => {
       <aside className="relative h-screen w-[280px] flex flex-col bg-[#f1f1f1] dark:bg-black text-[#f1f1f1] overflow-hidden overflow-y-auto">
         {/* top - logo and sidebar toggle btn */}
         <div className="sticky top-0 w-full p-1 flex justify-between bg-inherit z-10">
-          <div
-            onClick={() => navigate("/")}
-            className="p-2 text-lg font-mono cursor-pointer"
-          >
-            CodeBits
+          {/*  logo  */}
+          <div onClick={() => navigate("/")} className="p-2 cursor-pointer">
+            <span className="font-mono text-white text-2xl font-bold select-none">
+              Code
+              <span className="text-cyan-400">{"{"}</span>
+              Bits
+              <span className="text-cyan-400">{"}"}</span>
+            </span>
           </div>
 
           <button
@@ -68,7 +71,7 @@ const Sidebar = () => {
             onClick={toggleSidebar}
             className="p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl"
           >
-            <TbLayoutSidebar className="w-6 h-6" />
+            <TbLayoutSidebar className="w-5 h-5 lg:w-6 lg:h-6" />
           </button>
         </div>
 
