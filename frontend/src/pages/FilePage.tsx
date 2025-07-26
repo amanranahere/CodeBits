@@ -177,7 +177,7 @@ export default function FilePage() {
         </div>
       </div>
 
-      <hr className=" border-[#e5e7eb] dark:border-[#2a2a2a]" />
+      <hr className="border-[#e5e7eb] dark:border-[#2a2a2a]" />
 
       {/*  code editor */}
       <div className="flex-1 overflow-hidden h-0">

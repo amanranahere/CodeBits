@@ -84,9 +84,12 @@ export default function HomeUser() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, ease: "linear", delay: 0.2 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="text-3xl md:text-5xl font-extrabold text-center"
+            className="text-3xl md:text-5xl font-extrabold text-center flex"
           >
-            Welcome back, {user?.name.split(" ")[0]}
+            Welcome back,&nbsp;
+            <p className="first-letter:capitalize">
+              {user?.name.split(" ")[0]}
+            </p>
           </motion.h1>
 
           <motion.p

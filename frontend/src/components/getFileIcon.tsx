@@ -35,9 +35,9 @@ export const getFileIcon = (filename: string): JSX.Element => {
   const ext = filename.split(".").pop()?.toLowerCase();
 
   if (name === "settings") return <IoSettingsOutline />;
-  if (name === ".gitignore") return <SiGit className="text-pink-500" />;
+  if (name === "gitignore") return <SiGit className="text-pink-500" />;
   if (name === "dockerfile") return <SiDocker className="text-blue-400" />;
-  if (name === ".env" || name.startsWith(".env."))
+  if (name === "env" || name.startsWith(".env."))
     return <SiDotenv className="text-green-600" />;
   if (name.includes("eslint")) return <SiEslint className="text-purple-500" />;
   if (name.includes("prettier"))

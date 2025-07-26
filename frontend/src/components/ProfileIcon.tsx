@@ -16,7 +16,7 @@ export default function ProfileIcon() {
         </div>
       </div>
 
-      <div className="w-[80%] select-none line-clamp-1">
+      <div className="w-[80%] select-none line-clamp-1 first-letter:capitalize">
         {user ? user.name : "Guest User"}
       </div>
     </div>

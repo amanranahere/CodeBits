@@ -14,7 +14,7 @@ export default function SearchSnippetsBox() {
       </div>
 
       {/*  gif  */}
-      <div className="w-full h-full rounded-tl-[25px] rounded-br-[25px] bg-black overflow-hidden translate-y-12 translate-x-[7%]">
+      <div className="w-full h-full rounded-tl-[25px] rounded-br-[25px] bg-black overflow-hidden translate-y-12 translate-x-[8%]">
         <video className="w-[150%] h-auto" autoPlay loop muted playsInline>
           <source src="/SearchFile.mp4" type="video/mp4" />
         </video>
