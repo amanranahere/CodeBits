@@ -41,7 +41,7 @@ export default function Footer() {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
               viewport={{ once: true, amount: 1 }}
-              className="w-full lg:w-[40%] uppercase text-center md:text-start font-mono font-medium flex flex-col gap-y-4"
+              className="w-full lg:w-[40%] text-center md:text-start font-mono font-medium flex flex-col gap-y-4"
             >
               <p>
                 Made for developers who hate déjà vu. Save your best code once,
