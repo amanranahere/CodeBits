@@ -35,6 +35,7 @@ export default function ShareBox() {
         >
           {items.map((item) => (
             <div
+              key={item.label}
               onMouseEnter={() => setSelectedItem(item.label)}
               className={`px-3 py-2 pr-5 rounded-[0.6rem] active:scale-95 duration-150 text-left flex items-center gap-x-2 ${
                 selectedItem === item.label

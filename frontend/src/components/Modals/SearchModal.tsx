@@ -8,6 +8,7 @@ import { useFileStore } from "../../stores/fileStore";
 import { useUIStore } from "../../stores/uiStore";
 import { IoClose } from "react-icons/io5";
 import { HiMiniPencilSquare } from "react-icons/hi2";
+import Loading from "../Loading";
 
 function SearchModal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -83,12 +84,12 @@ function SearchModal() {
 
       <div className="h-full p-2 rounded-b-[20px] overflow-y-auto">
         {query ? (
-          <div>
+          <div className="h-full w-full">
             {loading ? (
-              <p className="h-full w-full flex justify-center items-center">
-                Searching...
-              </p>
-            ) : (
+              <div className="h-full w-full flex justify-center items-center">
+                <Loading size={8} />
+              </div>
+            ) : results.length > 0 ? (
               <ul>
                 {results.map((file) => {
                   const { relative } = formatDateTime(file.updatedAt);
@@ -120,6 +121,10 @@ function SearchModal() {
                   );
                 })}
               </ul>
+            ) : (
+              <p className="text-center text-[#aaa] py-5">
+                No file found with that name
+              </p>
             )}
           </div>
         ) : (

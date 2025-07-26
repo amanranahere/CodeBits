@@ -5,6 +5,7 @@ import { useUIStore } from "../../stores/uiStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Loading from "../Loading";
 
 interface LoginInput {
   email: string;
@@ -124,13 +125,7 @@ function LoginBox() {
               type="submit"
               disabled={loading}
             >
-              {loading ? (
-                <span className="w-full h-full flex justify-center items-center">
-                  Loading...
-                </span>
-              ) : (
-                "Login"
-              )}
+              {loading ? <Loading size={6} /> : "Login"}
             </button>
           </div>
         </div>

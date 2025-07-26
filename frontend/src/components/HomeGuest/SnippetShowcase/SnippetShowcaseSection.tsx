@@ -250,12 +250,12 @@ export const connectDB = async () => {
               {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <pre className={`${className} pt-3`} style={style}>
                   {tokens.map((line, i) => (
-                    <div key={i} {...getLineProps({ line, key: i })}>
+                    <div key={i} {...getLineProps({ line })}>
                       <span className="px-4 text-zinc-500 select-none">
                         {i + 1}
                       </span>
                       {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({ token, key })} />
+                        <span key={key} {...getTokenProps({ token })} />
                       ))}
                     </div>
                   ))}

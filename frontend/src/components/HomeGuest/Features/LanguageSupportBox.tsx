@@ -86,13 +86,13 @@ export default function LanguageSupportBox() {
       <div className="absolute top-6 rotate-[20deg] -skew-y-[10deg] flex flex-col">
         <div className="flex flex-row justify-center items-center gap-x-2 p-2 pr-20 transition-transform group-hover:-translate-x-14 ease-out duration-700">
           {languages01.map((lang) => (
-            <Card icon={lang.icon} label={lang.label} />
+            <Card key={lang.label} icon={lang.icon} label={lang.label} />
           ))}
         </div>
 
         <div className="flex flex-row justify-center items-center gap-x-2 px-2 pl-6 pb-2 transition-transform group-hover:translate-x-14 ease-out duration-700">
           {languages02.map((lang) => (
-            <Card icon={lang.icon} label={lang.label} />
+            <Card key={lang.label} icon={lang.icon} label={lang.label} />
           ))}
         </div>
       </div>

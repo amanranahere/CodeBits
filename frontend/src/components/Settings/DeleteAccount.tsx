@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useUserStore } from "../../stores/userStore";
 import ConfirmDeleteModal from "../Modals/ConfirmDeleteModal";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loading";
 
 export default function DeleteAccount() {
   const navigate = useNavigate();
@@ -29,7 +30,9 @@ export default function DeleteAccount() {
               : "bg-red-500 hover:bg-red-500/80 active:bg-[#00bfff63]"
           }`}
         >
-          {loading ? "Deleting..." : "Delete Account"}
+          <div className="h-5 flex justify-center items-center">
+            {loading ? <Loading size={6} /> : "Delete Account"}
+          </div>
         </button>
       </div>
 

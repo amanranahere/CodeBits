@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../../stores/userStore";
 import { MdModeEdit } from "react-icons/md";
+import Loading from "../Loading";
 
 export default function AccountInfo() {
   const navigate = useNavigate();
@@ -130,7 +131,9 @@ export default function AccountInfo() {
                   : "bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63]"
               }`}
             >
-              {loading ? "Updating..." : "Update"}
+              <div className="h-5 flex justify-center items-center">
+                {loading ? <Loading size={6} /> : "Update"}
+              </div>
             </button>
           </>
         )}

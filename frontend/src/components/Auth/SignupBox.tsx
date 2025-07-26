@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import Loading from "../Loading";
 
 interface SignupInput {
   name: string;
@@ -150,13 +151,7 @@ function SignupBox() {
               type="submit"
               disabled={loading}
             >
-              {loading ? (
-                <span className="w-full h-full flex justify-center items-center">
-                  Loading...
-                </span>
-              ) : (
-                "Sign up"
-              )}
+              {loading ? <Loading size={6} /> : "Sign up"}
             </button>
           </div>
         </div>

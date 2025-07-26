@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUserStore } from "../../stores/userStore";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Loading from "../Loading";
 
 export default function UpdatePassword() {
   const [currentPasswordInput, setCurrentPasswordInput] = useState("");
@@ -152,7 +153,9 @@ export default function UpdatePassword() {
               : "bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63]"
           }`}
         >
-          {loading ? "Updating..." : "Update"}
+          <div className="h-5 flex justify-center items-center">
+            {loading ? <Loading size={6} /> : "Update"}
+          </div>
         </button>
       </div>
     </div>
