@@ -32,6 +32,7 @@ const extensionToLanguage: Record<string, string> = {
   scss: "SCSS",
   json: "JSON",
   md: "Markdown",
+  txt: "Plaintext",
 };
 
 export default function HomeUser() {

@@ -7,10 +7,10 @@ import { getFileIcon } from "../components/getFileIcon";
 import {
   IoInformationCircleOutline,
   IoCopyOutline,
-  IoSaveOutline,
   IoSave,
 } from "react-icons/io5";
 import { TiTick } from "react-icons/ti";
+import Loading02 from "../components/Loading02";
 
 const extensionToLanguageMap: Record<string, string> = {
   js: "javascript",
@@ -114,52 +114,50 @@ export default function FilePage() {
 
   return (
     <div className="h-full text-white flex flex-col">
-      <div className="flex items-center justify-between px-2 lg:px-4 py-2 pb-2">
+      {/*  navbar  */}
+      <div className="flex items-center justify-between pl-2 pr-1 lg:pl-4 lg:pr-2 py-3 pb-2">
         <div
           className={`flex items-center gap-x-2 w-[65vw] md:w-full mask-containerRight overflow-hidden ${
             sidebarOpen ? "" : "pl-12 lg:pl-11"
           }`}
         >
-          <span className="text-xl">{getFileIcon(file.extension)}</span>
+          <span className="lg:text-xl">{getFileIcon(file.extension)}</span>
           <h1 className="text-xl font-bold">
             {file.name}.{file.extension}
           </h1>
         </div>
 
         {/* buttons */}
-        <div className="flex items-center">
+        <div className="flex items-center gap-x-1">
           <button
             onClick={handleCopy}
-            className="hover:bg-[#3a3a3a] font-bold rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-2 duration-150"
+            title="Copy code"
+            className="w-7 h-7 lg:w-9 lg:h-9 hover:bg-[#1a1a1a] border-2 border-[#d6ebfd30] font-bold rounded-lg flex items-center justify-center gap-x-2 duration-150"
           >
             {copied ? (
               <>
-                <TiTick className="w-4 h-4 text-green-400" />
-                <span className="hidden lg:inline">Copied</span>
+                <TiTick className="w-3 h-3 lg:w-4 lg:h-4 text-green-400" />
               </>
             ) : (
               <>
-                <IoCopyOutline className="w-4 h-4" />
-                <span className="hidden lg:inline">Copy</span>
+                <IoCopyOutline className="w-3 h-3 lg:w-4 lg:h-4" />
               </>
             )}
           </button>
 
           <button
             onClick={() => openFileInfoModal(file)}
-            className="hover:bg-[#3a3a3a] font-bold rounded-full px-2 lg:px-4 py-2 flex items-center gap-x-1 duration-150"
+            title="Open File Panel"
+            className="w-7 h-7 lg:w-9 lg:h-9 hover:bg-[#1a1a1a] border-2 border-[#d6ebfd30] font-bold rounded-lg flex items-center justify-center gap-x-2 duration-150"
           >
-            <IoInformationCircleOutline className="w-5 h-5" />
-            <span className="hidden lg:inline whitespace-nowrap">
-              File Info
-            </span>
+            <IoInformationCircleOutline className="w-3 h-3 lg:w-4 lg:h-4" />
           </button>
 
           <button
             onClick={handleSave}
             disabled={!isChanged}
             title={isChanged ? "Save changes" : "No changes to save"}
-            className={`px-2 lg:px-4 py-2 rounded-full transition-all duration-150 flex items-center gap-x-2 font-bold 
+            className={`w-7 h-7 lg:w-9 lg:h-9 hover:bg-[#1a1a1a] border-2 border-[#d6ebfd30] font-bold rounded-lg flex items-center justify-center gap-x-2 duration-150
             ${
               isChanged && !isSaving
                 ? " hover:bg-[#3a3a3a] text-white"
@@ -168,13 +166,11 @@ export default function FilePage() {
           >
             {isSaving ? (
               <>
-                <IoSave className="w-5 h-5" />
-                <span className="hidden lg:inline">Saving</span>
+                <Loading02 />
               </>
             ) : (
               <>
-                <IoSaveOutline className="w-5 h-5" />
-                <span className="hidden lg:inline">Save</span>
+                <IoSave className="w-3 h-3 lg:w-4 lg:h-4" />
               </>
             )}
           </button>
@@ -183,6 +179,7 @@ export default function FilePage() {
 
       <hr className=" border-[#e5e7eb] dark:border-[#2a2a2a]" />
 
+      {/*  code editor */}
       <div className="flex-1 overflow-hidden h-0">
         <CodeEditor
           code={code}

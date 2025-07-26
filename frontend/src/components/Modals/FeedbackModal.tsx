@@ -110,7 +110,7 @@ export default function FeedbackModal() {
             <button
               type="button"
               onClick={toggleFeedbackModal}
-              className="w-[50%] border-none outline-none py-2 bg-red-400 hover:bg-red-400/60 active:bg-red-400/60 rounded-[16px] select-none duration-200"
+              className="w-[50%] outline-none py-2 rounded-xl text-white bg-[#3a3a3a] hover:bg-[#4a4a4a] active:bg-[#3a3a3a] font-medium"
             >
               Cancel
             </button>
@@ -118,10 +118,10 @@ export default function FeedbackModal() {
             <button
               type="submit"
               disabled={sending}
-              className={`w-[50%] p-[10px] rounded-[16px] duration-200 select-none outline-none border-none ${
+              className={`w-[50%] p-[10px] rounded-[16px] duration-200 select-none outline-none border-none font-medium ${
                 sending
-                  ? "bg-[#00bfff96] cursor-not-allowed"
-                  : "bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63]"
+                  ? "bg-[#444] text-[#888] cursor-not-allowed"
+                  : "bg-white text-black hover:bg-[#dcdcdc] active:bg-[#c8c8c8]"
               }`}
             >
               {sending ? "Sending..." : "Send Feedback"}

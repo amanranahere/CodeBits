@@ -75,7 +75,7 @@ function App() {
                 animate={{ width: 280 }}
                 exit={{ width: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="h-full overflow-hidden z-[299]"
+                className="fixed lg:relative top-0 left-0 h-full overflow-hidden z-[299]"
               >
                 <Sidebar />
               </motion.div>
@@ -88,7 +88,7 @@ function App() {
               onClick={toggleSidebar}
               className="fixed top-2 left-2 p-2 text-[#bababa] hover:bg-[#3a3a3a] rounded-xl z-[200]"
             >
-              <TbLayoutSidebarFilled className="w-6 h-6" />
+              <TbLayoutSidebarFilled className="w-5 h-5 lg:w-6 lg:h-6" />
             </button>
           )}
         </>

@@ -125,10 +125,10 @@ export default function AccountInfo() {
             <button
               onClick={handleSubmit}
               disabled={loading}
-              className={`w-[50%] p-[10px] rounded-[16px] mt-4 duration-150 select-none outline-none border-none ${
+              className={`w-[50%] p-[10px] rounded-[16px] mt-4 duration-150 select-none outline-none border-none font-medium ${
                 loading
-                  ? "bg-[#00bfff96] cursor-not-allowed"
-                  : "bg-[#00bfff] hover:bg-[#00bfff96] active:bg-[#00bfff63]"
+                  ? "bg-[#444] text-[#888] cursor-not-allowed"
+                  : "bg-white text-black hover:bg-[#dcdcdc] active:bg-[#c8c8c8]"
               }`}
             >
               <div className="h-5 flex justify-center items-center">
