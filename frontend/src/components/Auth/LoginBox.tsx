@@ -53,9 +53,9 @@ function LoginBox() {
       <div className="text-center text-white/90 px-4 pb-3 lg:pb-6 flex flex-col gap-y-1">
         <span className="font-mono text-white md:text-2xl font-bold select-none">
           <span className="text-neutral-100">Code</span>
-          <span className="text-cyan-400">{"{"}</span>
+          <span className="text-[#bababa]">{"{"}</span>
           <span className="text-neutral-100">Bits</span>
-          <span className="text-cyan-400">{"}"}</span>
+          <span className="text-[#bababa]">{"}"}</span>
         </span>
 
         <h1 className="text-[#bababa] text-sm">

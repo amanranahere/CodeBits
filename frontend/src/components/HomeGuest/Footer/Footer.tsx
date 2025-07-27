@@ -48,8 +48,8 @@ export default function Footer() {
               className="w-full lg:w-[40%] text-center md:text-start font-mono font-medium flex flex-col gap-y-4"
             >
               <span className="font-mono text-white text-3xl font-bold leading-none select-none">
-                Code<span className="text-cyan-400">{"{"}</span>Bits
-                <span className="text-cyan-400">{"}"}</span>
+                Code<span className="text-[#bababa]">{"{"}</span>Bits
+                <span className="text-[#bababa]">{"}"}</span>
               </span>
 
               <p>

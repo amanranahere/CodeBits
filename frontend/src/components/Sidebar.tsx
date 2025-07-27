@@ -60,9 +60,9 @@ const Sidebar = () => {
           <div onClick={() => navigate("/")} className="p-2 cursor-pointer">
             <span className="font-mono text-white md:text-xl font-bold select-none">
               Code
-              <span className="text-cyan-400">{"{"}</span>
+              <span className="text-[#bababa]">{"{"}</span>
               Bits
-              <span className="text-cyan-400">{"}"}</span>
+              <span className="text-[#bababa]">{"}"}</span>
             </span>
           </div>
 
