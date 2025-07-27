@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 
 export default function IntroSection() {
   return (
-    <section className="relative w-full bg-black text-white py-16 md:py-24 lg:py-28 px-4 md:px-10 flex flex-col items-center justify-center gap-y-2 lg:gap-y-6 overflow-hidden">
-      <div className="flex flex-col justify-center items-center gap-y-3">
+    <section className="relative w-full bg-black text-white md:py-20 flex flex-col items-center justify-center gap-y-2 lg:gap-y-6 ">
+      <div className="sticky top-[30vh] w-full flex flex-col justify-center items-center gap-y-1  lg:gap-y-3 px-4 md:px-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -25,33 +25,25 @@ export default function IntroSection() {
         >
           One place for every <br /> snippet you care about
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "linear", delay: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="w-full lg:w-[50%] text-[#bababa] text-sm md:text-lg font-medium text-center leading-tight mt-4"
+        >
+          See how CodeBits keeps your snippets organized, searchable and ready
+          to use exactly when you need them.
+        </motion.p>
       </div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "linear", delay: 0.4 }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="w-full lg:w-[45%] text-[#bababa] text-lg font-medium text-center leading-tight"
-      >
-        See how CodeBits keeps your snippets organized, searchable and ready to
-        use exactly when you need them.
-      </motion.p>
-
       {/*  video  */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          ease: [0.25, 0.1, 0.25, 1],
-          type: "tween",
-        }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="w-full lg:w-[80%] relative z-10 p-2 lg:p-3 mt-4  flex justify-center items-center perspective-[1200px] border-2 border-[#d6ebfd30] rounded-[25px]"
-      >
+      <div className="w-full relative z-10 mt-[12vh] md:mt-[40vh]">
+        <div className="absolute top-0 left-0 w-full h-24 blur-3xl bg-white/30"></div>
+
         <video
-          className="w-full h-full rounded-[25px] shadow-lg"
+          className="relative w-full h-auto"
           autoPlay
           loop
           muted
@@ -59,7 +51,7 @@ export default function IntroSection() {
         >
           <source src="/videos/CodeBitsSampleVideo.mp4" type="video/mp4" />
         </video>
-      </motion.div>
+      </div>
     </section>
   );
 }

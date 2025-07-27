@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 
 export default function FeaturesSection() {
   return (
-    <section className="relative w-full bg-black text-white flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden px-4 py-16 md:py-24 lg:py-28">
-      <div className="flex flex-col justify-center items-center gap-y-3">
+    <section className="relative w-full bg-black text-white flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden px-2 md:px-0 py-40 md:py-20">
+      <div className="flex flex-col justify-center items-center gap-y-3 px-2">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -37,7 +37,7 @@ export default function FeaturesSection() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "linear", delay: 0.4 }}
         viewport={{ once: true, amount: 0.2 }}
-        className="w-full lg:w-[50%] lg:min-w-[630px] md:text-lg text-[#bababa] font-semibold text-center leading-tight"
+        className="w-full lg:w-[50%] lg:min-w-[630px] px-2 text-sm md:text-lg text-[#bababa] font-semibold text-center leading-tight"
       >
         From quick search to keyboard shortcuts, every detail in CodeBits is
         designed to save time and keep you focused on writing code.

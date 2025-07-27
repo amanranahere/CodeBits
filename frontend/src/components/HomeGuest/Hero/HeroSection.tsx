@@ -12,8 +12,8 @@ export default function LandingSection() {
         viewport={{ once: true }}
         className="text-4xl md:text-6xl lg:text-7xl font-extrabold flex flex-col justify-center items-center text-center"
       >
-        <span>The organized home</span>
-        <span>for your code snippets</span>
+        The organized home <br className="hidden md:block" /> for your code
+        snippets
       </motion.div>
 
       <motion.p
@@ -21,7 +21,7 @@ export default function LandingSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
         viewport={{ once: true }}
-        className="w-full lg:w-[40%] lg:min-w-[630px] md:text-lg text-[#bababa] font-semibold text-center leading-tight"
+        className="w-full lg:w-[40%] lg:min-w-[630px] text-sm md:text-lg text-[#bababa] font-semibold text-center leading-snug"
       >
         No more digging through old projects or scattered files. Save snippets
         once, find them instantly, and keep building without interruptions.

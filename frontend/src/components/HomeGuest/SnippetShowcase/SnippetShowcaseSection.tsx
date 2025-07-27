@@ -138,8 +138,8 @@ export const connectDB = async () => {
   };
 
   return (
-    <section className="relative w-full bg-black text-white py-16 md:py-24 lg:py-28 px-4 md:px-10 flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden">
-      <div className="flex flex-col justify-center items-center gap-y-3">
+    <section className="relative w-full bg-black text-white md:pt-20 pb-24 md:pb-32 px-2 md:px-10 flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden z-20">
+      <div className="flex flex-col justify-center items-center gap-y-3 px-2 md:px-0">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -167,7 +167,7 @@ export const connectDB = async () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "linear", delay: 0.4 }}
         viewport={{ once: true, amount: 0.2 }}
-        className="w-full lg:w-[60%] text-[#bababa] text-lg font-medium text-center leading-tight"
+        className="w-full lg:w-[60%] text-[#bababa] text-sm md:text-lg font-medium text-center leading-tight px-2 md:px-0"
       >
         Some snippets are worth saving because you use them everywhere. Store
         them once in CodeBits and they'll always be ready when you need them

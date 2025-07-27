@@ -40,11 +40,17 @@ export default function HomeGuest() {
         <FeatureSection />
       </div>
 
-      <div id="showcase">
-        <SnippetsShowcase />
-      </div>
+      <div className="relative h-[250vh]">
+        <div className="sticky top-0 h-screen z-0">
+          <SignupCTASection />
+        </div>
 
-      <SignupCTASection />
+        <div id="showcase" className="absolute top-0 left-0 w-full z-10">
+          <SnippetsShowcase />
+
+          <div className="absolute bottom-[-4rem] left-0 w-full h-24 blur-3xl bg-white/20 pointer-events-none"></div>
+        </div>
+      </div>
 
       <Footer />
     </div>
