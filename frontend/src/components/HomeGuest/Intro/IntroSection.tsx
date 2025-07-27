@@ -57,7 +57,7 @@ export default function IntroSection() {
           muted
           playsInline
         >
-          <source src="/videos/CodeBitsVid.mp4" type="video/mp4" />
+          <source src="/videos/CodeBitsSampleVideo.mp4" type="video/mp4" />
         </video>
       </motion.div>
     </section>
