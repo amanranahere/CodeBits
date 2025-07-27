@@ -58,7 +58,7 @@ const Sidebar = () => {
         <div className="sticky top-0 w-full p-1 flex justify-between bg-inherit z-10">
           {/*  logo  */}
           <div onClick={() => navigate("/")} className="p-2 cursor-pointer">
-            <span className="font-mono text-white text-2xl font-bold select-none">
+            <span className="font-mono text-white md:text-xl font-bold select-none">
               Code
               <span className="text-cyan-400">{"{"}</span>
               Bits

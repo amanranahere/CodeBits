@@ -50,7 +50,7 @@ function SignupBox() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="h-full w-full text-white relative overflow-hidden py-16 px-6 flex flex-col gap-y-5 bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500"
+      className="h-full w-full text-white relative overflow-hidden py-16 px-6 flex flex-col bg-black/65 backdrop-blur-lg rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.25)] duration-500"
     >
       <button
         onClick={toggleSignup}
@@ -59,12 +59,21 @@ function SignupBox() {
         <IoClose className="w-5 h-5" />
       </button>
 
-      <h1 className="text-center text-lg font-bold text-white/90 pb-6">
-        Keep your best code in <br /> one place
-      </h1>
+      <div className="text-center text-white/90 px-4 pb-3 lg:pb-6 flex flex-col gap-y-1">
+        <span className="font-mono text-white md:text-2xl font-bold select-none">
+          <span className="text-neutral-100">Code</span>
+          <span className="text-cyan-400">{"{"}</span>
+          <span className="text-neutral-100">Bits</span>
+          <span className="text-cyan-400">{"}"}</span>
+        </span>
+
+        <h1 className="text-[#bababa] text-sm">
+          Begin collecting the bits that matter.
+        </h1>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="h-full w-full">
+        <div className="h-full w-full pt-10">
           <div className="floating-input-wrapper">
             {/* name input */}
             <input
@@ -72,6 +81,7 @@ function SignupBox() {
               type="text"
               placeholder="Name"
               required
+              autoFocus
               {...register("name", {
                 required: "Name required",
               })}

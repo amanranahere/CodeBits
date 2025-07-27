@@ -165,7 +165,7 @@ export default function Footer() {
             viewport={{ once: true, amount: 1 }}
             className="w-full px-3 md:px-0 flex flex-col md:flex-row justify-between items-center font-bold gap-y-4 md:gap-y-0"
           >
-            <p className="uppercase font-mono order-3 md:order-1 pr-20">
+            <p className="uppercase font-mono order-3 md:order-1 md:pr-20">
               © 2025 CodeBits. All rights reserved.
             </p>
 
