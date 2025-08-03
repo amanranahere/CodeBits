@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 
 export default function FeaturesSection() {
   return (
-    <section className="relative w-full bg-black text-white flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden px-2 md:px-0 py-40 md:py-20">
-      <div className="flex flex-col justify-center items-center gap-y-3 px-2">
+    <section className="relative w-full bg-black text-white flex flex-col items-center justify-center overflow-hidden px-2 md:px-0 py-40 md:py-20">
+      <div className="flex flex-col justify-center items-center px-2">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -26,7 +26,7 @@ export default function FeaturesSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1, ease: "linear" }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-3xl md:text-5xl font-extrabold text-center"
+          className="text-3xl md:text-5xl font-extrabold text-center bg-gradient-to-r from-white via-white to-[#666] bg-clip-text text-transparent py-3 md:py-4"
         >
           Built for how developers actually work
         </motion.h2>
@@ -43,7 +43,7 @@ export default function FeaturesSection() {
         designed to save time and keep you focused on writing code.
       </motion.p>
 
-      <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-6 md:p-4 lg:p-6">
+      <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-6 md:p-4 lg:p-6  mt-4 md:mt-6">
         {/*  1st box  */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export default function IntroSection() {
   return (
     <section className="relative w-full bg-black text-white md:py-20 flex flex-col items-center justify-center gap-y-2 lg:gap-y-6 ">
-      <div className="sticky top-[30vh] w-full flex flex-col justify-center items-center gap-y-1  lg:gap-y-3 px-4 md:px-10">
+      <div className="w-full flex flex-col justify-center items-center px-4 md:px-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -21,7 +21,7 @@ export default function IntroSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1, ease: "linear" }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-3xl md:text-5xl font-extrabold text-center"
+          className="text-3xl md:text-5xl font-extrabold text-center bg-gradient-to-br from-white via-white to-[#666] bg-clip-text text-transparent py-2 md:py-3"
         >
           One place for every <br /> snippet you care about
         </motion.h2>
@@ -39,7 +39,7 @@ export default function IntroSection() {
       </div>
 
       {/*  video  */}
-      <div className="w-full relative z-10 mt-[12vh] md:mt-[40vh]">
+      <div className="w-full relative z-10 mt-6 md:mt-10">
         <div className="absolute top-0 left-0 w-full h-24 blur-3xl bg-white/30"></div>
 
         <video

@@ -138,8 +138,8 @@ export const connectDB = async () => {
   };
 
   return (
-    <section className="relative w-full bg-black text-white md:pt-20 pb-24 md:pb-32 px-2 md:px-10 flex flex-col items-center justify-center gap-y-3 lg:gap-y-6 overflow-hidden z-20">
-      <div className="flex flex-col justify-center items-center gap-y-3 px-2 md:px-0">
+    <section className="relative w-full bg-black text-white md:pt-20 pb-24 md:pb-32 px-2 md:px-10 flex flex-col items-center justify-center overflow-hidden z-20">
+      <div className="flex flex-col justify-center items-center px-2 md:px-0">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -156,7 +156,7 @@ export const connectDB = async () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1, ease: "linear" }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-3xl md:text-5xl font-extrabold text-center"
+          className="text-3xl md:text-5xl font-extrabold text-center bg-gradient-to-r from-white via-white to-[#666] bg-clip-text text-transparent py-3 md:py-4"
         >
           Code you don't want to rewrite
         </motion.h2>
@@ -167,7 +167,7 @@ export const connectDB = async () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "linear", delay: 0.4 }}
         viewport={{ once: true, amount: 0.2 }}
-        className="w-full lg:w-[60%] text-[#bababa] text-sm md:text-lg font-medium text-center leading-tight px-2 md:px-0"
+        className="w-full lg:w-[60%] text-[#bababa] text-sm md:text-lg font-medium text-center leading-tight px-2 md:px-0 pb-4 md:pb-6"
       >
         Some snippets are worth saving because you use them everywhere. Store
         them once in CodeBits and they'll always be ready when you need them
