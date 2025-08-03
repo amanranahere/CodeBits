@@ -29,6 +29,7 @@ CodeBits is a full-stack web application that lets users create, manage, and org
 - Zustand (global state)
 - React Router
 - Monaco Editor
+- Framer Motion
 
 **Backend:**
 - Node.js
@@ -49,5 +50,34 @@ Use the following credentials to log in and explore the full functionality of th
 - **Password**: password
 
 <br>
+
+## Screenshots
+
+### Landing page
+
+![Hero Screenshot](public/Screenshots/codebitsHero.png)
+
+### Features section
+
+![Features section Screenshot](public/Screenshots/codebitsFeatures.png)
+
+### Showcase section
+
+![Showcase section Screenshot](public/Screenshots/codebitsShowcase.png)
+
+### Logged in Home page
+
+![Logged in Home Screenshot](public/Screenshots/codebitsHome.png)
+
+### File page
+
+![File page Screenshot](public/Screenshots/codebitDropdown.png)
+
+
+<br>
+
+## License
+
+This project is created for **learning and demonstration purposes only**. The source code is available for reference but should not be used for commercial projects without permission.
 
 
