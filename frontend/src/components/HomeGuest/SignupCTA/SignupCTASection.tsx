@@ -27,9 +27,9 @@ export default function SignupCTASection() {
           viewport={{ once: true, amount: 0.2 }}
           className="w-full lg:w-[52%] text-[#bababa] text-sm md:text-lg font-medium text-center leading-tight"
         >
-          Some snippets are worth saving because you use them everywhere. Store
-          them once in CodeBits and they'll always be ready when you need them
-          again.
+          Start building your personal library of reusable code. Sign up to keep
+          your favorite snippets just a click away, forever organized and ready
+          to paste.
         </motion.p>
 
         {/*  login/signup buttons  */}

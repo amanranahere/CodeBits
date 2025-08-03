@@ -169,9 +169,9 @@ export const connectDB = async () => {
         viewport={{ once: true, amount: 0.2 }}
         className="w-full lg:w-[60%] text-[#bababa] text-sm md:text-lg font-medium text-center leading-tight px-2 md:px-0 pb-4 md:pb-6"
       >
-        Some snippets are worth saving because you use them everywhere. Store
-        them once in CodeBits and they'll always be ready when you need them
-        again.
+        From config files to clever utility functions, some code is just too
+        useful to lose. Save it once in CodeBits and reuse it across all your
+        projects with zero friction.
       </motion.p>
 
       {/*  codebox  */}
