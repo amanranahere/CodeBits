@@ -178,8 +178,11 @@ export const connectDB = async () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "linear" }}
-        viewport={{ once: true, amount: 0.2 }}
+        transition={{
+          y: { duration: 0.8, ease: "easeOut" },
+          opacity: { duration: 1.2, ease: "easeOut" },
+        }}
+        viewport={{ once: true }}
         className="w-[100%] lg:w-[80%] h-[90vh] border-2 border-[#d6ebfd30] rounded-[25px] flex flex-col overflow-hidden my-3 lg:my-6"
       >
         {/*  navbar  */}

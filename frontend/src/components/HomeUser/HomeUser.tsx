@@ -113,7 +113,10 @@ export default function HomeUser() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "linear", delay: 0.4 }}
+              transition={{
+                y: { duration: 0.6, ease: "linear", delay: 0.4 },
+                opacity: { duration: 0.6, ease: "linear", delay: 1 },
+              }}
               className="relative h-32 md:h-full lg:min-h-44 col-span-1 md:col-span-1 order-1 flex flex-col justify-center items-center gap-y-1 bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] duration-500 overflow-hidden"
             >
               <div className="absolute top-3 right-3 w-7 h-7 md:w-9 md:h-9 flex justify-center items-center rounded-full bg-[#ffffff06] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,.075),_inset_0_0_5vw_hsla(0,0%,100%,.05)]">
@@ -130,7 +133,10 @@ export default function HomeUser() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "linear", delay: 0.8 }}
+              transition={{
+                y: { duration: 0.6, ease: "linear", delay: 0.8 },
+                opacity: { duration: 0.6, ease: "linear", delay: 1.4 },
+              }}
               className="relative h-32 md:h-full lg:min-h-44 col-span-1 md:col-span-1 order-2 flex flex-col justify-center items-center gap-y-1 bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] duration-500 overflow-hidden"
             >
               <div className="absolute top-3 right-3 w-7 h-7 md:w-9 md:h-9 flex justify-center items-center rounded-full bg-[#ffffff06] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,.075),_inset_0_0_5vw_hsla(0,0%,100%,.05)]">
@@ -149,7 +155,10 @@ export default function HomeUser() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "linear", delay: 1 }}
+              transition={{
+                y: { duration: 0.6, ease: "linear", delay: 1 },
+                opacity: { duration: 0.6, ease: "linear", delay: 1.6 },
+              }}
               className="relative h-32 md:h-full lg:min-h-44 col-span-2 md:col-span-1 order-3 flex flex-col justify-center items-center gap-y-1 bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] duration-500 overflow-hidden"
             >
               <div className="absolute top-3 right-3 w-7 h-7 md:w-9 md:h-9 flex justify-center items-center rounded-full bg-[#ffffff06] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,.075),_inset_0_0_5vw_hsla(0,0%,100%,.05)]">
@@ -172,7 +181,10 @@ export default function HomeUser() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "linear", delay: 1.2 }}
+              transition={{
+                y: { duration: 0.6, ease: "linear", delay: 1.2 },
+                opacity: { duration: 0.6, ease: "linear", delay: 1.8 },
+              }}
               className="h-full relative col-span-2 md:col-span-3 order-4 p-4 md:p-6 lg:p-8 flex flex-col gap-y-2 lg:gap-y-7 bg-[#ffffff06] rounded-[25px] shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.05)] hover:shadow-[inset_0_0_0_calc(1px+0px)_hsla(0,0%,100%,0.075),_inset_0_0_5vw_hsla(0,0%,100%,0.15)] duration-500 overflow-hidden"
             >
               <div
